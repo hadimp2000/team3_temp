@@ -1,0 +1,22 @@
+@use 'sass:color';
+
+$density-smallest: 0.1rem;
+$density-smaller: 0.2rem;
+$density-small: 0.5rem;
+$density-normal: 1rem;
+$density-large: 2rem;
+$density-larger: 4rem;
+$density-largest: 8rem;
+
+// pallete: https://colorhunt.co/palette/2c2e43595260b2b1b9ffd523
+$color-purple: #6643B5;
+$color-lightBlue: #D5DEF5;
+$color-blue: #8594E4;
+$color-darkPurple: #430F58;
+
+$color-lightest: lighten($color-purple, 40%);
+$color-lighter: lighten($color-purple, 20%);
+$color-mixPurple: color.mix($color-purple, $color-darkPurple);
+$color-mixBlue: color.mix($color-darkPurple, $color-blue);
+$color-darker: darken($color-blue, 20%);
+$color-darkest: darken($color-blue, 40%);
