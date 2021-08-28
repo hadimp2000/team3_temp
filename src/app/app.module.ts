@@ -6,19 +6,29 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './layouts/header/header.component';
 import { AsideComponent } from './layouts/aside/aside.component';
 import { FooterComponent } from './layouts/footer/footer.component';
+import { LandingComponent } from './landing/landing.component';
+import { LandingHeaderComponent } from './landing/landing-header/landing-header.component';
+import { LandingFooterComponent } from './landing/landing-footer/landing-footer.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     AsideComponent,
-    FooterComponent
+    FooterComponent,
+    LandingComponent,
+    LandingHeaderComponent,
+    LandingFooterComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NoopAnimationsModule,
+    MatGridListModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

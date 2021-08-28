@@ -1,0 +1,10 @@
+@use '../../styles/defs';
+.main-banner {
+  background-image: url("../../assets/images/LandingBanner.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+  .main-banner__text {
+    position: absolute;
+  }
+}
