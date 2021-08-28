@@ -3,6 +3,7 @@
 
 main {
   @include f.centering;
+  min-height: 100vh;
   background-image: linear-gradient(to bottom right, $color-blue, $color-purple);
 
   .form {
@@ -62,7 +63,7 @@ main {
     }
   }
 }
-@media screen and (max-width: 410px) {
+@media screen and (max-width: 800px) {
   main .form form .inputbox input {
     display: block;
     width: 100%;

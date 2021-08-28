@@ -1,6 +1,7 @@
 main {
   display: flex;
   justify-content: center;
+  min-height: 100vh;
   background-image: linear-gradient(to bottom right, #8594E4, #6643B5);
 }
 main .form {
@@ -80,7 +81,7 @@ main .form div:last-of-type a:hover {
   color: #8594E4;
 }
 
-@media screen and (max-width: 410px) {
+@media screen and (max-width: 800px) {
   main .form form .inputbox input {
     display: block;
     width: 100%;
