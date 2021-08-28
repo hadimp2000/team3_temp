@@ -21,6 +21,10 @@ $btn-solid-color: #ff6d70;
       outline: none;
       border: 1px transparent;
       margin: 40px 0px 0px 32px;
+      @media screen and (max-width: 768px) {
+        margin: 20px 0px 0px 10px;
+      }
+
       cursor: pointer;
       font-size: 15px;
       &:nth-last-child(2) {
