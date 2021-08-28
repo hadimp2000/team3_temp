@@ -1,5 +1,5 @@
-@use "../../styles/_defs" as *;
-@use "../../styles/formTemplate" as f;
+@use "../../../styles/defs" as *;
+@use "../../../styles/formTemplate" as f;
 
 main {
   @include f.centering;
