@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layouts/header/header.component';
@@ -11,6 +10,9 @@ import { LandingHeaderComponent } from './landing/landing-header/landing-header.
 import { LandingFooterComponent } from './landing/landing-footer/landing-footer.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LogInComponent } from './log-in/log-in.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +23,16 @@ import { MatGridListModule } from '@angular/material/grid-list';
     LandingComponent,
     LandingHeaderComponent,
     LandingFooterComponent,
+    SignUpComponent,
+    LogInComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
     MatGridListModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
