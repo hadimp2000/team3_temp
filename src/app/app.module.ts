@@ -13,6 +13,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogInComponent } from './log-in/log-in.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { LogInComponent } from './log-in/log-in.component';
     MatGridListModule,
     FormsModule,
     ReactiveFormsModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
