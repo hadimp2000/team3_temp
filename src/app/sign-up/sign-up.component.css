@@ -1,6 +1,7 @@
 main {
   display: flex;
   justify-content: center;
+  align-items: center;
   min-height: 100vh;
   background-image: linear-gradient(to bottom right, #8594E4, #6643B5);
 }
@@ -52,6 +53,7 @@ main .form form > div:last-of-type {
   clear: both;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 main .form form > div:last-of-type button {
   background-color: #6643B5;
