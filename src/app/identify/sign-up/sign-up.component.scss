@@ -8,6 +8,9 @@ main {
 
   .form {
     @include f.createForm;
+    h2 {
+      margin-bottom: $density-largest;
+    }
     min-width: 50%;
     form {
       .inputbox {

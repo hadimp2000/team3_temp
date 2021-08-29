@@ -18,5 +18,5 @@ $color-lightest: lighten($color-purple, 40%);
 $color-lighter: lighten($color-purple, 20%);
 $color-mixPurple: color.mix($color-purple, $color-darkPurple);
 $color-mixBlue: color.mix($color-darkPurple, $color-blue);
-$color-darker: darken($color-blue, 20%);
+$color-darker: darken($color-blue, 10%);
 $color-darkest: darken($color-blue, 40%);
