@@ -30,7 +30,6 @@ main .form form .inputbox {
 }
 main .form form .inputbox label {
   font-weight: bold;
-  font-size: 1.5rem;
   color: black;
   margin-top: 1rem;
   float: right;
@@ -73,13 +72,9 @@ main .form form > div:last-of-type button:hover {
   width: 25rem;
   cursor: pointer;
 }
-main .form div:last-of-type {
-  font-size: 1.5rem;
-}
 main .form div:last-of-type a {
   color: #6643B5;
   margin-right: 1rem;
-  font-size: 1.5rem;
 }
 main .form div:last-of-type a:hover {
   color: #8594E4;
