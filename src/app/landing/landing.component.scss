@@ -54,3 +54,25 @@ $btn-solid-color: #ff6d70;
     }
   }
 }
+
+.intro-banner {
+  width: 100%;
+  text-align: center;
+  * {
+    margin: 12px;
+  }
+  a {
+    margin-top: 20px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+    font-size: 15px;
+    border: 1px solid $btn-solid-color;
+    background-color: transparent;
+    transition: 0.2s ease;
+    &:hover {
+      background-color: $btn-solid-color;
+    }
+  }
+}
