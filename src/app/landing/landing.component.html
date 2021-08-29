@@ -1,5 +1,5 @@
 <app-landing-header></app-landing-header>
-<mat-grid-list cols="1" rowHeight="60vh">
+<mat-grid-list cols="1" rowHeight="50vh">
     <mat-grid-tile class="main-banner">
         <div class="main-banner__text">
             <h1>
@@ -23,11 +23,25 @@
             <h1>
                 در اختیار شماست
             </h1>
-            <h4>
-                تیم سه کارآموزی آکادمی کد استار
-            </h4>
             <a href="https://github.com/Star-Academy/Summer1400-Project-Team3" target="_blank">صفحه گیت هاب</a>
         </div>
     </mat-grid-tile>
 </mat-grid-list>
+<div class="team-intro">
+    <h3 id="team">
+        تیم سه کارآموزی آکادمی ستاره
+    </h3>
+    <div class="cards-container">
+        <div class="profile-card" *ngFor="let profile of arryOfInfos">
+            <div>
+                <img src="../../assets/images/default-profile.jpg" alt="text" />
+            </div>
+            <h6>{{profile.job}}</h6>
+            <h3>{{profile.name}}</h3>
+            <a href="{{profile.git}}">
+                <img width="20" src="../../assets/images/iconmonstr-github-1.svg" alt="github" />
+            </a>
+        </div>
+    </div>
+</div>
 <app-landing-footer></app-landing-footer>
