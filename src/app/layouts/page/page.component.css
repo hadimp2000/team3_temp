@@ -1,0 +1,39 @@
+.top-bar-container {
+  grid-area: top-bar;
+}
+
+.side-bar-container {
+  grid-area: side-bar;
+}
+
+.page-content {
+  grid-area: page-content;
+}
+
+.footer {
+  grid-area: footer-area;
+}
+
+.page {
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "top-bar top-bar  " "side-bar page-content  " "footer-area footer-area ";
+  grid-gap: 0;
+}
+.page > .top-bar-container {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.page > .side-bar-container {
+  width: fit-content;
+}
+
+.page-content footer {
+  background-color: #222334;
+  padding: 1rem 2rem;
+}
+
+/*# sourceMappingURL=page.component.css.map */

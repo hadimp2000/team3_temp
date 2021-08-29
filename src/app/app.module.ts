@@ -10,6 +10,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { LogInComponent } from './log-in/log-in.component';
 import {RouterModule} from "@angular/router";
+import { PageComponent } from './layouts/page/page.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {RouterModule} from "@angular/router";
     AsideComponent,
     FooterComponent,
     SignUpComponent,
-    LogInComponent
+    LogInComponent,
+    PageComponent
   ],
   imports: [
     BrowserModule,

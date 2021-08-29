@@ -16,6 +16,9 @@ html {
 
 body {
     min-height: 100vh;
+
+  padding:0;
+  margin:0;
 }
 
 .hidden {
@@ -167,14 +170,82 @@ input:-webkit-autofill:focus {
 
 // main styles
 body {
-    box-sizing: content-box;
-    min-height: 100vh;
-    margin: auto;
-    font-size: var(--font-size);
+  display: grid;
+  box-sizing: content-box;
+  min-height: 100vh;
+  margin: auto;
+  font-size: var(--font-size);
+
+
+  color: $color-light;
+  grid-template-rows: 1fr;
 }
 .stretch-child{
   display: grid;
 }
+
+
+.button-block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: $density-normal $density-large;
+  border-radius: $density-small;
+  transition: background-color 100ms ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $color-darker;
+  }
+
+  &.selected {
+    background-color: $color-dark;
+  }
+}
+
+.icon {
+  display: block;
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.icon-button {
+  display: block;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+
+  &:not([disabled]) {
+    cursor: pointer;
+  }
+
+  .icon {
+    display: block;
+
+    &:hover {
+      fill: $color-primary;
+      transition: fill 200ms ease-in-out;
+    }
+
+    &.selected {
+      color: $color-primary;
+    }
+  }
+}
+
+
+
+@keyframes rotating {
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+
+
 
 // style toastr
 .toast-container {

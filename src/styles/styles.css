@@ -74,6 +74,8 @@ html {
 
 body {
   min-height: 100vh;
+  padding: 0;
+  margin: 0;
 }
 
 .hidden {
@@ -217,16 +219,69 @@ input:-webkit-autofill:focus {
 }
 
 body {
+  display: grid;
   box-sizing: content-box;
   min-height: 100vh;
   margin: auto;
   font-size: var(--font-size);
+  color: #b2b1b9;
+  grid-template-rows: 1fr;
 }
 
 .stretch-child {
   display: grid;
 }
 
+.button-block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  transition: background-color 100ms ease-in-out;
+  cursor: pointer;
+}
+.button-block:hover {
+  background-color: #222334;
+}
+.button-block.selected {
+  background-color: #2c2e43;
+}
+
+.icon {
+  display: block;
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.icon-button {
+  display: block;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+}
+.icon-button:not([disabled]) {
+  cursor: pointer;
+}
+.icon-button .icon {
+  display: block;
+}
+.icon-button .icon:hover {
+  fill: #ffd523;
+  transition: fill 200ms ease-in-out;
+}
+.icon-button .icon.selected {
+  color: #ffd523;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}
 .toast-container.toast-top-left {
   top: 1rem;
   left: 1rem;

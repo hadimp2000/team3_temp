@@ -21,7 +21,7 @@ main .form h2 {
   font-size: 2.5rem;
   margin-bottom: 8rem;
   margin-top: 2rem;
-  color: #1c2c81;
+  color: #181924;
 }
 main .form form .inputbox {
   height: 6rem;
@@ -43,7 +43,7 @@ main .form form .inputbox input {
   float: left;
 }
 main .form form .inputbox input:hover {
-  border: 0.2rem solid #a18ad4;
+  border: 0.2rem solid #e7e7e9;
 }
 main .form form .inputbox input:focus {
   border: 0.2rem solid #6643B5;
