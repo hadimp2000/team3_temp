@@ -175,15 +175,11 @@ body {
   min-height: 100vh;
   margin: auto;
   font-size: var(--font-size);
-
-
-  color: $color-light;
   grid-template-rows: 1fr;
 }
 .stretch-child{
   display: grid;
 }
-
 
 .button-block {
   display: flex;
@@ -193,13 +189,15 @@ body {
   border-radius: $density-small;
   transition: background-color 100ms ease-in-out;
   cursor: pointer;
+  margin-bottom: $density-normal;
 
   &:hover {
-    background-color: $color-darker;
+    background-color: $color-blue;
   }
 
   &.selected {
-    background-color: $color-dark;
+    background-color: $color-purple;
+    color: white;
   }
 }
 

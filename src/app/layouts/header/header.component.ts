@@ -9,4 +9,7 @@ export class HeaderComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+  public myFunction() {
+    // document.getElementById("myDropdown").classList.toggle("show");
+  }
 }

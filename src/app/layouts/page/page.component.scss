@@ -1,20 +1,23 @@
 @use '../../../styles/defs' as *;
 
-.top-bar-container{
+.top-bar-container {
   grid-area: top-bar;
 }
-.side-bar-container{
+
+.side-bar-container {
   grid-area: side-bar;
 }
-.page-content{
-  grid-area:page-content;
+
+.page-content {
+  grid-area: page-content;
 }
-.footer{
-  grid-area:footer-area;
+
+.footer {
+  grid-area: footer-area;
 }
 
 .page {
- min-height: 100%;
+  min-height: 100%;
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr;
@@ -24,9 +27,8 @@
         'footer-area footer-area ';
 
   grid-gap: 0;
+
   > .top-bar-container {
-
-
     position: sticky;
     top: 0;
     z-index: 2;
@@ -38,17 +40,11 @@
   }
 }
 
-
-.page-content {
-
-
-  main {
-
-  }
-  footer {
-    background-color: $color-darker;
-    padding: $density-normal $density-large;
-  }
-
+footer {
+  background-color: #282A35;
+  color: white;
+  text-align: center;
+  padding: $density-normal $density-large;
 }
+
 

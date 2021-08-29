@@ -1,6 +1,7 @@
 .side-bar {
   grid-area: side-bar;
   min-height: 100%;
+  padding-top: 2rem;
   width: fit-content;
   background-color: #E7E9EB;
 }
@@ -11,21 +12,6 @@
   padding: 0.5rem;
   position: sticky;
   top: 0;
-}
-.side-bar > .side-bar-inner > .side-logo {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  color: #ffd523;
-  padding: 2rem;
-}
-.side-bar > .side-bar-inner > .side-logo > .logo-image {
-  display: inline;
-  width: 3em;
-  height: 3em;
-}
-.side-bar > .side-bar-inner > .side-logo > .logo-title {
-  font-size: 1.5em;
 }
 .side-bar > .side-bar-inner > nav {
   font-weight: bold;

@@ -26,10 +26,6 @@ $color-light: #b2b1b9;
 $color-medium: #595260;
 $color-dark: #2c2e43;
 
-$color-lightest: lighten($color-light, 40%);
-$color-lighter: lighten($color-light, 20%);
 $color-medium-light: color.mix($color-medium, $color-light);
 $color-medium-dark: color.mix($color-medium, $color-dark);
-$color-darker: darken($color-dark, 5%);
-$color-darkest: darken($color-dark, 10%);
 

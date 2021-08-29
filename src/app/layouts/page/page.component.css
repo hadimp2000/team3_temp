@@ -31,8 +31,10 @@
   width: fit-content;
 }
 
-.page-content footer {
-  background-color: #222334;
+footer {
+  background-color: #282A35;
+  color: white;
+  text-align: center;
   padding: 1rem 2rem;
 }
 

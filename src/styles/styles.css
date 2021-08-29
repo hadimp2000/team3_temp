@@ -224,7 +224,6 @@ body {
   min-height: 100vh;
   margin: auto;
   font-size: var(--font-size);
-  color: #b2b1b9;
   grid-template-rows: 1fr;
 }
 
@@ -240,12 +239,14 @@ body {
   border-radius: 0.5rem;
   transition: background-color 100ms ease-in-out;
   cursor: pointer;
+  margin-bottom: 1rem;
 }
 .button-block:hover {
-  background-color: #222334;
+  background-color: #8594E4;
 }
 .button-block.selected {
-  background-color: #2c2e43;
+  background-color: #6643B5;
+  color: white;
 }
 
 .icon {

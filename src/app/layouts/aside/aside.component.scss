@@ -3,7 +3,7 @@
 .side-bar {
   grid-area: side-bar;
   min-height: 100%;
-
+  padding-top: $density-large;
   width: fit-content;
   background-color: #E7E9EB;
 
@@ -15,25 +15,6 @@
 
     position: sticky;
     top: 0;
-
-    > .side-logo {
-      display: flex;
-      gap: $density-normal;
-      align-items: center;
-
-      color: $color-primary;
-      padding: $density-large;
-
-      > .logo-image {
-        display: inline;
-        width: 3em;
-        height: 3em;
-      }
-
-      > .logo-title {
-        font-size: 1.5em;
-      }
-    }
 
     > nav {
       font-weight: bold;
