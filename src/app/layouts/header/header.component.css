@@ -33,7 +33,7 @@
   color: #2c2e43;
   border-radius: 100%;
   border: none;
-  box-shadow: 0 0 0 0.05em #e7e7e9;
+  box-shadow: 0 0 0 0.05em #a18ad4;
 }
 .top-bar > nav .icon-profile > svg {
   width: 1.4em;
@@ -55,7 +55,7 @@
   background-color: #434052;
   border-radius: 0.5rem;
   border: 0.1rem solid #86828d;
-  color: #e7e7e9;
+  color: #a18ad4;
   display: flex;
   flex-direction: column;
   align-items: center;

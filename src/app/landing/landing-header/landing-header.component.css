@@ -1,3 +1,115 @@
+header .nav {
+  display: flex;
+  margin: 10px 12px;
+  align-items: center;
+}
+header .nav .nav__logo {
+  width: 11%;
+  color: #ff6d70;
+}
+header .nav .nav__links {
+  width: 70%;
+}
+header .nav .nav__links ul {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+header .nav .nav__links ul p {
+  color: #7a8289;
+}
+header .nav .nav__links ul button {
+  color: #404346;
+  border: 2px solid #ff6d70;
+  border-radius: 8px;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 2px 12px;
+  font-size: 14px;
+  transition: 0.2s ease;
+  outline: transparent;
+}
+header .nav .nav__links ul button:hover {
+  background-color: #ff6d70;
+}
 
+.slider-small-screen {
+  display: none;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  margin: 0 1rem;
+}
+@media screen and (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+}
+.hamburger span {
+  display: block;
+  width: 3.2rem;
+  height: 0.3rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+  background: #ff6d70;
+  border-radius: 3px;
+  z-index: 1;
+  transform-origin: 4px 0px;
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+}
+.hamburger span:first-child {
+  transform-origin: 0% 0%;
+}
+.hamburger span:nth-last-child(2) {
+  transform-origin: 0% 100%;
+}
+.hamburger input {
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: 13px;
+  right: 17px;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 2;
+  -webkit-touch-callout: none;
+}
+.hamburger input:checked ~ span {
+  opacity: 1;
+  transform: rotate(45deg) translate(-0.5rem, -2rem);
+}
+.hamburger input:checked ~ span:nth-last-child(3) {
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+.hamburger input:checked ~ span:nth-last-child(2) {
+  transform: rotate(-45deg) translate(0.2rem, 1.5rem);
+}
+
+@media screen and (max-width: 768px) {
+  header .nav__links {
+    display: none;
+  }
+
+  .slider-small-screen {
+    display: block;
+    position: absolute;
+    background-color: #fff;
+    max-width: 500px;
+    transition: 0.2s ease-in-out;
+    margin-top: 12px;
+    width: 100%;
+    z-index: 1000;
+  }
+  .slider-small-screen * {
+    padding: 5px 8px;
+  }
+  .slider-small-screen p {
+    color: #7a8289;
+  }
+}
 
 /*# sourceMappingURL=landing-header.component.css.map */
