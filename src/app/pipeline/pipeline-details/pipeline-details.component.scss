@@ -1,0 +1,13 @@
+@use '../../../styles/defs' as *;
+h2 {
+  margin-bottom: $density-large;
+  color: $color-darkest;
+}
+h3 {
+  color: $color-dark-gray;
+  margin-bottom: $density-small;
+}
+p {
+  margin-bottom: $density-large;
+
+}

@@ -4,10 +4,10 @@ section {
   background-color: $color-lightGray;
   position: relative;
 }
-button:first-of-type {
+.first-icon {
   position: absolute;
-  right: $density-large;
-  top: 1.7rem;
+  right: 2.5rem;
+  top: 1.8rem;
   cursor: pointer;
   transition: all .1s ease-out;
   align-items: center;
@@ -20,7 +20,7 @@ button:first-of-type {
   border: 1px solid $color-darkest;
   display: flex;
 }
-svg:first-of-type {
+.first-svg, .second-svg{
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   --t-button-color: currentColor;
@@ -49,10 +49,10 @@ svg:first-of-type {
   width: 14px !important;
   height: 12px !important;
 }
-button:nth-of-type(2) {
+.second-icon {
   position: absolute;
-  right: 6rem;
-  top: 1.7rem;
+  right: 6.5rem;
+  top: 1.8rem;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   --t-button-color: currentColor;
@@ -97,3 +97,43 @@ button:nth-of-type(2) {
   display: flex;
   min-height: 0;
 }
+.download {
+  cursor: pointer;
+  position: absolute;
+  top: 1.8rem;
+  right: 10.5rem;
+  width: 24px;
+  height: 24px;
+  color: $color-darkest;
+}
+
+.run {
+
+  cursor: pointer;
+  position: absolute;
+  top: $density-normal;
+  right: calc(50% - 20px);
+  width: 40px;
+  height: 40px;
+  circle{
+    fill: $color-purple;
+  }
+  path {
+    fill: darken($color-purple, 10%);;
+  }
+}
+ .back {
+   cursor: pointer;
+   position: absolute;
+   top: 1.8rem;
+   left: 2.5rem;
+   width: 24px;
+   height: 24px;
+   color: $color-darkest;
+ }
+ h3 {
+   position: absolute;
+   top: 1.7rem;
+   left: 6rem;
+   color: $color-darkest;
+ }

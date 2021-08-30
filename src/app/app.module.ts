@@ -19,6 +19,7 @@ import {SignUpComponent} from "./identify/sign-up/sign-up.component";
 import {LogInComponent} from "./identify/log-in/log-in.component";
 import { PipelineComponent } from './pipeline/pipeline.component';
 import { PipelineHeaderComponent } from './pipeline/pipeline-header/pipeline-header.component';
+import { PipelineDetailsComponent } from './pipeline/pipeline-details/pipeline-details.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PipelineHeaderComponent } from './pipeline/pipeline-header/pipeline-hea
     LogInComponent,
     PageComponent,
     PipelineComponent,
-    PipelineHeaderComponent
+    PipelineHeaderComponent,
+    PipelineDetailsComponent
   ],
   imports: [
     BrowserModule,

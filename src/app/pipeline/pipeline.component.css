@@ -1,3 +1,9 @@
-
+app-pipeline-details {
+  float: right;
+  width: 20%;
+  background-color: #f8f8f9;
+  box-shadow: 0 0 2rem #E7E9EB;
+  padding: 2rem;
+}
 
 /*# sourceMappingURL=pipeline.component.css.map */

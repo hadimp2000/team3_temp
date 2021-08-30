@@ -1,0 +1,8 @@
+@use '../../styles/defs' as *;
+app-pipeline-details{
+  float: right;
+  width: 20%;
+  background-color: lighten($color-lightGray, 6%);
+  box-shadow: 0 0 $density-large $color-lightGray;
+  padding: $density-large;
+}
