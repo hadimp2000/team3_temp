@@ -1,3 +1,109 @@
+section {
+  height: 6rem;
+  background-color: #E7E9EB;
+  position: relative;
+}
 
+button:first-of-type {
+  position: absolute;
+  right: 2rem;
+  top: 1.7rem;
+  cursor: pointer;
+  transition: all 0.1s ease-out;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  width: 24px;
+  height: 24px;
+  color: #fff;
+  background-color: #1c2c81;
+  border: 1px solid #1c2c81;
+  display: flex;
+}
+
+svg:first-of-type {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  --t-button-color: currentColor;
+  --t-button-background-color: transparent;
+  --t-button-border-color: transparent;
+  --t-button-padding: 0 15px;
+  --t-button-height: 3.2rem;
+  -webkit-font-smoothing: antialiased;
+  list-style: none;
+  font: inherit;
+  text-transform: none;
+  cursor: pointer;
+  text-align: center;
+  user-select: none;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: inherit;
+  color: #fff;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  transform-origin: center center;
+  overflow: hidden;
+  fill: currentColor;
+  width: 14px !important;
+  height: 12px !important;
+}
+
+button:nth-of-type(2) {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  --t-button-color: currentColor;
+  --t-button-background-color: transparent;
+  --t-button-border-color: transparent;
+  --t-button-padding: 0 15px;
+  --t-button-height: 3.2rem;
+  --t-button-primary-color: #fff;
+  --t-button-primary-background: #19426c;
+  --t-button-primary-background--hover: #143456;
+  --t-button-primary-background--active: #0f2740;
+  --t-button-secondary-background--hover: #cde3f2;
+  --t-button-destructive-background: #cc5759;
+  --t-button-destructive-background--hover: #994143;
+  --t-button-destructive-background--active: #662b2c;
+  -webkit-font-smoothing: antialiased;
+  list-style: none;
+  box-sizing: border-box;
+  font: inherit;
+  margin: 0;
+  overflow: visible;
+  text-transform: none;
+  -webkit-appearance: button;
+  font-family: inherit;
+  background-image: none;
+  cursor: pointer;
+  margin-bottom: 0;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.1s ease-out;
+  grid-gap: 0.5rem;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+  box-shadow: none;
+  padding: 0;
+  border-radius: 12px;
+  line-height: inherit;
+  width: 24px;
+  height: 24px;
+  color: #fff;
+  background-color: #19426c;
+  border: 1px solid #19426c;
+  opacity: 1;
+  display: flex;
+  min-height: 0;
+}
 
 /*# sourceMappingURL=pipeline-header.component.css.map */
