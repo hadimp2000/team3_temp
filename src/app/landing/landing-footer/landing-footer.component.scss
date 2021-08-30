@@ -1,0 +1,20 @@
+footer {
+  text-align: center;
+  background-color: #f1d6d6;
+  padding: 12px;
+  .foote_bottom_ul {
+    padding: 0px;
+    margin: 10px auto;
+    text-decoration: none;
+  }
+  .foote_bottom_ul li {
+    display: inline;
+  }
+  .foote_bottom_ul li a {
+    color: #000;
+    margin: 0 12px;
+  }
+  p {
+    font-size: 10px;
+  }
+}
