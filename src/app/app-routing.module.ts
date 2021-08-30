@@ -7,16 +7,12 @@ import {SignUpComponent} from "./identify/sign-up/sign-up.component";
 import {LogInComponent} from "./identify/log-in/log-in.component";
 
 export const routes: Routes = [
-  { path: 'header', component: HeaderComponent },
   { path: 'signUp', component: SignUpComponent },
   { path: '', component: LandingComponent },
-
-  {path:'signUp',component:SignUpComponent},
   {path:'logIn',component:LogInComponent},
   {
-    path: 'dataInventory',
+    path: 'pipeline',
     children: [
-
     ],
     component: PageComponent,
   },
