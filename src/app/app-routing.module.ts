@@ -5,6 +5,9 @@ import {PageComponent} from "./layouts/page/page.component";
 import { LandingComponent } from './landing/landing.component';
 import { HeaderComponent } from './layouts/header/header.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import {HeaderComponent} from "./layouts/header/header.component";
+import {SignUpComponent} from "./identify/sign-up/sign-up.component";
+import {LogInComponent} from "./identify/log-in/log-in.component";
 
 export const routes: Routes = [
   { path: 'header', component: HeaderComponent },
@@ -21,6 +24,8 @@ export const routes: Routes = [
   },
   { path: '**', redirectTo: '' }
 
+  {path:'logIn',component:LogInComponent},
+  {path:'',redirectTo:'/signUp', pathMatch:'full'}
 ];
 
 @NgModule({

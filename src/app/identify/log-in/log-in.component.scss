@@ -1,0 +1,75 @@
+@use "../../../styles/_defs" as *;
+@use "../../../styles/formTemplate" as f;
+
+main {
+  @include f.centering;
+  min-height: 100vh;
+  background-image: linear-gradient(to bottom right, $color-blue, $color-purple);
+  .form {
+    @include f.createForm;
+    h2 {
+      margin-bottom: $density-larger;
+    }
+    form {
+      .inputbox {
+        input {
+          @include f.createInputBoxes;
+          width: 100%;
+          height: $density-larger;
+        }
+        label {
+          display: block;
+        }
+      }
+      button {
+        border: none;
+        border-radius: $density-normal;
+        height: $density-larger;
+        width: 100%;
+        margin-top: $density-normal;
+        background-color: $color-blue;
+          color: black;
+          font-weight: bold;
+        &:hover {
+          background-color: $color-darker;
+          cursor: pointer;
+          color: white;
+        }
+      }
+    }
+    h4 {
+      display: inline-block;
+      width: 50%;
+      font-size: 1.3rem;
+    }
+    > button {
+      width: 50%;
+      border-radius: $density-normal;
+      height: $density-larger;
+      background: none;
+      border: 2px solid $color-purple;
+        color: $color-purple;
+        font-weight: bold;
+        //font-size: 1.3rem;
+      &:hover {
+        background-color: $color-purple;
+        cursor: pointer;
+          color: white;
+        border: none;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1080px) {
+  main .form {
+    min-width: 50%;
+  }
+}@media screen and (max-width: 650px) {
+  main .form {
+    min-width: 70%;
+  }
+}@media screen and (max-width: 460px) {
+  main .form {
+    min-width: 90%;
+  }
+}

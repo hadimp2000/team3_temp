@@ -18,6 +18,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import {RouterModule} from "@angular/router";
 import { PageComponent } from './layouts/page/page.component';
+import {SignUpComponent} from "./identify/sign-up/sign-up.component";
+import {LogInComponent} from "./identify/log-in/log-in.component";
 
 @NgModule({
   declarations: [
