@@ -1,0 +1,47 @@
+<app-landing-header></app-landing-header>
+<mat-grid-list cols="1" rowHeight="50vh">
+    <mat-grid-tile class="main-banner">
+        <div class="main-banner__text">
+            <h1>
+                داده های تمیز، کامل
+            </h1>
+            <h1>
+                و تحلیل شده برای همه
+            </h1>
+            <h5>
+                بدون داده سالم، هر تصمیمی باعث ایجاد مشکل میشود
+            </h5>
+            <button>شروع کن</button>
+            <button>تست رایگان</button>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile class="intro-banner">
+        <div class="intro-banner__text">
+            <h1>
+                هر آنچه برای تحلیل داده ها نیاز دارید
+            </h1>
+            <h1>
+                در اختیار شماست
+            </h1>
+            <a href="https://github.com/Star-Academy/Summer1400-Project-Team3" target="_blank">صفحه گیت هاب</a>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>
+<div class="team-intro">
+    <h3 id="team">
+        تیم سه کارآموزی آکادمی ستاره
+    </h3>
+    <div class="cards-container">
+        <div class="profile-card" *ngFor="let profile of arryOfInfos">
+            <div>
+                <img src="../../assets/images/default-profile.jpg" alt="text" />
+            </div>
+            <h6>{{profile.job}}</h6>
+            <h3>{{profile.name}}</h3>
+            <a href="{{profile.git}}">
+                <img width="20" src="../../assets/images/iconmonstr-github-1.svg" alt="github" />
+            </a>
+        </div>
+    </div>
+</div>
+<app-landing-footer></app-landing-footer>
