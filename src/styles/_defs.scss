@@ -13,6 +13,8 @@ $color-purple: #6643B5;
 $color-lightBlue: #D5DEF5;
 $color-blue: #8594E4;
 $color-darkPurple: #430F58;
+$color-lightGray: #E7E9EB;
+$color-dark-gray: #282A35;
 
 $color-lightest: lighten($color-purple, 40%);
 $color-lighter: lighten($color-purple, 20%);
@@ -21,11 +23,4 @@ $color-mixBlue: color.mix($color-darkPurple, $color-blue);
 $color-darker: darken($color-blue, 10%);
 $color-darkest: darken($color-blue, 40%);
 
-$color-primary: #ffd523;
-$color-light: #b2b1b9;
-$color-medium: #595260;
-$color-dark: #2c2e43;
-
-$color-medium-light: color.mix($color-medium, $color-light);
-$color-medium-dark: color.mix($color-medium, $color-dark);
 

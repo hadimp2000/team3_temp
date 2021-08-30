@@ -221,12 +221,12 @@ body {
     display: block;
 
     &:hover {
-      fill: $color-primary;
+      //fill: $color-primary;
       transition: fill 200ms ease-in-out;
     }
 
     &.selected {
-      color: $color-primary;
+      //color: $color-primary;
     }
   }
 }

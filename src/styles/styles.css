@@ -268,13 +268,8 @@ body {
   display: block;
 }
 .icon-button .icon:hover {
-  fill: #ffd523;
   transition: fill 200ms ease-in-out;
 }
-.icon-button .icon.selected {
-  color: #ffd523;
-}
-
 @keyframes rotating {
   from {
     transform: rotate(0turn);
