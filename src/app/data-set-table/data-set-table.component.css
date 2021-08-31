@@ -1,0 +1,67 @@
+table .number {
+  width: 4%;
+}
+table .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: black !important;
+}
+table th {
+  padding: 2rem 0.1px;
+}
+table td {
+  padding: 0.8rem 0;
+}
+table td .name-column {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: auto 1fr;
+  grid-gap: 0 1rem;
+  height: 100%;
+}
+table td svg {
+  width: 2rem;
+  height: 2rem;
+  fill: white;
+  margin-left: 4%;
+}
+table td .talend-icon {
+  fill: gray;
+}
+table td .talend-icon:hover {
+  fill: #6643B5;
+}
+table td button {
+  color: white;
+  font-weight: normal;
+  font-size: 70%;
+  text-align: center;
+  place-content: center;
+  width: 100%;
+  background-color: #5b6fdb;
+}
+table td .container {
+  position: relative;
+  bottom: 1.2rem;
+}
+table td .trash-icon {
+  position: absolute;
+  width: 2.2rem;
+  height: 2.2rem;
+  margin-right: 0.5rem;
+  fill: #430F58;
+}
+table .symbol-column {
+  width: 13%;
+}
+table .delete-column {
+  width: 6%;
+}
+table tr:hover {
+  background-color: #edeef0;
+  transition: 500ms;
+}
+table tr:hover .talend-icon {
+  fill: #6643B5;
+}
+
+/*# sourceMappingURL=data-set-table.component.css.map */

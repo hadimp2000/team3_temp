@@ -5,6 +5,7 @@ import { LandingComponent } from './landing/landing.component';
 import {SignUpComponent} from "./identify/sign-up/sign-up.component";
 import {LogInComponent} from "./identify/log-in/log-in.component";
 import {PipelineComponent} from "./pipeline/pipeline.component";
+import {DataSetTableComponent} from "./data-set-table/data-set-table.component";
 
 export const routes: Routes = [
   { path: 'signUp', component: SignUpComponent },
@@ -14,6 +15,7 @@ export const routes: Routes = [
   {
     path: 'pipelines',
     children: [
+      {path:'dataSet',component:DataSetTableComponent}
     ],
     component: PageComponent,
   },
