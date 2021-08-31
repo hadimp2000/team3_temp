@@ -2,8 +2,19 @@ app-pipeline-details {
   float: right;
   width: 20%;
   background-color: #f8f8f9;
-  box-shadow: 0 0 2rem #E7E9EB;
+  box-shadow: 0 0 1rem gray;
   padding: 2rem;
+}
+
+@media (max-width: 900px) {
+  app-pipeline-details {
+    width: 30%;
+  }
+}
+@media (max-width: 500px) {
+  app-pipeline-details {
+    width: 40%;
+  }
 }
 
 /*# sourceMappingURL=pipeline.component.css.map */

@@ -1,8 +1,8 @@
 <section>
-  <button aria-label="Show/Hide configuration panel" id="stream:rightPanelToggle" name="rightPanelToggle" aria-describedby="f7dd12f3-f913-4aa0-9454-2d55e982e944" type="button" class="first-icon btn-icon-only btn btn-default"><svg name="talend-panel-opener-right" focusable="false" aria-hidden="true" class="first-svg sc-EHOje iyUYnG tc-svg-icon tc-icon tc-icon-name-talend-panel-opener-right"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <button (click)="clickDetailsIcon()" aria-label="Show/Hide configuration panel" id="stream:rightPanelToggle" name="rightPanelToggle" aria-describedby="f7dd12f3-f913-4aa0-9454-2d55e982e944" type="button" class="first-icon btn-icon-only btn btn-default"><svg name="talend-panel-opener-right" focusable="false" aria-hidden="true" class="first-svg sc-EHOje iyUYnG tc-svg-icon tc-icon tc-icon-name-talend-panel-opener-right"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
     <path d="M14.875 12.372c0 .34-.276.616-.616.616h-1.096a.616.616 0 0 1-.616-.616V3.757c0-.34.276-.615.616-.615h1.096c.34 0 .616.275.616.615v8.615zm-.761-10.558H1.896a1.893 1.893 0 0 0-1.892 1.89v8.727c0 1.044.85 1.892 1.892 1.892h12.218c1.042 0 1.89-.848 1.89-1.892V3.704c0-1.044-.848-1.89-1.89-1.89z"></path>
   </svg></svg></button>
-  <button aria-label="Show/Hide preview panel" id="stream:bottomPanelToggle" name="bottomPanelToggle" aria-describedby="65a25468-4df8-4303-a9a6-06683c335088" type="button" class="second-icon btn-icon-only btn btn-default ally-focus-within"><svg name="talend-panel-opener-bottom" focusable="false" aria-hidden="true" class="second-svg sc-EHOje iyUYnG tc-svg-icon tc-icon tc-icon-name-talend-panel-opener-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <button (click)="clickTableIcon()" aria-label="Show/Hide preview panel" id="stream:bottomPanelToggle" name="bottomPanelToggle" aria-describedby="65a25468-4df8-4303-a9a6-06683c335088" type="button" class="second-icon btn-icon-only btn btn-default ally-focus-within"><svg name="talend-panel-opener-bottom" focusable="false" aria-hidden="true" class="second-svg sc-EHOje iyUYnG tc-svg-icon tc-icon tc-icon-name-talend-panel-opener-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
     <path d="M14.77 12.566c0 .34-.276.616-.616.616H1.846a.616.616 0 0 1-.615-.616V11.47c0-.34.276-.616.615-.616h12.308c.34 0 .615.276.615.616v1.096zM14.112 1.79H1.896A1.893 1.893 0 0 0 .004 3.68v8.729c0 1.043.848 1.89 1.892 1.89h12.217c1.043 0 1.89-.847 1.89-1.89v-8.73c0-1.042-.847-1.89-1.89-1.89z"></path>
   </svg></svg></button>
   <svg xmlns="http://www.w3.org/2000/svg"   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="download feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
@@ -48,6 +48,6 @@
 </g>
 </svg>
   <h3>pipeline1</h3>
-  <svg xmlns="http://www.w3.org/2000/svg"   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="back feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+  <svg (click)="prevPage()" xmlns="http://www.w3.org/2000/svg"   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="back feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
 
 </section>

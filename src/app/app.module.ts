@@ -20,6 +20,7 @@ import {LogInComponent} from "./identify/log-in/log-in.component";
 import { PipelineComponent } from './pipeline/pipeline.component';
 import { PipelineHeaderComponent } from './pipeline/pipeline-header/pipeline-header.component';
 import { PipelineDetailsComponent } from './pipeline/pipeline-details/pipeline-details.component';
+import { PipelineTableComponent } from './pipeline/pipeline-table/pipeline-table.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { PipelineDetailsComponent } from './pipeline/pipeline-details/pipeline-d
     PageComponent,
     PipelineComponent,
     PipelineHeaderComponent,
-    PipelineDetailsComponent
+    PipelineDetailsComponent,
+    PipelineTableComponent
   ],
   imports: [
     BrowserModule,

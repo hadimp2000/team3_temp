@@ -3,6 +3,17 @@ app-pipeline-details{
   float: right;
   width: 20%;
   background-color: lighten($color-lightGray, 6%);
-  box-shadow: 0 0 $density-large $color-lightGray;
+  box-shadow: 0 0 $density-normal gray;
   padding: $density-large;
 }
+@media (max-width: 900px) {
+  app-pipeline-details {
+    width: 30%;
+  }
+}
+@media (max-width: 500px) {
+  app-pipeline-details {
+    width: 40%;
+  }
+}
+

@@ -141,4 +141,15 @@ h3 {
   color: #1c2c81;
 }
 
+@media (max-width: 800px) {
+  h3 {
+    top: 1.8rem;
+  }
+}
+@media (max-width: 600px) {
+  h3 {
+    top: 1.9rem;
+  }
+}
+
 /*# sourceMappingURL=pipeline-header.component.css.map */
