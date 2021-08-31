@@ -4,11 +4,7 @@ section {
   position: relative;
   height: 25rem;
   width: 100%;
-  //position: fixed;
-  //bottom: 0;
   box-shadow: 0 0 $density-normal gray;
-
-
 }
 .table {
   position: absolute;
@@ -21,15 +17,13 @@ section {
     font-size: 95%;
   }
 }
-table {
-  //height: 100%;
-}
 
 p{
   padding: 1.5rem 0 0 $density-large;
   float: left;
 }
 h2 {
+  color: $color-darkest;
   padding: $density-normal $density-large $density-small 0;
   display: inline-block;
 

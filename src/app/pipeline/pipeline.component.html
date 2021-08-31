@@ -1,6 +1,7 @@
 <div class="container">
   <app-header></app-header>
-<app-pipeline-header (detailsIcon)="showOrHideDetails()" (tableIcon)="showOrHideTable()"></app-pipeline-header>
-<app-pipeline-details *ngIf="showDetails"></app-pipeline-details>
-<app-pipeline-table *ngIf="showTable"></app-pipeline-table>
+  <app-pipeline-header (detailsIcon)="showOrHideDetails()" (tableIcon)="showOrHideTable()"></app-pipeline-header>
+  <app-pipeline-details *ngIf="showDetails"></app-pipeline-details>
+  <main></main>
+  <app-pipeline-table *ngIf="showTable"></app-pipeline-table>
 </div>
