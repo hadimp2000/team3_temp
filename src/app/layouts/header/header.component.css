@@ -105,7 +105,7 @@
   border: none;
   cursor: pointer;
   margin-left: 2rem;
-  padding: 0.3rem 1rem 0 1rem;
+  padding: 0.3rem 1rem 0 0.5rem;
 }
 .top-bar > nav .userInfo:hover {
   background-color: #6643B5;
