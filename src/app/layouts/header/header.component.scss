@@ -10,7 +10,7 @@
   > nav {
     display: grid;
     height: calc(1.6em + #{$density-normal + $density-large + 0.2rem});
-    span {
+    .talend {
       position: absolute;
       top: 1.5rem;
       right: 7rem;
@@ -22,14 +22,12 @@
       width: $density-larger;
       height: $density-larger;
       margin-right: 2rem;
-      margin-top: 0.9rem;
+      margin-top: 0.8rem;
     }
 
     .icon-profile {
-      float: left;
       cursor: pointer;
-      margin-left: 1.2em;
-      margin-top: 1.2rem;
+      margin-left: $density-normal;
       padding: $density-small;
       background-color: white;
       background-size: cover;
@@ -39,8 +37,8 @@
       box-shadow: 0 0 0 0.05em $color-lighter;
 
       > svg {
-        width: 1.4em;
-        height: 1.4em;
+        width: 1.2em;
+        height: 1.2em;
       }
 
     }
@@ -111,51 +109,42 @@
       }
     }
 
-    .dropdown {
-      float: left;
-      overflow: hidden;
-    }
-
-    .dropdown .dropbtn {
-      cursor: pointer;
-      border: none;
-      outline: none;
+    .username {
+      bottom: 0.4rem;
+      position: relative;
       color: white;
-      padding: 1.6rem;
-      background-color: inherit;
-      font-family: inherit;
+      padding-left: $density-small;
+    }
+
+    .arrow {
+      position: relative;
+      width: $density-large;
+      height: $density-large;
+      //padding-top: $density-small;
+      top: 0.3rem;
+      color: white;
+    }
+
+    .userInfo {
+      height: calc(1.6em + #{$density-normal + $density-large + 0.2rem});
+      float: left;
+      background-color: $color-dark-gray;
+      border: none;
+      cursor: pointer;
       margin-left: $density-large;
-      border-radius: $density-small;
+      padding: 0.3rem $density-normal 0 $density-normal;
+      &:hover {
+        background-color: $color-purple;
+      }
     }
+  }
+}
 
-    .dropdown:hover .dropbtn, .dropbtn:focus {
-      background-color: $color-purple;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #f9f9f9;
-      min-width: 160px;
-      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-      z-index: 1;
-    }
-
-    .dropdown-content a {
-      float: none;
-      color: black;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-      text-align: left;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #ddd;
-    }
-
-    .show {
-      display: block;
-    }
+@media screen and (max-width: 800px){
+  .top-bar >nav .talend-icon {
+    margin-top: 0.6rem;
+  }
+  .top-bar >nav .talend {
+    top:1.3rem;
   }
 }
