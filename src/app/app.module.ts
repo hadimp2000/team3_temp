@@ -21,6 +21,8 @@ import { PipelineComponent } from './pipeline/pipeline.component';
 import { PipelineHeaderComponent } from './pipeline/pipeline-header/pipeline-header.component';
 import { PipelineDetailsComponent } from './pipeline/pipeline-details/pipeline-details.component';
 import { PipelineTableComponent } from './pipeline/pipeline-table/pipeline-table.component';
+import { FilterDetailsComponent } from './pipeline/filter-page/filter-details/filter-details.component';
+import { FilterPageComponent } from './pipeline/filter-page/filter-page.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { PipelineTableComponent } from './pipeline/pipeline-table/pipeline-table
     PipelineComponent,
     PipelineHeaderComponent,
     PipelineDetailsComponent,
-    PipelineTableComponent
+    PipelineTableComponent,
+    FilterDetailsComponent,
+    FilterPageComponent
   ],
   imports: [
     BrowserModule,

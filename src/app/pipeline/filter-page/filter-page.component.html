@@ -1,0 +1,25 @@
+<div class="toolbar" #toolbar>
+  <img draggable="true" src="../../../assets/pika.jpg" alt="" id="pika" (dragstart)="dragBehaviour($event)">
+  <img draggable="true" src="../../../assets/pika.jpg" alt="" id="pika2" (dragstart)="dragBehaviour($event)">
+  <!--  <button draggable="true" id="and" (dragstart)="dragBehaviour($event)">AND</button>-->
+  <!--  <button draggable="true" id="or" (dragstart)="dragBehaviour($event)">OR</button>-->
+  <!--  <button draggable="true" id="condition" (dragstart)="dragBehaviour($event)">Condition</button>-->
+  <div style="margin-left: auto">
+    <form #form>
+      <div class="switch switch--horizontal">
+        <input type="radio" name="drag-action" value="nodes" id="nodes"/>
+        <label for="nodes">Move nodes</label>
+        <br>
+        <input type="radio" name="drag-action" value="links"
+               checked="checked" id="links"/>
+        <label for="links">Connect links</label>
+        <span class="toggle-outside">
+            <span class="toggle-inside"></span>
+          </span>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="graph-container" class="x" (dragover)="preventBrowser($event)" (drop)="drop($event)">
+</div>
