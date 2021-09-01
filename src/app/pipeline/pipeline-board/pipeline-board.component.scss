@@ -1,0 +1,17 @@
+.zoom-controls {
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 50px;
+  position: absolute;
+  left: 10px;
+  top: 25%;
+}
+.zoom-buttons {
+  border: none;
+  background: #fff;
+  margin-top: 10px;
+  cursor: pointer;
+}
