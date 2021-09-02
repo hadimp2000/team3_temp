@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {SelectionModel} from "@angular/cdk/collections";
+import {Router} from "@angular/router";
+import {BehaviorSubject} from "rxjs";
 
 export interface PeriodicElement {
   name: string;
@@ -9,7 +11,7 @@ export interface PeriodicElement {
   deleteIcon:string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
+export const ELEMENT_DATA: PeriodicElement[] = [
   {position: 1, name: 'Hydrogen',  symbol: '',deleteIcon:''},
   {position: 2, name: 'Helium', symbol: '',deleteIcon:''},
   {position: 3, name: 'Lithium', symbol: '',deleteIcon:''},
