@@ -1,15 +1,19 @@
+<h3>
+  درختی از شرط ها را تعریف کنید (هر برگ یک شرط روی یک ستون را نمایش می دهد)
+</h3>
+
 <div  class="toolbar" #toolbar>
     <button draggable="true" id="and" (dragstart)="dragBehaviour($event)">AND</button>
     <button draggable="true" id="or" (dragstart)="dragBehaviour($event)">OR</button>
     <button draggable="true" id="condition" (dragstart)="dragBehaviour($event)">Condition</button>
-  <div  style="margin-right: auto">
+  <div  style="margin-right: auto; margin-top: 2rem">
     <form #form>
       <div class="switch switch--horizontal">
         <input type="radio" name="drag-action" value="nodes" id="nodes"/>
-        <label for="nodes">Move nodes</label>
+        <label for="nodes">جابجایی</label>
         <input type="radio" name="drag-action" value="links"
                checked="checked" id="links"/>
-        <label for="links">Connect links</label>
+        <label for="links">وصل کردن</label>
         <span class="toggle-outside">
             <span class="toggle-inside"></span>
           </span>
@@ -19,4 +23,6 @@
 </div>
 
 <div id="graph-container" class="x" (dragover)="preventBrowser($event)" (drop)="drop($event)">
+  <button class="save">ذخیره</button>
+  <button class="cancel">لغو</button>
 </div>

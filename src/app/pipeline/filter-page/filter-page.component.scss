@@ -1,16 +1,48 @@
 @use '../../../styles/defs' as *;
-.x {
-  height: 40rem;
-  width: 70%;
-  box-shadow: 0 0 1rem #282A35;
-  margin: auto;
-}
 
+.x {
+  height: 35rem;
+  width: 70%;
+  box-shadow: 0 0 2rem $color-lightGray;
+  margin: auto;
+  margin-top: $density-larger;
+
+}
+h3 {
+  display: inline-block;
+  margin: $density-larger;
+}
+.save, .cancel {
+  margin:  $density-larger 0 $density-larger $density-large;
+  //float: left;
+  border-radius: 1rem;
+  width: $density-largest;
+  border: none;
+  height: $density-larger;
+  cursor: pointer;
+
+}
+.save {
+  background-color: $color-purple;
+  color: white;
+  &:hover {
+    background-color: $color-darkPurple;
+  }
+}
+.cancel {
+  background-color: $color-lightGray;
+  &:hover {
+    background-color: darken($color-lightGray,20%);
+  }
+
+}
  .toolbar button {
    border-radius: 999rem;
-   width: 8rem;
-   height: 8rem;
+   width: 7.5rem;
+   height: 7.5rem;
    border: none;
+   cursor: pointer;
+   margin-right: $density-normal;
  }
 #and {
   background-color: $color-purple;
@@ -28,32 +60,13 @@
 
 }
 .toolbar {
+  width: 70%;
+  margin: auto;
   display: flex;
-  top: 40px;
-  right: 20px;
-  padding: 10px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
-  border-radius: 4px;
-  background: #ffffff;
-  color: #222222;
-  font-weight: 300;
-  height: 10rem;
-}
-.toolbar .section {
-  position: relative;
-  display: block;
-}
-form {
-  float: left;
-  width: 25rem;
-}
-.toolbar-icons {
-  flex-basis: 70%;
 }
 
-.inline-images {
-  display: flex;
-  justify-content: space-between;
+form {
+  float: left;
 }
 
 
