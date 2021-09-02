@@ -1,17 +1,163 @@
+@use '../../../styles/defs' as *;
 .x {
-  background-color: #1c2c81;
-  height: 30rem;
-  border: 10px solid blue;
+  height: 40rem;
+  width: 70%;
+  box-shadow: 0 0 1rem #282A35;
+  margin: auto;
 }
-img {
-  width: 10rem;
-  height: 10rem;
-  display: inline-block;
-  border-radius: 999rem;
 
-}
  .toolbar button {
    border-radius: 999rem;
-   width: 10rem;
-   height: 10rem;
+   width: 8rem;
+   height: 8rem;
+   border: none;
  }
+#and {
+  background-color: $color-purple;
+  color: white;
+
+}
+#or {
+  background-color: $color-blue;
+  color: white;
+
+}
+#condition {
+  background-color: $color-darkPurple;
+  color: white;
+
+}
+.toolbar {
+  display: flex;
+  top: 40px;
+  right: 20px;
+  padding: 10px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+  border-radius: 4px;
+  background: #ffffff;
+  color: #222222;
+  font-weight: 300;
+  height: 10rem;
+}
+.toolbar .section {
+  position: relative;
+  display: block;
+}
+form {
+  float: left;
+  width: 25rem;
+}
+.toolbar-icons {
+  flex-basis: 70%;
+}
+
+.inline-images {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.switch {
+  width: 100%;
+  position: relative;
+}
+
+.switch input {
+  position: absolute;
+  top: 0px;
+  z-index: 2;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.switch input:checked {
+  z-index: 1;
+}
+
+.switch input:checked + label {
+  opacity: 1;
+  cursor: default;
+}
+
+.switch input:not(:checked) + label:hover {
+  opacity: 0.5;
+}
+
+.switch label {
+  color: #222222;
+  opacity: 0.33;
+  transition: opacity 0.25s ease;
+  cursor: pointer;
+}
+
+.switch .toggle-outside {
+  height: 100%;
+  border-radius: 2rem;
+  overflow: hidden;
+  transition: 0.25s ease all;
+}
+
+.switch .toggle-inside {
+  border-radius: 2.5rem;
+  background: #4a4a4a;
+  position: absolute;
+  transition: 0.25s ease all;
+  top: 0.25rem;
+}
+
+.switch--horizontal {
+  width: 18rem;
+  height: 2rem;
+  margin: 10px auto;
+  font-size: 0;
+  margin-bottom: 1rem;
+}
+
+.switch--horizontal input {
+  height: 2rem;
+  width: 5rem;
+  right: 5rem;
+  margin: 0;
+}
+
+.switch--horizontal label {
+  font-size: 1.3rem;
+  line-height: 2rem;
+  display: inline-block;
+  width: 6rem;
+  height: 100%;
+  margin: 0;
+  text-align: center;
+}
+
+.switch--horizontal label:last-of-type {
+  margin-right: 5rem;
+}
+
+.switch--horizontal .toggle-outside {
+  background: #dddddd;
+  position: absolute;
+  width: 5rem;
+  right: 5.7rem;
+}
+
+.switch--horizontal .toggle-inside {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.switch--horizontal input:checked ~ .toggle-outside .toggle-inside {
+  right: 0.25rem;
+}
+
+.switch--horizontal input ~ input:checked ~ .toggle-outside .toggle-inside {
+  right: 3.25rem;
+}
+
+.switch--horizontal input:disabled ~ .toggle-outside .toggle-inside {
+  background: #9a9a9a;
+}
+
+.switch--horizontal input:disabled ~ label {
+  color: #9a9a9a;
+}

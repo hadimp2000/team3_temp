@@ -37,20 +37,23 @@ export class FilterPageComponent implements OnInit,AfterViewInit {
       color: false,
       outline: false,
       outerStroke: {
-        color: 'red'
+        color: '#282A35'
       }
     });
     this.ogma.styles.setHoveredNodeAttributes({
       color: false,
       outline: false,
       outerStroke: {
-        color: 'red'
+        color: '#282A35'
       }
+    });
+    this.ogma.styles.addEdgeRule({
+      color: '#282A35'
     });
     this.ogma.events.onDragStart(() => {
       if (this.getMode('drag-action') === 'links') {
         this.ogma.tools.connectNodes.enable({
-          strokeColor: 'red',
+          strokeColor: '#282A35',
           createNodes: false,
           // avoid self edges
           condition: (source:any, target:any) => source.getId() !== target.getId(),
@@ -84,18 +87,17 @@ export class FilterPageComponent implements OnInit,AfterViewInit {
     console.log(this.toolbarHeight)
   }
 
-  public createNode(id:number, label:any, url:any, x:any, y:any)  {
+  public createSimpleNode(id:any, x:any, y:any, color:any)  {
     this.counter++;
     return {
       id: id + this.counter,
       attributes: {
         radius: 5,
-        shape: 'square',
-        color: 'transparent',
+        shape: 'circle',
+        color: color,
         outerStroke: 'transparent',
         innerStroke: 'transparent',
         text: id,
-        image: url,
         x: x,
         y: y
       },
@@ -103,18 +105,17 @@ export class FilterPageComponent implements OnInit,AfterViewInit {
     };
   };
 
-  public createConditionNode(id:number, label:any, url:any, x:any, y:any)  {
+  public createConditionNode(id:any, x:any, y:any)  {
     this.counter++;
     return {
       id: id + this.counter,
       attributes: {
         radius: 5,
-        shape: 'square',
-        color: 'transparent',
+        shape: 'circle',
+        color: '#430F58',
         outerStroke: 'transparent',
         innerStroke: 'transparent',
         text: id,
-        image: url,
         x: x,
         y: y
       },
@@ -124,7 +125,6 @@ export class FilterPageComponent implements OnInit,AfterViewInit {
 
   public dragBehaviour(event:any){
     event.dataTransfer.setData('type', event.target.id);
-    event.dataTransfer.setData('image', event.target.src);
   }
 
   public preventBrowser(event:any){
@@ -139,16 +139,28 @@ export class FilterPageComponent implements OnInit,AfterViewInit {
     });
     // now get the icons type and its URL
     const id = event.dataTransfer.getData('type');
-    const url = event.dataTransfer.getData('image');
     // tell the browser to leave the icon on the toolbar
     event.dataTransfer.dropEffect = 'copy';
     event.preventDefault();
     // create a node on the graph to the exact x and y of the drop
-    this.ogma.addNode(this.createNode(id, id, url, pos.x, pos.y));
+    switch (id) {
+      case 'and': {
+        this.ogma.addNode(this.createSimpleNode(id, pos.x, pos.y, '#6643B5'));
+        break
+      }
+      case 'or':
+      {
+        this.ogma.addNode(this.createSimpleNode(id, pos.x, pos.y,'#8594E4'));
+        break
+      }
+      case 'condition':
+      {
+        this.ogma.addNode(this.createConditionNode(id, pos.x, pos.y));
+        break
+      }
+    }
     this.ogma.view.locateGraph({ duration: 500 });
   }
-
-
 
   public getMode(id:any) {
     const form = document.querySelector('form');
@@ -161,83 +173,4 @@ export class FilterPageComponent implements OnInit,AfterViewInit {
       return input.checked;
     })[0].value;
   }
-
-
-  // public initOgma(): void {
-  //
-  //
-  //   // graph-container width and height
-  //
-  //   this.nodesCount = Math.floor(Math.random() * this.nodesMaxCount) + 1;
-  //   this.linksCount = Math.floor(Math.random() * this.nodesMaxCount);
-  //   // random nodes count and links count
-  //
-  //   // creating nodes
-  //   this.nodes = [];
-  //   for (let i = 0; i < this.nodesCount; i++) {
-  //     const randomX = Math.random() * this.width - this.width / 2;
-  //     const randomY = Math.random() * this.height - this.height / 2;
-  //
-  //     this.nodes.push({
-  //       id: 'n' + i,
-  //       data: { name: 'Node ' + i },
-  //       attributes: { x: randomX, y: randomY, radius: 20 },
-  //     }); // data is a custom dictionary for containing data
-  //   }
-  //
-  //   this.ogma.addNodes(this.nodes);
-  //   // adding created nodes to ogma
-  //
-  //   // creating links
-  //   this.links = [] as any;
-  //   for (let i = 0; i < this.linksCount; i++) {
-  //     const sourceId = 'n' + Math.floor(Math.random() * this.nodesCount);
-  //     const targetId = 'n' + Math.floor(Math.random() * this.nodesCount);
-  //
-  //     if (sourceId === targetId && this.nodesCount !== 1) {
-  //       i--;
-  //       continue;
-  //     }
-  //
-  //     const link = {
-  //       id: 'e' + i,
-  //       source: sourceId,
-  //       target: targetId,
-  //       data: { name: 'parent' },
-  //     };
-  //
-  //     this.links.push(link); // data is a custom dictionary for containing data
-  //   }
-  //
-  //   this.ogma.addEdges(this.links);
-  //   // adding created links to ogma
-  // }
-
-  // public createNode(event:any) {
-  //
-  //   if (!this.add_node_flag)
-  //     return;
-  //   this.nodes = [];
-  //
-  //   if (localStorage.getItem("node_number")===null)
-  //     localStorage.setItem("node_number","0");
-  //   // @ts-ignore
-  //   let node_number:number=parseInt(localStorage.getItem("node_number"));
-  //   console.log(this.width)
-  //   console.log(this.height)
-  //   const node={
-  //     id: 'n' + node_number,
-  //     data: { name: 'Node ' + node_number },
-  //     attributes: { x: (event.clientX-(this.width/2)), y: (event.clientY-(this.height/2)) , radius: 20 },
-  //   };
-  //   console.log(node)
-  //   this.nodes.push(node);
-  //   node_number++;
-  //   localStorage.setItem("node_number",node_number.toString())
-  //   this.ogma.addNode(node);
-  //   this.add_node_flag=false;
-  //   this.ogma.view.locateGraph();
-  //
-  // }
-
 }
