@@ -112,7 +112,7 @@ export class FilterPageComponent implements OnInit,AfterViewInit {
       attributes: {
         radius: 5,
         shape: 'circle',
-        color: '#430F58',
+        color: '#6643B5',
         outerStroke: 'transparent',
         innerStroke: 'transparent',
         text: id,
@@ -145,7 +145,7 @@ export class FilterPageComponent implements OnInit,AfterViewInit {
     // create a node on the graph to the exact x and y of the drop
     switch (id) {
       case 'and': {
-        this.ogma.addNode(this.createSimpleNode(id, pos.x, pos.y, '#6643B5'));
+        this.ogma.addNode(this.createSimpleNode(id, pos.x, pos.y, '#430F58'));
         break
       }
       case 'or':
