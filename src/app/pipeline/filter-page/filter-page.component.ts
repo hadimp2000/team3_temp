@@ -61,8 +61,22 @@ export class FilterPageComponent implements OnInit,AfterViewInit {
         });
       }
     });
-    this.ogma.events.onKeyPress('del', this.deleteItems);
-    this.ogma.events.onKeyPress('backspace', this.deleteItems);
+
+
+    let deleteItems=()=> {
+      const selectedNodes = this.ogma.getSelectedNodes();
+      const selectedEdges = this.ogma.getSelectedEdges();
+      if (selectedNodes || selectedEdges) {
+        if (selectedNodes) {
+          this.ogma.removeNodes(selectedNodes);
+        }
+        if (selectedEdges) {
+          this.ogma.removeEdges(selectedEdges);
+        }
+      }
+    }
+    this.ogma.events.onKeyPress('del', deleteItems);
+    this.ogma.events.onKeyPress('backspace', deleteItems);
   }
 
   ngAfterViewInit() {
@@ -71,6 +85,25 @@ export class FilterPageComponent implements OnInit,AfterViewInit {
   }
 
   public createNode(id:number, label:any, url:any, x:any, y:any)  {
+    this.counter++;
+    return {
+      id: id + this.counter,
+      attributes: {
+        radius: 5,
+        shape: 'square',
+        color: 'transparent',
+        outerStroke: 'transparent',
+        innerStroke: 'transparent',
+        text: id,
+        image: url,
+        x: x,
+        y: y
+      },
+      data: { type: id }
+    };
+  };
+
+  public createConditionNode(id:number, label:any, url:any, x:any, y:any)  {
     this.counter++;
     return {
       id: id + this.counter,
@@ -115,18 +148,7 @@ export class FilterPageComponent implements OnInit,AfterViewInit {
     this.ogma.view.locateGraph({ duration: 500 });
   }
 
-  public deleteItems() {
-    const selectedNodes = this.ogma.getSelectedNodes();
-    const selectedEdges = this.ogma.getSelectedEdges();
-    if (selectedNodes || selectedEdges) {
-      if (selectedNodes) {
-        this.ogma.removeNodes(selectedNodes);
-      }
-      if (selectedEdges) {
-        this.ogma.removeEdges(selectedEdges);
-      }
-    }
-  }
+
 
   public getMode(id:any) {
     const form = document.querySelector('form');
