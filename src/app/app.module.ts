@@ -45,8 +45,8 @@ import {MaterialModule} from "./material/material.module";
     PipelineDetailsComponent,
     PipelineTableComponent,
     FilterDetailsComponent,
-    FilterPageComponent
-    PipelineBoardComponent
+    FilterPageComponent,
+    PipelineBoardComponent,
     DataSetTableComponent,
     BannerComponent
   ],
