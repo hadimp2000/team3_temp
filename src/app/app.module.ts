@@ -20,6 +20,10 @@ import {LogInComponent} from "./identify/log-in/log-in.component";
 import { PipelineComponent } from './pipeline/pipeline.component';
 import { PipelineHeaderComponent } from './pipeline/pipeline-header/pipeline-header.component';
 import { PipelineBoardComponent } from './pipeline/pipeline-board/pipeline-board.component';
+import { DataSetTableComponent } from './data-set-table/data-set-table.component';
+import { BannerComponent } from './banner/banner.component';
+import {MaterialModule} from "./material/material.module";
+
 
 @NgModule({
   declarations: [
@@ -36,6 +40,8 @@ import { PipelineBoardComponent } from './pipeline/pipeline-board/pipeline-board
     PipelineComponent,
     PipelineHeaderComponent,
     PipelineBoardComponent
+    DataSetTableComponent,
+    BannerComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +51,8 @@ import { PipelineBoardComponent } from './pipeline/pipeline-board/pipeline-board
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    MaterialModule
 
   ],
   providers: [],
