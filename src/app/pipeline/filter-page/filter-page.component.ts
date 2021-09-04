@@ -119,7 +119,11 @@ export class FilterPageComponent implements OnInit,AfterViewInit {
         x: x,
         y: y
       },
-      data: { type: id }
+      data: { type: id,
+        column: '',
+        operation: '',
+        value: ''
+      }
     };
   };
 
@@ -172,5 +176,14 @@ export class FilterPageComponent implements OnInit,AfterViewInit {
     return Array.prototype.filter.call(select, input => {
       return input.checked;
     })[0].value;
+  }
+
+  public saveFilter(){
+    this.ogma.export.json({
+      download: false,
+      pretty: true
+    }).then(function(json:any) {
+      console.log(json);
+    });
   }
 }
