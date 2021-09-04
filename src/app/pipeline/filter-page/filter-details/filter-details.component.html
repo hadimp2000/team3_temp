@@ -1,3 +1,15 @@
-<h2>{{filter_name}}</h2>
-<p>Filter</p>
-<button>افزودن فیلتر</button>
+<h3>افزودن فیلتر</h3>
+<form *ngIf="filter_details.showForm" action="" #filterForm ="ngForm" (ngSubmit)="saveFilter(filterForm.value)">
+  <label for="columns">ستون</label>
+  <select name="column" id="columns" [value]="filter_details.column" [(ngModel)]="column">
+    <option *ngFor="let column of columns" [value]='column' >{{column}}</option>
+  </select>
+  <label for="operations">عملگر</label>
+  <select name="operation" id="operations" [value]="filter_details.operation" [(ngModel)]="operation">
+    <option *ngFor="let operation of operations" [value]="operation" >{{operation}}</option>
+  </select>
+  <label for="filterValue">شرط</label>
+  <input type="text" name="value" id="filterValue" [value]="filter_details.value" [(ngModel)]="value" required>
+  <button type="submit">ذخیره</button>
+</form>
+<p *ngIf="!filter_details.showForm">برای افزودن فیلتر نود شرطی خود را روی صفحه قرار دهید و بر روی آن کلیک کنید</p>

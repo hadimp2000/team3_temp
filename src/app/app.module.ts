@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import {AppRoutingModule, routes} from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layouts/header/header.component';
@@ -59,8 +58,7 @@ import {MaterialModule} from "./material/material.module";
     ReactiveFormsModule,
     MatButtonModule,
     RouterModule.forRoot(routes),
-    MaterialModule
-
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

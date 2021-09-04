@@ -1,1 +1,39 @@
-
+@use '../../../../styles/defs' as *;
+input, label, select {
+  display: block;
+}
+h3 {
+  margin: $density-normal 0 $density-larger 0;
+}
+input , select{
+  margin-bottom: $density-large;
+  width: 100%;
+  padding:0 $density-large;
+  outline: none;
+  height: $density-larger;
+  border: none;
+  border-bottom: 1px solid black;
+  cursor: pointer;
+  &:focus {
+    border-bottom: 2px solid $color-purple;
+  }
+}
+label {
+  margin-bottom: $density-normal;
+}
+button {
+  margin-top: $density-large;
+  background-color: $color-purple;
+  color: white;
+  border-radius: 1rem;
+  width: $density-largest;
+  border: none;
+  height: $density-larger;
+  cursor: pointer;
+  &:hover {
+    background-color: $color-darkPurple;
+  }
+}
+p{
+  color: $color-dark-gray;
+}
