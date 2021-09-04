@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-pipeline',
@@ -6,10 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pipeline.component.scss']
 })
 export class PipelineComponent implements OnInit {
-
-  constructor() { }
+  public showDetails:boolean = true;
+  public showTable:boolean = true;
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
+  public showOrHideDetails() {
+    this.showDetails = !this.showDetails
+  }
+
+  public showOrHideTable() {
+    this.showTable = !this.showTable
+  }
 }

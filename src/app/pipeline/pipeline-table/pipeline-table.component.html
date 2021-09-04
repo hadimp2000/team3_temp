@@ -1,0 +1,14 @@
+<section>
+  <h2>{{dataName}}</h2>
+  <p>50 رکورد</p>
+  <div class="table">
+    <table>
+      <tr>
+        <th *ngFor="let key of dataset_keys">{{key}}</th>
+      </tr>
+      <tr *ngFor="let obj of dataset_values">
+        <td *ngFor="let value of obj">{{value}}</td>
+      </tr>
+    </table>
+  </div>
+</section>

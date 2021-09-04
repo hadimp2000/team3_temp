@@ -1,3 +1,49 @@
+app-filter-details {
+  width: 25rem;
+  grid-area: details;
+  background-color: #f8f8f9;
+  box-shadow: 0 0 1rem gray;
+  padding: 2rem;
+}
 
+app-pipeline-table {
+  grid-area: table;
+}
+
+app-pipeline-header {
+  grid-area: header;
+}
+
+app-header {
+  grid-area: mainHeader;
+}
+
+main {
+  grid-area: content;
+}
+
+app-header {
+  grid-area: mainHeader;
+}
+
+.container {
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas: "mainHeader mainHeader" "header header" "details content" "details table";
+  grid-gap: 0;
+}
+
+@media (max-width: 900px) {
+  app-pipeline-details {
+    width: 20rem;
+  }
+}
+@media (max-width: 500px) {
+  app-pipeline-details {
+    width: 15rem;
+  }
+}
 
 /*# sourceMappingURL=pipeline.component.css.map */

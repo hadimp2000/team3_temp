@@ -19,11 +19,14 @@ import {SignUpComponent} from "./identify/sign-up/sign-up.component";
 import {LogInComponent} from "./identify/log-in/log-in.component";
 import { PipelineComponent } from './pipeline/pipeline.component';
 import { PipelineHeaderComponent } from './pipeline/pipeline-header/pipeline-header.component';
+import { PipelineDetailsComponent } from './pipeline/pipeline-details/pipeline-details.component';
+import { PipelineTableComponent } from './pipeline/pipeline-table/pipeline-table.component';
+import { FilterDetailsComponent } from './pipeline/filter-page/filter-details/filter-details.component';
+import { FilterPageComponent } from './pipeline/filter-page/filter-page.component';
 import { PipelineBoardComponent } from './pipeline/pipeline-board/pipeline-board.component';
 import { DataSetTableComponent } from './data-set-table/data-set-table.component';
 import { BannerComponent } from './banner/banner.component';
 import {MaterialModule} from "./material/material.module";
-
 
 @NgModule({
   declarations: [
@@ -39,6 +42,10 @@ import {MaterialModule} from "./material/material.module";
     PageComponent,
     PipelineComponent,
     PipelineHeaderComponent,
+    PipelineDetailsComponent,
+    PipelineTableComponent,
+    FilterDetailsComponent,
+    FilterPageComponent
     PipelineBoardComponent
     DataSetTableComponent,
     BannerComponent
