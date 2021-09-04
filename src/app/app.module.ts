@@ -23,6 +23,10 @@ import { PipelineDetailsComponent } from './pipeline/pipeline-details/pipeline-d
 import { PipelineTableComponent } from './pipeline/pipeline-table/pipeline-table.component';
 import { FilterDetailsComponent } from './pipeline/filter-page/filter-details/filter-details.component';
 import { FilterPageComponent } from './pipeline/filter-page/filter-page.component';
+import { PipelineBoardComponent } from './pipeline/pipeline-board/pipeline-board.component';
+import { DataSetTableComponent } from './data-set-table/data-set-table.component';
+import { BannerComponent } from './banner/banner.component';
+import {MaterialModule} from "./material/material.module";
 
 @NgModule({
   declarations: [
@@ -42,6 +46,9 @@ import { FilterPageComponent } from './pipeline/filter-page/filter-page.componen
     PipelineTableComponent,
     FilterDetailsComponent,
     FilterPageComponent
+    PipelineBoardComponent
+    DataSetTableComponent,
+    BannerComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +58,8 @@ import { FilterPageComponent } from './pipeline/filter-page/filter-page.componen
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    MaterialModule
 
   ],
   providers: [],
