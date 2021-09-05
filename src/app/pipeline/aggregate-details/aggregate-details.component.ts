@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {JoinDetailsModel} from "../join-details/join-details.model";
 import {AggregateDetailsModel} from "./aggregate-details.model";
 
 @Component({
