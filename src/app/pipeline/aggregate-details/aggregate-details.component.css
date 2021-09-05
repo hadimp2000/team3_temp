@@ -1,3 +1,63 @@
+svg {
+  color: #6643B5;
+  float: left;
+  margin-top: 2rem;
+  cursor: pointer;
+}
 
+section {
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+input, label, select {
+  display: block;
+}
+
+h3 {
+  color: #1c2c81;
+}
+
+h4 {
+  color: #282A35;
+  margin-bottom: 2rem;
+}
+
+input, select {
+  margin-bottom: 2rem;
+  width: 100%;
+  padding: 0 2rem;
+  outline: none;
+  height: 4rem;
+  border: none;
+  border-bottom: 1px solid black;
+  cursor: pointer;
+}
+input:focus, select:focus {
+  border-bottom: 2px solid #6643B5;
+}
+
+label {
+  margin-bottom: 1rem;
+  color: #282A35;
+}
+
+button {
+  margin-top: 2rem;
+  background-color: #6643B5;
+  color: white;
+  border-radius: 0.5rem;
+  width: 8rem;
+  border: none;
+  height: 4rem;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #430F58;
+}
+
+.groups {
+  margin-top: 4rem;
+}
 
 /*# sourceMappingURL=aggregate-details.component.css.map */
