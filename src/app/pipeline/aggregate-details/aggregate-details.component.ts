@@ -27,7 +27,15 @@ export class AggregateDetailsComponent implements OnInit {
   }
 
   public save(formValues:any){
-    console.log(formValues)
+    const {columns,operations,outputName, ...groupsObj} = formValues;
+    const groupArray:string[]= Object.values(groupsObj);
+    const temp:AggregateDetailsModel={
+      column: formValues.columns,
+      operation: formValues.operations,
+      outputName: formValues.outputName,
+      groupColumns:groupArray
+    }
+    console.log(temp)
   }
 
 }
