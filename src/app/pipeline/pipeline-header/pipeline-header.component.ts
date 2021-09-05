@@ -24,7 +24,7 @@ export class PipelineHeaderComponent implements OnInit {
   }
 
   public async prevPage() {
-    await this.router.navigateByUrl('/pipelines');
+    await this.router.navigateByUrl('/pipelines/dataSet');
   }
 
 }

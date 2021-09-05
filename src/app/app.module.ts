@@ -26,6 +26,7 @@ import { PipelineBoardComponent } from './pipeline/pipeline-board/pipeline-board
 import { DataSetTableComponent } from './data-set-table/data-set-table.component';
 import { BannerComponent } from './banner/banner.component';
 import {MaterialModule} from "./material/material.module";
+import { JoinDetailsComponent } from './pipeline/join-details/join-details.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import {MaterialModule} from "./material/material.module";
     FilterPageComponent,
     PipelineBoardComponent,
     DataSetTableComponent,
-    BannerComponent
+    BannerComponent,
+    JoinDetailsComponent
   ],
   imports: [
     BrowserModule,

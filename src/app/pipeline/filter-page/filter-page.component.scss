@@ -8,16 +8,7 @@
   margin-top: $density-larger;
 
 }
-section {
-  //display: grid;
-  //grid-template-columns: auto 1fr;
-  //grid-template-areas:
-  //      'filterDetails main';
-  //
-  //grid-gap: 0;
-}
 .main {
-  //grid-area: main;
   margin-right: 25rem;
 }
 app-filter-details {
@@ -25,8 +16,6 @@ app-filter-details {
   top: 0;
   right: 0;
   bottom: 0;
-  //grid-area: filterDetails;
-  //height: 100vh;
   width: 25rem;
   background-color: lighten($color-lightGray, 6%);
   box-shadow: 0 0 $density-normal gray;
@@ -44,8 +33,7 @@ hr {
 }
 .save, .cancel {
   margin:  $density-larger 0 $density-larger $density-large;
-  //float: left;
-  border-radius: 1rem;
+  border-radius: $density-small;
   width: $density-largest;
   border: none;
   height: $density-larger;

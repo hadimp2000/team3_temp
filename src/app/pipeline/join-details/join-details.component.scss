@@ -1,9 +1,20 @@
-@use '../../../../styles/defs' as *;
+@use '../../../styles/defs' as *;
+
+section {
+  padding: $density-normal;
+  overflow-y: auto;
+}
 input, label, select {
   display: block;
 }
 h3 {
-  margin: $density-normal 0 $density-larger 0;
+  color: $color-darkest;
+}
+
+h4 {
+  color: $color-dark-gray;
+  margin-bottom: $density-large;
+
 }
 input , select{
   margin-bottom: $density-large;
@@ -20,6 +31,8 @@ input , select{
 }
 label {
   margin-bottom: $density-normal;
+  color: $color-dark-gray;
+
 }
 button {
   margin-top: $density-large;
