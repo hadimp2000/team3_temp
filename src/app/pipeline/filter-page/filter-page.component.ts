@@ -231,5 +231,6 @@ export class FilterPageComponent implements OnInit, AfterViewInit {
       operation: event.operation,
       value: event.value
     });
+    changedNode.setAttribute('text',`${event.column} ${event.operation} ${event.value}`);
   }
 }
