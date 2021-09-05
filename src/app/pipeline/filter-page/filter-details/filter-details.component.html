@@ -1,12 +1,12 @@
 <h3>افزودن فیلتر</h3>
-<form *ngIf="filter_details.showForm && temp" action="" #filterForm ="ngForm" (ngSubmit)="saveFilter(filterForm.value)">
+<form *ngIf="filter_details.showForm && temp" action="" #filterForm="ngForm" (ngSubmit)="saveFilter(filterForm.value)">
   <label for="columns">ستون</label>
   <select name="column" id="columns" [(ngModel)]="filter_details.column">
-    <option *ngFor="let column of columns" [value]='column' >{{column}}</option>
+    <option *ngFor="let column of columns" [value]='column'>{{column}}</option>
   </select>
   <label for="operations">عملگر</label>
   <select name="operation" id="operations" [(ngModel)]="filter_details.operation">
-    <option *ngFor="let operation of operations" [value]="operation" >{{operation}}</option>
+    <option *ngFor="let operation of operations" [value]="operation">{{operation}}</option>
   </select>
   <label for="filterValue">شرط</label>
   <input type="text" name="value" id="filterValue" [(ngModel)]="filter_details.value" required>

@@ -39,9 +39,9 @@ table td, table th {
   vertical-align: middle;
 }
 
-table tr{background-color: $color-lightGray;}
+table tr{background-color: lighten($color-lightGray, 6%);}
 
-table tr:hover {background-color: lighten($color-lightGray, 6%);}
+table tr:hover {background-color: white}
 
 table th {
   position: sticky;

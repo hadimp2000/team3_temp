@@ -2,8 +2,9 @@
   <app-header></app-header>
   <app-pipeline-header (detailsIcon)="showOrHideDetails()" (tableIcon)="showOrHideTable()"></app-pipeline-header>
   <div *ngIf="showDetails" class="details" [ngSwitch]="detailsMode">
-      <app-join-details *ngSwitchCase="'join'" [join_details]="joinDetails"></app-join-details>
-      <app-pipeline-details *ngSwitchCase="'pipeline'"></app-pipeline-details>
+    <app-join-details *ngSwitchCase="'join'" [join_details]="joinDetails"></app-join-details>
+    <app-pipeline-details *ngSwitchCase="'pipeline'"></app-pipeline-details>
+    <app-aggregate-details *ngSwitchCase="'aggregate'"></app-aggregate-details>
   </div>
   <main>
     <app-pipeline-board></app-pipeline-board>

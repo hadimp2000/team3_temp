@@ -35,7 +35,7 @@ export class PipelineTableComponent implements OnInit {
       iso_code6: "AFG",
       iso_code7: "AFG",
       iso_code8: "AFG",
-      iso_code9: "AFG",      continent: "asia",
+      iso_code9: "AFG", continent: "asia",
       location: "afghanistan",
       date: "2020-02-24",
       total_cases: "1.0",
@@ -53,7 +53,7 @@ export class PipelineTableComponent implements OnInit {
       iso_code6: "AFG",
       iso_code7: "AFG",
       iso_code8: "AFG",
-      iso_code9: "AFG",      continent: "asia",
+      iso_code9: "AFG", continent: "asia",
       location: "afghanistan",
       date: "2020-02-24",
       total_cases: "1.0",
@@ -71,7 +71,7 @@ export class PipelineTableComponent implements OnInit {
       iso_code6: "AFG",
       iso_code7: "AFG",
       iso_code8: "AFG",
-      iso_code9: "AFG",      continent: "asia",
+      iso_code9: "AFG", continent: "asia",
       location: "afghanistan",
       date: "2020-02-24",
       total_cases: "1.0",
@@ -89,7 +89,7 @@ export class PipelineTableComponent implements OnInit {
       iso_code6: "AFG",
       iso_code7: "AFG",
       iso_code8: "AFG",
-      iso_code9: "AFG",      continent: "asia",
+      iso_code9: "AFG", continent: "asia",
       location: "afghanistan",
       date: "2020-02-24",
       total_cases: "1.0",
@@ -100,11 +100,11 @@ export class PipelineTableComponent implements OnInit {
     }
   ]
   public dataset_keys!: string[];
-  public dataset_values: string[][]=[];
-  public dataName:string="Covid data";
+  public dataset_values: string[][] = [];
+  public dataName: string = "Covid data";
 
   constructor() {
-    this.dataset_keys= Object.keys(this.dataset[0]);
+    this.dataset_keys = Object.keys(this.dataset[0]);
     for (const obj of this.dataset) {
       this.dataset_values.push(Object.values(obj));
     }

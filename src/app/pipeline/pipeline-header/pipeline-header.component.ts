@@ -10,16 +10,17 @@ export class PipelineHeaderComponent implements OnInit {
   @Output() detailsIcon: EventEmitter<string> = new EventEmitter<string>();
   @Output() tableIcon: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private router:Router) { }
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
   }
 
-  public clickDetailsIcon(){
+  public clickDetailsIcon() {
     this.detailsIcon.emit("clicked");
   }
 
-  public clickTableIcon(){
+  public clickTableIcon() {
     this.tableIcon.emit("clicked");
   }
 

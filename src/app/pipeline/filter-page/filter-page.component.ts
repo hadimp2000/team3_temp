@@ -89,8 +89,7 @@ export class FilterPageComponent implements OnInit, AfterViewInit {
             value: ""
           }
         }
-      }
-      else {
+      } else {
         this.filter_details = {
           showForm: false,
           id: "",
@@ -222,8 +221,8 @@ export class FilterPageComponent implements OnInit, AfterViewInit {
     });
   }
 
-  public addFilter(event:FilterDetailsModel){
-    const changedNode= this.ogma.getNode(event.id);
+  public addFilter(event: FilterDetailsModel) {
+    const changedNode = this.ogma.getNode(event.id);
     changedNode.setData({
       type: 'condition',
       id: event.id,
@@ -231,6 +230,6 @@ export class FilterPageComponent implements OnInit, AfterViewInit {
       operation: event.operation,
       value: event.value
     });
-    changedNode.setAttribute('text',`${event.column} ${event.operation} ${event.value}`);
+    changedNode.setAttribute('text', `${event.column} ${event.operation} ${event.value}`);
   }
 }

@@ -7,14 +7,14 @@ import {JoinDetailsModel} from "./join-details/join-details.model";
   styleUrls: ['./pipeline.component.scss']
 })
 export class PipelineComponent implements OnInit {
-  public showDetails:boolean = true;
-  public showTable:boolean = true;
-  public detailsMode:string='join';
-  public joinDetails:JoinDetailsModel={
-    dataset:'',
-    joinType:'',
-    leftKey:'',
-    rightKey:''
+  public showDetails: boolean = true;
+  public showTable: boolean = true;
+  public detailsMode: string = 'aggregate';
+  public joinDetails: JoinDetailsModel = {
+    dataset: '',
+    joinType: '',
+    leftKey: '',
+    rightKey: ''
   };
 
   constructor() {

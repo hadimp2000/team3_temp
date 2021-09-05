@@ -9,17 +9,18 @@ import {JoinDetailsModel} from "./join-details.model";
 })
 export class JoinDetailsComponent implements OnInit {
   @Input() join_details!: JoinDetailsModel;
-  public joinName:string='join1';
-  public datasets:string[]=['covid','email','marketing'];
-  public table1_columns:string[]=['x','y','z'];
-  public table2_columns:string[]=['a','b','c'];
+  public joinName: string = 'join1';
+  public datasets: string[] = ['covid', 'email', 'marketing'];
+  public table1_columns: string[] = ['x', 'y', 'z'];
+  public table2_columns: string[] = ['a', 'b', 'c'];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
-  public saveJoin(formValues:any){
+  public saveJoin(formValues: any) {
     console.log(formValues)
   }
 
