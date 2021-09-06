@@ -23,9 +23,6 @@ import { PipelineTableComponent } from './pipeline/pipeline-table/pipeline-table
 import { FilterDetailsComponent } from './pipeline/filter-page/filter-details/filter-details.component';
 import { FilterPageComponent } from './pipeline/filter-page/filter-page.component';
 import { PipelineBoardComponent } from './pipeline/pipeline-board/pipeline-board.component';
-import { DataSetTableComponent } from './data-set-table/data-set-table.component';
-import { BannerComponent } from './banner/banner.component';
-import { MaterialModule } from './material/material.module';
 import { CommonModule } from '@angular/common';
 import { AddDataModalComponent } from './pipeline/pipeline-board/modals/add-data-modal/add-data-modal.component';
 import { AddProcessModalComponent } from './pipeline/pipeline-board/modals/add-process-modal/add-process-modal.component';
@@ -85,16 +82,13 @@ import { DataSetSampleTableComponent } from './dataset/data-set-sample-table/dat
     HttpClientModule
 
   ],
-  providers: [
-    HttpClient,
 
-  ],
   providers: [
     { provide: MAT_DIALOG_DATA, useValue: {} },
+    HttpClient,
     AddDataModalComponent,
     AddProcessModalComponent,
   ],
-  bootstrap: [AppComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

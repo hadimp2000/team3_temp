@@ -10,7 +10,9 @@ section {
   overflow-y: auto;
 }
 
-input, label, select {
+input,
+label,
+select {
   display: block;
 }
 
@@ -23,7 +25,8 @@ h4 {
   margin-bottom: 2rem;
 }
 
-input, select {
+input,
+select {
   margin-bottom: 2rem;
   width: 100%;
   padding: 0 2rem;
@@ -33,7 +36,8 @@ input, select {
   border-bottom: 1px solid black;
   cursor: pointer;
 }
-input:focus, select:focus {
+input:focus,
+select:focus {
   border-bottom: 2px solid #6643B5;
 }
 

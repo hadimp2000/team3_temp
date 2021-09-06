@@ -115,6 +115,5 @@ export class DataSetSampleTableComponent implements OnInit {
   }
   ngOnInit(): void {
     this.data=this.dataSet_Service.getDataSet(this.route.snapshot.params['name'])
-
   }
 }
