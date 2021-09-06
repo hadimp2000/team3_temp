@@ -140,9 +140,15 @@ export class BoardService {
             id: evt.target.getId(),
           });
         } else if ('process-filter' === evt.target.getData('name')) {
-          //do what needed
         } else {
-          console.log('clicked on an edge between ');
+          this.ogma.export
+            .json({
+              download: false,
+              pretty: true,
+            })
+            .then((json: any) => {
+              console.log(json);
+            });
         }
       } else {
         var edge = evt.target;
