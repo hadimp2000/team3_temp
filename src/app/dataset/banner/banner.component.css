@@ -1,3 +1,73 @@
-
+.container {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  height: 100%;
+  padding: 1.2rem;
+  grid-gap: 1.2rem;
+}
+.container button, .container a {
+  font-size: 1.3rem;
+  padding: 0;
+  text-align: center;
+  position: relative;
+}
+.container button label, .container a label {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.container .search-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: fit-content;
+  width: calc(min(25vw + 2rem, 15em));
+  border-bottom: 0.15rem solid #E7E9EB;
+  background-color: inherit;
+  transition: border-color 100ms ease-in-out;
+}
+.container .search-box:hover {
+  border-color: #8594E4;
+}
+.container .search-box > input {
+  background-color: transparent;
+  border: none;
+  padding: 0.5rem 1rem 0.5rem 0;
+  width: 100%;
+  outline: none;
+  color: inherit;
+}
+.container .search-box > button {
+  border: none;
+  border-radius: 100%;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 100%;
+  transition: color 100ms ease-in-out;
+}
+.container .search-box > button:hover {
+  color: #a18ad4;
+}
+@media screen and (max-width: 900px) {
+  .container .container {
+    grid-template-columns: 1fr 2fr 1fr;
+  }
+  .container button, .container a {
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width: 800px) {
+  .container .container {
+    grid-template-columns: 1fr 0.5fr 1fr;
+  }
+  .container button, .container a {
+    font-size: 0.8rem;
+  }
+}
 
 /*# sourceMappingURL=banner.component.css.map */

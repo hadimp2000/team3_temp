@@ -29,6 +29,7 @@ import {MaterialModule} from "./material/material.module";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { DatasetComponent } from './dataset/dataset.component';
 import { DataSetSampleTableComponent } from './dataset/data-set-sample-table/data-set-sample-table.component';
+import { PipelinesListComponent } from './pipelines-list/pipelines-list.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { DataSetSampleTableComponent } from './dataset/data-set-sample-table/dat
     DataSetTableComponent,
     BannerComponent,
     DatasetComponent,
-    DataSetSampleTableComponent
+    DataSetSampleTableComponent,
+    PipelinesListComponent
   ],
   imports: [
     BrowserModule,

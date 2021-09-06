@@ -29,6 +29,7 @@ export class BannerComponent implements OnInit {
   search(value: any) {
     console.log(value.query);
     let element_data= this.dataSetService.getDataSets().filter((data)=> data.name===value.query);
+
     console.log(element_data[0].name);
     // this.router.navigate(['/dataSet', value.query]);
   }
