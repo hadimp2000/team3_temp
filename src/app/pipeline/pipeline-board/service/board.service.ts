@@ -58,10 +58,16 @@ export class BoardService {
           this._addDataModal.openDialog();
           //if seleced returns a name ,then pass to this function
           this.tempFuncAddDis('name from output modal');
-        } else {
+        } else if (evt.target.getData('name') === 'add') {
           let i = evt.target.getAdjacentNodes();
-          console.log(i.getAdjacentNodes(), i, evt.target);
-          // this.addNodeBetween(src, dist, "filter",evt.target.getId())
+          this.addNodeBetween(
+            i.get(0).getId(),
+            i.get(1).getId(),
+            'filter',
+            evt.target.getId()
+          );
+        } else {
+          console.log('clicked on an edge between ');
         }
       } else {
         var edge = evt.target;
@@ -145,57 +151,82 @@ export class BoardService {
   }
 
   addNodeBetween(src: String, dist: String, type: String, idAdd: String): void {
-    //type will be added
     this.ogma.removeNode(idAdd);
-    let nameFilter = 'filterNode-' + Math.random();
-    this.ogma.addNodes([
-      {
-        id: 'add-' + this.addId,
-        data: { name: 'add' },
-        attributes: {
-          image: {
-            url: '../../../assets/icons/add_circle_black_24dp.svg',
-            scale: 0.5,
-          },
-          x: -250,
-          text: { content: 'add process' },
-          shape: 'circle',
-        },
-      },
-      {
-        id: nameFilter,
-        data: { name: 'process' },
-        attributes: {
-          image: {
-            url: '../../../assets/icons/filter_alt_black_24dp.svg',
-            scale: 0.5,
-          },
-          x: -400,
-          text: { content: type },
-        },
-      },
-      {
-        id: 'add-' + this.addId + 1,
-        data: { name: 'add' },
-        attributes: {
-          image: {
-            url: '../../../assets/icons/add_circle_black_24dp.svg',
-            scale: 0.5,
-          },
-          x: -250,
-          text: { content: 'add process' },
-          shape: 'circle',
-        },
-      },
-    ]);
 
-    this.ogma.addEdges([
-      { id: this.edgeId, source: src, target: 'add-' + this.addId },
-      { id: this.edgeId, source: 'add-' + this.addId, target: nameFilter },
-      { id: this.edgeId, source: nameFilter, target: 'add-' + this.addId + 1 },
-      { id: this.edgeId + 1, source: 'add-' + this.addId + 1, dis: dist },
-    ]);
-    this.edgeId += 3;
-    this.addId += 4;
+    let nameFilter = 'filterNode-' + Math.random() * 100 * 33 + 1;
+
+    this.ogma.addNode({
+      id: `add-${this.addId}`,
+      data: { name: 'add' },
+      attributes: {
+        image: {
+          url: '../../../assets/icons/add_circle_black_24dp.svg',
+          scale: 0.5,
+        },
+        x: -300,
+        text: { content: 'add process' },
+        shape: 'circle',
+      },
+    });
+
+    this.ogma.addEdge({
+      id: this.edgeId,
+      source: src,
+      target: `add-${this.addId}`,
+    });
+
+    this.edgeId += 2;
+
+    this.ogma.addNode({
+      id: nameFilter,
+      data: { name: 'process' },
+      attributes: {
+        image: {
+          url: '../../../assets/icons/filter_alt_black_24dp.svg',
+          scale: 0.5,
+        },
+        x: -250,
+        text: { content: type },
+      },
+    });
+
+    this.ogma.addEdge({
+      id: this.edgeId,
+      source: `add-${this.addId}`,
+      target: nameFilter,
+    });
+
+    this.addId += 3;
+    this.edgeId += 2;
+    this.ogma.addNode({
+      id: `add-${this.addId}`,
+      data: { name: 'add' },
+      attributes: {
+        image: {
+          url: '../../../assets/icons/add_circle_black_24dp.svg',
+          scale: 0.5,
+        },
+        x: -200,
+        text: { content: 'add process' },
+        shape: 'circle',
+      },
+    });
+
+    this.ogma.addEdge({
+      id: this.edgeId,
+      source: nameFilter,
+      target: `add-${this.addId}`,
+    });
+
+    this.edgeId += 2;
+
+    this.ogma.addEdge({
+      id: this.edgeId,
+      source: `add-${this.addId}`,
+      target: dist,
+    });
+
+    this.edgeId += 7;
+    this.addId += 11;
   }
 }
