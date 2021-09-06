@@ -105,7 +105,7 @@ export class BoardService {
               url: '../../../assets/icons/folder_black_24dp.svg',
               scale: 0.5,
             },
-            x: -100,
+            x: -300,
             text: { content: sourceName },
           },
         },
@@ -137,7 +137,7 @@ export class BoardService {
           url: '../../../assets/icons/add_circle_black_24dp.svg',
           scale: 0.5,
         },
-        x: -100,
+        x: -150,
         text: { content: 'add process' },
         shape: 'circle',
       },
@@ -150,11 +150,10 @@ export class BoardService {
           url: '../../../assets/icons/folder_black_24dp.svg',
           scale: 0.5,
         },
-        x: -100,
+        x: 0,
         text: { content: disName },
       },
     });
-    console.log(this.distNode);
     this.ogma.addEdges([
       { id: this.edgeId, source: 'source', target: 'add-1' },
       { id: this.edgeId + 1, source: 'add-1', target: 'destination' },
@@ -165,7 +164,9 @@ export class BoardService {
   addNodeBetween(src: String, dist: String, type: String, idAdd: String): void {
     this.ogma.removeNode(idAdd);
     let nameFilter = 'filterNode-' + Math.random() * 100 * 33 + 1;
-
+    let xSrc = this.ogma.getNode(src).getAttribute('x');
+    let xDist = this.ogma.getNode(dist).getAttribute('x');
+    console.log(xSrc,xDist);
     this.ogma.addNode({
       id: `add-${this.addId}`,
       data: { name: 'add' },
@@ -174,7 +175,7 @@ export class BoardService {
           url: '../../../assets/icons/add_circle_black_24dp.svg',
           scale: 0.5,
         },
-        x: -100,
+        x: xSrc+100,
         text: { content: 'add process' },
         shape: 'circle',
       },
@@ -189,7 +190,7 @@ export class BoardService {
 
     this.ogma.addNode({
       id: nameFilter,
-      data: { name: 'process' },
+      data: { name: 'process-filter' },
       attributes: {
         image: {
           url: '../../../assets/icons/filter_alt_black_24dp.svg',
