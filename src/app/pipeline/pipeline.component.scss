@@ -17,14 +17,18 @@ app-header {
   grid-area: mainHeader;
 }
 main {
-  grid-area: content;
+  max-width: 100%;
+  .ogma-container {
+    width: 100%;
+  }
+
 }
 app-header {
   grid-area: mainHeader;
 }
 .container {
-  max-height: 100vh;
-  overflow-y: hidden;
+  //max-height: 100vh;
+  //overflow-y: hidden;
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto 1fr;

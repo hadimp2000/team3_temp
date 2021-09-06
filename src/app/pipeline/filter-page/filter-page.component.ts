@@ -13,6 +13,7 @@ export class FilterPageComponent implements OnInit, AfterViewInit {
   public filter_name: string = 'filter1';
   public filter_details: FilterDetailsModel;
   public counter = 0;
+  public edgeCounter = 0;
   public toolbarHeight: any;
   public ogma: any;
   public nodes: any = [];
@@ -57,6 +58,7 @@ export class FilterPageComponent implements OnInit, AfterViewInit {
     });
     this.ogma.events.onDragStart(() => {
       if (this.getMode('drag-action') === 'links') {
+        this.edgeCounter++;
         this.ogma.tools.connectNodes.enable({
           strokeColor: '#282A35',
           createNodes: false,
