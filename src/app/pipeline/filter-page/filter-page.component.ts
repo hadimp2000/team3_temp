@@ -1,4 +1,5 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {FilterDetailsModel} from "./filter-details.model";
 
 
 @Component({
@@ -6,23 +7,28 @@ import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/
   templateUrl: './filter-page.component.html',
   styleUrls: ['./filter-page.component.scss']
 })
-export class FilterPageComponent implements OnInit,AfterViewInit {
+export class FilterPageComponent implements OnInit, AfterViewInit {
   @ViewChild('toolbar') toolbar!: ElementRef;
   @ViewChild('form') form!: ElementRef;
+  public filter_name: string = 'filter1';
+  public filter_details: FilterDetailsModel;
   public counter = 0;
-  public toolbarHeight:any;
-  public add_node_flag:boolean=false;
+  public edgeCounter = 0;
+  public toolbarHeight: any;
   public ogma: any;
   public nodes: any = [];
   public links: any = [];
-  public nodesMaxCount: number = 10;
-  public nodesCount!: number;
-  public linksCount!: number;
   public width!: number;
   public height!: number;
 
   constructor() {
-    localStorage.clear();
+    this.filter_details = {
+      showForm: false,
+      id: "",
+      column: "",
+      operation: "",
+      value: ""
+    }
   }
 
   ngOnInit(): void {
@@ -52,21 +58,52 @@ export class FilterPageComponent implements OnInit,AfterViewInit {
     });
     this.ogma.events.onDragStart(() => {
       if (this.getMode('drag-action') === 'links') {
+        this.edgeCounter++;
         this.ogma.tools.connectNodes.enable({
           strokeColor: '#282A35',
           createNodes: false,
           // avoid self edges
-          condition: (source:any, target:any) => source.getId() !== target.getId(),
-          createEdge: (edge:any) => {
-            edge.attributes = { shape: { head: 'arrow' } };
+          condition: (source: any, target: any) => source.getId() !== target.getId(),
+          createEdge: (edge: any) => {
+            edge.attributes = {shape: {head: 'arrow'}};
             return edge;
           }
         });
       }
     });
+    this.ogma.events.onClick((evt: any) => {
+      const target = evt.target;
+      if (target) {
+        if (target.getData('type') === 'condition') {
+          this.filter_details = {
+            showForm: true,
+            id: target.getId(),
+            column: target.getData('column'),
+            operation: target.getData('operation'),
+            value: target.getData('value')
+          }
+        } else {
+          this.filter_details = {
+            showForm: false,
+            id: "",
+            column: "",
+            operation: "",
+            value: ""
+          }
+        }
+      } else {
+        this.filter_details = {
+          showForm: false,
+          id: "",
+          column: "",
+          operation: "",
+          value: ""
+        }
+      }
 
+    });
 
-    let deleteItems=()=> {
+    let deleteItems = () => {
       const selectedNodes = this.ogma.getSelectedNodes();
       const selectedEdges = this.ogma.getSelectedEdges();
       if (selectedNodes || selectedEdges) {
@@ -84,10 +121,9 @@ export class FilterPageComponent implements OnInit,AfterViewInit {
 
   ngAfterViewInit() {
     this.toolbarHeight = this.toolbar.nativeElement.offsetHeight;
-    console.log(this.toolbarHeight)
   }
 
-  public createSimpleNode(id:any, x:any, y:any, color:any)  {
+  public createSimpleNode(id: any, x: any, y: any, color: any) {
     this.counter++;
     return {
       id: id + this.counter,
@@ -101,11 +137,11 @@ export class FilterPageComponent implements OnInit,AfterViewInit {
         x: x,
         y: y
       },
-      data: { type: id }
+      data: {type: id}
     };
   };
 
-  public createConditionNode(id:any, x:any, y:any)  {
+  public createConditionNode(id: any, x: any, y: any) {
     this.counter++;
     return {
       id: id + this.counter,
@@ -119,19 +155,24 @@ export class FilterPageComponent implements OnInit,AfterViewInit {
         x: x,
         y: y
       },
-      data: { type: id }
+      data: {
+        type: id,
+        column: '',
+        operation: '',
+        value: ''
+      }
     };
   };
 
-  public dragBehaviour(event:any){
+  public dragBehaviour(event: any) {
     event.dataTransfer.setData('type', event.target.id);
   }
 
-  public preventBrowser(event:any){
+  public preventBrowser(event: any) {
     event.preventDefault();
   }
 
-  public drop(event:any) {
+  public drop(event: any) {
     // Convert the drop point to graph coords
     const pos = this.ogma.view.screenToGraphCoordinates({
       x: event.clientX,
@@ -148,29 +189,49 @@ export class FilterPageComponent implements OnInit,AfterViewInit {
         this.ogma.addNode(this.createSimpleNode(id, pos.x, pos.y, '#430F58'));
         break
       }
-      case 'or':
-      {
-        this.ogma.addNode(this.createSimpleNode(id, pos.x, pos.y,'#8594E4'));
+      case 'or': {
+        this.ogma.addNode(this.createSimpleNode(id, pos.x, pos.y, '#8594E4'));
         break
       }
-      case 'condition':
-      {
+      case 'condition': {
         this.ogma.addNode(this.createConditionNode(id, pos.x, pos.y));
         break
       }
     }
-    this.ogma.view.locateGraph({ duration: 500 });
+    this.ogma.view.locateGraph({duration: 500});
   }
 
-  public getMode(id:any) {
-    const form = document.querySelector('form');
+  public getMode(id: any) {
+    const form = document.querySelector('.switch');
     let select;
     if (form) {
+      // @ts-ignore
       select = form[id];
     }
-     // IE inconsistency
+    // IE inconsistency
     return Array.prototype.filter.call(select, input => {
       return input.checked;
     })[0].value;
+  }
+
+  public saveFilters() {
+    this.ogma.export.json({
+      download: false,
+      pretty: true
+    }).then(function (json: any) {
+      console.log(json);
+    });
+  }
+
+  public addFilter(event: FilterDetailsModel) {
+    const changedNode = this.ogma.getNode(event.id);
+    changedNode.setData({
+      type: 'condition',
+      id: event.id,
+      column: event.column,
+      operation: event.operation,
+      value: event.value
+    });
+    changedNode.setAttribute('text', `${event.column} ${event.operation} ${event.value}`);
   }
 }

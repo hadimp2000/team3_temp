@@ -1,21 +1,10 @@
-.zoom-controls {
-  background: transparent;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 50px;
+.board {
   position: absolute;
-  left: 10px;
-  top: 25%;
-  background-color: #fff;
-}
-.zoom-buttons {
-  border: none;
-  background: #fff;
-  margin-top: 10px;
-  cursor: pointer;
-  padding: 10px;
+  max-width: 1268px;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  z-index: -1;
 }
 .ogma-container {
   position: absolute;

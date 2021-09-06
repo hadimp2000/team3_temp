@@ -1,11 +1,14 @@
-<div class="container">
+<!-- <div class="container">
   <app-header></app-header>
   <app-pipeline-header (detailsIcon)="showOrHideDetails()" (tableIcon)="showOrHideTable()"></app-pipeline-header>
-<!--  <app-pipeline-details *ngIf="showDetails"></app-pipeline-details>-->
-<!--  <app-filter-details *ngIf="showDetails"></app-filter-details>-->
+  <div *ngIf="showDetails" class="details" [ngSwitch]="detailsMode">
+    <app-join-details *ngSwitchCase="'join'" [join_details]="joinDetails"></app-join-details>
+    <app-pipeline-details *ngSwitchCase="'pipeline'"></app-pipeline-details>
+    <app-aggregate-details *ngSwitchCase="'aggregate'"></app-aggregate-details>
+  </div>
   <main>
-<app-pipeline-board></app-pipeline-board>
-</main>
+    <div id="graph-container" class="ogma-container"></div>
+  </main>
   <app-pipeline-table *ngIf="showTable"></app-pipeline-table>
-</div>
-
+</div> -->
+<app-filter-page></app-filter-page>

@@ -40,11 +40,11 @@ table td, table th {
 }
 
 table tr {
-  background-color: #E7E9EB;
+  background-color: #f8f8f9;
 }
 
 table tr:hover {
-  background-color: #f8f8f9;
+  background-color: white;
 }
 
 table th {

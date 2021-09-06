@@ -1,0 +1,59 @@
+@use '../../../styles/defs' as *;
+svg {
+  color: $color-purple;
+  float: left;
+  margin-top: $density-large;
+  cursor: pointer;
+}
+
+section {
+  padding: $density-normal;
+  overflow-y: auto;
+}
+input,
+label,
+select {
+  display: block;
+}
+h3 {
+  color: $color-darkest;
+}
+
+h4 {
+  color: $color-dark-gray;
+  margin-bottom: $density-large;
+}
+input,
+select {
+  margin-bottom: $density-large;
+  width: 100%;
+  padding: 0 $density-large;
+  outline: none;
+  height: $density-larger;
+  border: none;
+  border-bottom: 1px solid black;
+  cursor: pointer;
+  &:focus {
+    border-bottom: 2px solid $color-purple;
+  }
+}
+label {
+  margin-bottom: $density-normal;
+  color: $color-dark-gray;
+}
+button {
+  margin-top: $density-large;
+  background-color: $color-purple;
+  color: white;
+  border-radius: $density-small;
+  width: $density-largest;
+  border: none;
+  height: $density-larger;
+  cursor: pointer;
+  &:hover {
+    background-color: $color-darkPurple;
+  }
+}
+.groups {
+  margin-top: $density-larger;
+}
