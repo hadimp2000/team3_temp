@@ -1,9 +1,26 @@
+svg {
+  color: #6643B5;
+  float: left;
+  margin-top: 2rem;
+  cursor: pointer;
+}
+
+section {
+  padding: 1rem;
+  overflow-y: auto;
+}
+
 input, label, select {
   display: block;
 }
 
 h3 {
-  margin: 1rem 0 4rem 0;
+  color: #1c2c81;
+}
+
+h4 {
+  color: #282A35;
+  margin-bottom: 2rem;
 }
 
 input, select {
@@ -22,6 +39,7 @@ input:focus, select:focus {
 
 label {
   margin-bottom: 1rem;
+  color: #282A35;
 }
 
 button {
@@ -38,8 +56,8 @@ button:hover {
   background-color: #430F58;
 }
 
-p {
-  color: #282A35;
+.groups {
+  margin-top: 4rem;
 }
 
-/*# sourceMappingURL=filter-details.component.css.map */
+/*# sourceMappingURL=aggregate-details.component.css.map */

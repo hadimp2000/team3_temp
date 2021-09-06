@@ -2,20 +2,38 @@
 
 .x {
   height: 35rem;
-  width: 70%;
+  width: 80%;
   box-shadow: 0 0 4rem $color-lightGray;
   margin: auto;
   margin-top: $density-larger;
 
 }
-h3 {
-  display: inline-block;
+.main {
+  margin-right: 25rem;
+}
+app-filter-details {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 25rem;
+  background-color: lighten($color-lightGray, 6%);
+  box-shadow: 0 0 $density-normal gray;
+  padding: $density-larger;
+}
+h3 , h2{
   margin: $density-larger;
+}
+h2 {
+  margin-bottom: 0;
+  color: $color-purple;
+}
+hr {
+  background-color: $color-purple;
 }
 .save, .cancel {
   margin:  $density-larger 0 $density-larger $density-large;
-  //float: left;
-  border-radius: 1rem;
+  border-radius: $density-small;
   width: $density-largest;
   border: none;
   height: $density-larger;
@@ -60,7 +78,7 @@ h3 {
 
 }
 .toolbar {
-  width: 70%;
+  width: 80%;
   margin: auto;
   display: flex;
 }

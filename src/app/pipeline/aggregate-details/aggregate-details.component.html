@@ -1,0 +1,37 @@
+<section>
+  <h3>{{aggregateName}}</h3>
+  <h4>Aggregate</h4>
+  <form action="" #aggregate_form="ngForm" (ngSubmit)="save(aggregate_form.value)">
+    <label for="columns">ستون</label>
+    <select name="columns" id="columns" [(ngModel)]="aggregate_details.column">
+      <option *ngFor="let column of columns" [value]="column">{{column}}</option>
+    </select>
+    <label for="operations">عملیات</label>
+    <select name="operations" id="operations" [(ngModel)]="aggregate_details.operation">
+      <option value="sum">Sum</option>
+      <option value="count">Count</option>
+      <option value="min">Min</option>
+      <option value="max">Max</option>
+      <option value="average">Average</option>
+    </select>
+    <label for="output">نام ستون خروجی</label>
+    <input type="text" id="output" name="outputName" [(ngModel)]="aggregate_details.outputName">
+    <svg (click)="addGroup()" width="2.5rem" height="2.5rem" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+         fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+         class="feather feather-plus-circle">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="12" y1="8" x2="12" y2="16"></line>
+      <line x1="8" y1="12" x2="16" y2="12"></line>
+    </svg>
+
+    <h4 class="groups">گروه بندی</h4>
+    <div *ngFor="let Gcolumn of aggregate_details.groupColumns;let index=index">
+      <label for="Gcolumns">ستون</label>
+      <select id="Gcolumns"  name=group{{index}} [(ngModel)]="aggregate_details.groupColumns[index]">
+        <option *ngFor="let column of columns" [value]="column">{{column}}</option>
+      </select>
+    </div>
+    <button type="submit">ذخیره</button>
+  </form>
+</section>
