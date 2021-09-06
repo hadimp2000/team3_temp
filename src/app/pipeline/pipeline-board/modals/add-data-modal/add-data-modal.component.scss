@@ -1,0 +1,8 @@
+@use '../../../../../styles/defs' as *;
+
+.btn-container {
+  button:nth-last-child(2) {
+    background-color: $color-purple;
+    color: white;
+  }
+}

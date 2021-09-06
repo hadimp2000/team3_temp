@@ -1,0 +1,9 @@
+@use '../../../../../styles/defs' as *;
+.choice-container {
+  button {
+    background-color: $color-purple;
+    margin: 20px;
+    padding: 8px 16px;
+    color: white;
+  }
+}
