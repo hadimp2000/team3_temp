@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {AppRoutingModule, routes} from './app-routing.module';
+import { AppRoutingModule, routes } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layouts/header/header.component';
 import { AsideComponent } from './layouts/aside/aside.component';
@@ -14,8 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { PageComponent } from './layouts/page/page.component';
-import {SignUpComponent} from "./identify/sign-up/sign-up.component";
-import {LogInComponent} from "./identify/log-in/log-in.component";
+import { SignUpComponent } from './identify/sign-up/sign-up.component';
+import { LogInComponent } from './identify/log-in/log-in.component';
 import { PipelineComponent } from './pipeline/pipeline.component';
 import { PipelineHeaderComponent } from './pipeline/pipeline-header/pipeline-header.component';
 import { PipelineDetailsComponent } from './pipeline/pipeline-details/pipeline-details.component';
@@ -31,7 +31,7 @@ import { AddDataModalComponent } from './pipeline/pipeline-board/modals/add-data
 import { AddProcessModalComponent } from './pipeline/pipeline-board/modals/add-process-modal/add-process-modal.component';
 import { JoinDetailsComponent } from './pipeline/join-details/join-details.component';
 import { AggregateDetailsComponent } from './pipeline/aggregate-details/aggregate-details.component';
-import {MatDialogModule} from "@angular/material/dialog";
+import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -58,7 +58,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     AddProcessModalComponent,
     BannerComponent,
     JoinDetailsComponent,
-    AggregateDetailsComponent
+    AggregateDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,9 +71,13 @@ import {MatDialogModule} from "@angular/material/dialog";
     RouterModule.forRoot(routes),
     MaterialModule,
     CommonModule,
-    MatDialogModule
+    MatDialogModule,
   ],
-  providers: [AddDataModalComponent],
+  providers: [
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    AddDataModalComponent,
+    AddProcessModalComponent,
+  ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
