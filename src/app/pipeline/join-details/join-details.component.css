@@ -1,9 +1,19 @@
+section {
+  padding: 1rem;
+  overflow-y: auto;
+}
+
 input, label, select {
   display: block;
 }
 
 h3 {
-  margin: 1rem 0 4rem 0;
+  color: #1c2c81;
+}
+
+h4 {
+  color: #282A35;
+  margin-bottom: 2rem;
 }
 
 input, select {
@@ -22,6 +32,7 @@ input:focus, select:focus {
 
 label {
   margin-bottom: 1rem;
+  color: #282A35;
 }
 
 button {
@@ -42,4 +53,4 @@ p {
   color: #282A35;
 }
 
-/*# sourceMappingURL=filter-details.component.css.map */
+/*# sourceMappingURL=join-details.component.css.map */

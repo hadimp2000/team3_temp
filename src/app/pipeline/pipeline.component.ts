@@ -1,4 +1,5 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {JoinDetailsModel} from "./join-details/join-details.model";
 
 @Component({
   selector: 'app-pipeline',
@@ -6,8 +7,16 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
   styleUrls: ['./pipeline.component.scss']
 })
 export class PipelineComponent implements OnInit {
-  public showDetails:boolean = true;
-  public showTable:boolean = true;
+  public showDetails: boolean = true;
+  public showTable: boolean = true;
+  public detailsMode: string = 'aggregate';
+  public joinDetails: JoinDetailsModel = {
+    dataset: '',
+    joinType: '',
+    leftKey: '',
+    rightKey: ''
+  };
+
   constructor() {
   }
 

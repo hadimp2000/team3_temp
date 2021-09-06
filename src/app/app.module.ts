@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule, routes } from './app-routing.module';
+import {AppRoutingModule, routes} from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layouts/header/header.component';
 import { AsideComponent } from './layouts/aside/aside.component';
@@ -14,8 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { PageComponent } from './layouts/page/page.component';
-import { SignUpComponent } from './identify/sign-up/sign-up.component';
-import { LogInComponent } from './identify/log-in/log-in.component';
+import {SignUpComponent} from "./identify/sign-up/sign-up.component";
+import {LogInComponent} from "./identify/log-in/log-in.component";
 import { PipelineComponent } from './pipeline/pipeline.component';
 import { PipelineHeaderComponent } from './pipeline/pipeline-header/pipeline-header.component';
 import { PipelineDetailsComponent } from './pipeline/pipeline-details/pipeline-details.component';
@@ -26,10 +26,13 @@ import { PipelineBoardComponent } from './pipeline/pipeline-board/pipeline-board
 import { DataSetTableComponent } from './data-set-table/data-set-table.component';
 import { BannerComponent } from './banner/banner.component';
 import { MaterialModule } from './material/material.module';
-import { MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { AddDataModalComponent } from './pipeline/pipeline-board/modals/add-data-modal/add-data-modal.component';
 import { AddProcessModalComponent } from './pipeline/pipeline-board/modals/add-process-modal/add-process-modal.component';
+import { JoinDetailsComponent } from './pipeline/join-details/join-details.component';
+import { AggregateDetailsComponent } from './pipeline/aggregate-details/aggregate-details.component';
+import {MatDialogModule} from "@angular/material/dialog";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +56,9 @@ import { AddProcessModalComponent } from './pipeline/pipeline-board/modals/add-p
     BannerComponent,
     AddDataModalComponent,
     AddProcessModalComponent,
+    BannerComponent,
+    JoinDetailsComponent,
+    AggregateDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -64,10 +70,10 @@ import { AddProcessModalComponent } from './pipeline/pipeline-board/modals/add-p
     MatButtonModule,
     RouterModule.forRoot(routes),
     MaterialModule,
-    MatDialogModule,
     CommonModule,
+    MatDialogModule
   ],
   providers: [AddDataModalComponent],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
