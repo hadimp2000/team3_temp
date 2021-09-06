@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FilterDetailsModel} from "./filter-details.model";
+import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
@@ -21,7 +22,7 @@ export class FilterPageComponent implements OnInit, AfterViewInit {
   public width!: number;
   public height!: number;
 
-  constructor() {
+  constructor(private rout:ActivatedRoute) {
     this.filter_details = {
       showForm: false,
       id: "",
@@ -29,6 +30,8 @@ export class FilterPageComponent implements OnInit, AfterViewInit {
       operation: "",
       value: ""
     }
+    // console.log(    this.rout.snapshot.params['id'])
+    // console.log(    this.rout.snapshot.params['filterId'])
   }
 
   ngOnInit(): void {

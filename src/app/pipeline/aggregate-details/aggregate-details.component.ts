@@ -7,13 +7,8 @@ import {AggregateDetailsModel} from "./aggregate-details.model";
   styleUrls: ['./aggregate-details.component.scss']
 })
 export class AggregateDetailsComponent implements OnInit {
-  @Input() aggregate_details: AggregateDetailsModel={
-    column:'',
-    operation:'',
-    outputName:'',
-    groupColumns:['']
-  };
-  public aggregateName:string='aggregate1';
+  @Input() aggregate_details!: AggregateDetailsModel;
+  // public aggregateName:string='aggregate1';
   public columns: string[] = ['location', 'code', 'date', 'total cases'];
 
   constructor() {

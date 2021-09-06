@@ -6,12 +6,15 @@ import {SignUpComponent} from "./identify/sign-up/sign-up.component";
 import {LogInComponent} from "./identify/log-in/log-in.component";
 import {PipelineComponent} from "./pipeline/pipeline.component";
 import {DataSetTableComponent} from "./data-set-table/data-set-table.component";
+import {FilterPageComponent} from "./pipeline/filter-page/filter-page.component";
 
 export const routes: Routes = [
   { path: 'signUp', component: SignUpComponent },
   { path: '', component: LandingComponent },
   {path:'logIn',component:LogInComponent},
   {path:'pipeline/:id',component:PipelineComponent},
+  {path:'pipeline/:id/:filterId',component:FilterPageComponent},
+
   {
     path: 'pipelines',
     children: [

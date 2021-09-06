@@ -1,6 +1,5 @@
 <section>
-  <h3>{{aggregateName}}</h3>
-  <h4>Aggregate</h4>
+  <h3>تجمیع</h3>
   <form action="" #aggregate_form="ngForm" (ngSubmit)="save(aggregate_form.value)">
     <label for="columns">ستون</label>
     <select name="columns" id="columns" [(ngModel)]="aggregate_details.column">

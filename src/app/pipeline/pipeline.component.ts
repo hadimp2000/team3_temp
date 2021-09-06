@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JoinDetailsModel } from './join-details/join-details.model';
 import { BoardService } from './service/board.service';
+import {ActivatedRoute} from "@angular/router";
 declare var require: any;
 @Component({
   selector: 'app-pipeline',
@@ -10,15 +11,9 @@ declare var require: any;
 export class PipelineComponent implements OnInit {
   public showDetails: boolean = true;
   public showTable: boolean = true;
-  public detailsMode: string = 'aggregate';
-  public joinDetails: JoinDetailsModel = {
-    dataset: '',
-    joinType: '',
-    leftKey: '',
-    rightKey: '',
-  };
 
-  constructor(private _pipelineService: BoardService) {}
+  constructor(public _pipelineService: BoardService) {
+  }
 
   ngOnInit(): void {
     const Ogma = require('../../assets/Ogma/ogma.min.js');

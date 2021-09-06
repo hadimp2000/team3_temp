@@ -1,29 +1,39 @@
-import { Injectable } from '@angular/core';
-import { AddDataModalComponent } from '../pipeline-board/modals/add-data-modal/add-data-modal.component';
-import { AddProcessModalComponent } from '../pipeline-board/modals/add-process-modal/add-process-modal.component';
+import {Injectable} from '@angular/core';
+import {AddDataModalComponent} from '../pipeline-board/modals/add-data-modal/add-data-modal.component';
+import {AddProcessModalComponent} from '../pipeline-board/modals/add-process-modal/add-process-modal.component';
+import {ActivatedRoute, Router} from "@angular/router";
+import {JoinDetailsModel} from "../join-details/join-details.model";
+import {AggregateDetailsModel} from "../aggregate-details/aggregate-details.model";
 
 @Injectable({
   providedIn: 'root',
 })
 export class BoardService {
+  public detailsMode: string = 'pipeline';
   public ogma: any;
   private addId = 0;
   private edgeId = 0;
+  public join_details!: JoinDetailsModel;
+  public aggregate_details!: AggregateDetailsModel;
+
   constructor(
     public _addDataModal: AddDataModalComponent,
-    public _addProcessModal: AddProcessModalComponent
-  ) {}
+    public _addProcessModal: AddProcessModalComponent,
+    private router: Router,
+    private rout: ActivatedRoute,
+  ) {
+  }
 
   private ObjAddNode = (id: string, x: Number) => ({
     id: id,
-    data: { name: 'add' },
+    data: {name: 'add'},
     attributes: {
       image: {
         url: '../../../assets/icons/add_circle_black_24dp.svg',
         scale: 0.5,
       },
       x: x,
-      text: { content: 'add process' },
+      text: {content: 'add process'},
       shape: 'circle',
     },
   });
@@ -35,65 +45,79 @@ export class BoardService {
     _x: Number
   ) => ({
     id: id,
-    data: { name: content },
+    data: {name: content},
     attributes: {
       image: {
         url: urlImg,
         scale: 0.5,
       },
       x: _x,
-      text: { content: content },
+      text: {content: content},
     },
   });
 
   private ObjFilterNode = (name: String, _x: Number, type: String) => ({
     id: name,
-    data: { name: 'process-filter' },
+    data: {name: 'process-filter'},
     attributes: {
       image: {
         url: '../../../assets/icons/filter_alt_black_24dp.svg',
         scale: 0.5,
       },
       x: _x,
-      text: { content: type },
+      text: {content: type},
     },
   });
   private ObjJoinNode = (name: String, _x: Number, type: String) => ({
     id: name,
-    data: { name: 'process-join' },
+    data: {
+      name: 'process-join',
+      dataset: '',
+      joinType: '',
+      rightKey: '',
+      leftKey: ''
+    },
     attributes: {
       image: {
         url: '../../../assets/icons/library_add_black_24dp.svg',
         scale: 0.5,
       },
       x: _x,
-      text: { content: type },
+      text: {content: type},
     },
   });
   private ObjAggNode = (name: String, _x: Number, type: String) => ({
     id: name,
-    data: { name: 'process-aggregate' },
+    data: {
+      name: 'process-aggregate',
+      column: '',
+      operation: '',
+      outputName: '',
+      groupColumns: ['']
+    },
     attributes: {
       image: {
         url: '../../../assets/icons/widgets_black_24dp.svg',
         scale: 0.5,
       },
       x: _x,
-      text: { content: type },
+      text: {
+        content: type
+      },
     },
   });
 
   ngInitFunc(): void {
     this.ogma.addNode({
       id: 'selectSrc',
-      data: { name: 'Source' },
+      data: {name: 'Source'},
       attributes: {
         image: {
           url: '../../../assets/icons/add_circle_black_24dp.svg',
           scale: 0.5,
         },
         x: 0,
-        text: { content: 'add source' },
+        text: {content: 'add source'},
       },
     });
     this.AllOnClickEvents();
@@ -114,14 +138,14 @@ export class BoardService {
           outerStroke: 'transparent',
           innerStroke: '#0675C1',
           y: 0,
-          text: { color: '#0675C1' },
+          text: {color: '#0675C1'},
         };
       },
     });
   }
 
   AllOnClickEvents(): void {
-    this.ogma.events.onClick((evt: any) => {
+    this.ogma.events.onClick(async (evt: any) => {
       if (evt.target === null) {
       } else if (evt.target.isNode) {
         if (evt.target.getId() == 'selectSrc') {
@@ -140,6 +164,31 @@ export class BoardService {
             id: evt.target.getId(),
           });
         } else if ('process-filter' === evt.target.getData('name')) {
+          await this.router.navigate([], {
+            relativeTo: this.rout,
+            queryParams: {
+              filterId: '123'
+            },
+            queryParamsHandling: 'merge',
+
+          });
+          // await this.router.navigateByUrl(`/pipeline/${this.rout.snapshot.params['id']}/${evt.target.getId()}`);
+        } else if ('process-join' === evt.target.getData('name')) {
+          this.join_details={
+            dataset:evt.target.getData('dataset'),
+            joinType:evt.target.getData('joinType'),
+            rightKey:evt.target.getData('rightKey'),
+            leftKey:evt.target.getData('leftKey'),
+          }
+          this.detailsMode = 'join';
+        } else if ('process-aggregate' === evt.target.getData('name')) {
+          this.aggregate_details = {
+            column:evt.target.getData('column'),
+            operation:evt.target.getData('operation'),
+            outputName:evt.target.getData('outputName'),
+            groupColumns:evt.target.getData('groupColumns')
+          };
+          this.detailsMode = 'aggregate';
         } else {
           this.ogma.export
             .json({
@@ -178,7 +227,7 @@ export class BoardService {
           100
         ),
       ],
-      edges: [{ id: 1, source: 'source', target: 'selectDis' }],
+      edges: [{id: 1, source: 'source', target: 'selectDis'}],
     });
   }
 
@@ -195,8 +244,8 @@ export class BoardService {
       )
     );
     this.ogma.addEdges([
-      { id: this.edgeId, source: 'source', target: 'add-1' },
-      { id: this.edgeId + 1, source: 'add-1', target: 'destination' },
+      {id: this.edgeId, source: 'source', target: 'add-1'},
+      {id: this.edgeId + 1, source: 'add-1', target: 'destination'},
     ]);
     this.edgeId += 3;
   }
@@ -215,10 +264,10 @@ export class BoardService {
 
     this.ogma
       .getNode(src)
-      .setAttributes({ x: xSrc - 178 + Math.random() * 22 });
+      .setAttributes({x: xSrc - 178 + Math.random() * 22});
     this.ogma
       .getNode(dist)
-      .setAttributes({ x: xSrc + 178 + Math.random() * 22 });
+      .setAttributes({x: xSrc + 178 + Math.random() * 22});
 
     this.ogma.addNode(
       this.ObjAddNode(`add-${this.addId}`, xSrc - 94 + Math.random() * 22)
