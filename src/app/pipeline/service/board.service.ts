@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AddDataModalComponent } from '../modals/add-data-modal/add-data-modal.component';
+import { AddDataModalComponent } from '../pipeline-board/modals/add-data-modal/add-data-modal.component';
 
 @Injectable({
   providedIn: 'root',
@@ -7,9 +7,22 @@ import { AddDataModalComponent } from '../modals/add-data-modal/add-data-modal.c
 export class BoardService {
   public ogma: any;
   private addId = 0;
+  private distNode: any;
   private edgeId = 0;
   constructor(public _addDataModal: AddDataModalComponent) {}
-
+  private ObjAddNode = (id: string, x: Number) => ({
+    id: id,
+    data: { name: 'add' },
+    attributes: {
+      image: {
+        url: '../../../assets/icons/add_circle_black_24dp.svg',
+        scale: 0.5,
+      },
+      x: x,
+      text: { content: 'add process' },
+      shape: 'circle',
+    },
+  });
   ngInitFunc(): void {
     this.ogma.addNode({
       id: 'selectSrc',
@@ -19,7 +32,7 @@ export class BoardService {
           url: '../../../assets/icons/add_circle_black_24dp.svg',
           scale: 0.5,
         },
-        x: -400,
+        x: 0,
         text: { content: 'add source' },
       },
     });
@@ -31,7 +44,7 @@ export class BoardService {
             radius: 20,
             color: 'transparent',
             shape: 'circle',
-            y: -200,
+            y: 0,
           };
         }
         return {
@@ -40,7 +53,7 @@ export class BoardService {
           color: 'white',
           outerStroke: 'transparent',
           innerStroke: 'grey',
-          y: -200,
+          y: 0,
         };
       },
     });
@@ -58,10 +71,16 @@ export class BoardService {
           this._addDataModal.openDialog();
           //if seleced returns a name ,then pass to this function
           this.tempFuncAddDis('name from output modal');
-        } else {
+        } else if (evt.target.getData('name') === 'add') {
           let i = evt.target.getAdjacentNodes();
-          console.log(i.getAdjacentNodes(), i, evt.target);
-          // this.addNodeBetween(src, dist, "filter",evt.target.getId())
+          this.addNodeBetween(
+            i.get(0).getId(),
+            i.get(1).getId(),
+            'filter',
+            evt.target.getId()
+          );
+        } else {
+          console.log('clicked on an edge between ');
         }
       } else {
         var edge = evt.target;
@@ -86,7 +105,7 @@ export class BoardService {
               url: '../../../assets/icons/folder_black_24dp.svg',
               scale: 0.5,
             },
-            x: -400,
+            x: 0,
             text: { content: sourceName },
           },
         },
@@ -98,7 +117,7 @@ export class BoardService {
               url: '../../../assets/icons/add_circle_black_24dp.svg',
               scale: 0.5,
             },
-            x: -100,
+            x: 100,
             text: { content: 'add Destination' },
           },
         },
@@ -110,33 +129,31 @@ export class BoardService {
   tempFuncAddDis(disName: String): void {
     this.ogma.removeNode('selectDis');
     this.addId++;
-    this.ogma.addNodes([
-      {
-        id: 'add-' + this.addId,
-        data: { name: 'add' },
-        attributes: {
-          image: {
-            url: '../../../assets/icons/add_circle_black_24dp.svg',
-            scale: 0.5,
-          },
-          x: -250,
-          text: { content: 'add process' },
-          shape: 'circle',
+    this.ogma.addNode({
+      id: 'add-' + this.addId,
+      data: { name: 'add' },
+      attributes: {
+        image: {
+          url: '../../../assets/icons/add_circle_black_24dp.svg',
+          scale: 0.5,
         },
+        x: 50,
+        text: { content: 'add process' },
+        shape: 'circle',
       },
-      {
-        id: 'destination',
-        data: { name: disName },
-        attributes: {
-          image: {
-            url: '../../../assets/icons/folder_black_24dp.svg',
-            scale: 0.5,
-          },
-          x: -100,
-          text: { content: disName },
+    });
+    this.distNode = this.ogma.addNode({
+      id: 'destination',
+      data: { name: disName },
+      attributes: {
+        image: {
+          url: '../../../assets/icons/folder_black_24dp.svg',
+          scale: 0.5,
         },
+        x: 100,
+        text: { content: disName },
       },
-    ]);
+    });
     this.ogma.addEdges([
       { id: this.edgeId, source: 'source', target: 'add-1' },
       { id: this.edgeId + 1, source: 'add-1', target: 'destination' },
@@ -145,57 +162,83 @@ export class BoardService {
   }
 
   addNodeBetween(src: String, dist: String, type: String, idAdd: String): void {
-    //type will be added
     this.ogma.removeNode(idAdd);
-    let nameFilter = 'filterNode-' + Math.random();
-    this.ogma.addNodes([
-      {
-        id: 'add-' + this.addId,
-        data: { name: 'add' },
-        attributes: {
-          image: {
-            url: '../../../assets/icons/add_circle_black_24dp.svg',
-            scale: 0.5,
-          },
-          x: -250,
-          text: { content: 'add process' },
-          shape: 'circle',
+    let nameFilter = 'filterNode-' + Math.random() * 100 * 33 + 1;
+    let xSrc = this.ogma.getNode(src).getAttribute('x');
+    let xDist = this.ogma.getNode(dist).getAttribute('x');
+    console.log(xSrc, xDist);
+    this.ogma.addNode({
+      id: `add-${this.addId}`,
+      data: { name: 'add' },
+      attributes: {
+        image: {
+          url: '../../../assets/icons/add_circle_black_24dp.svg',
+          scale: 0.5,
         },
+        x: xSrc + 100,
+        text: { content: 'add process' },
+        shape: 'circle',
       },
-      {
-        id: nameFilter,
-        data: { name: 'process' },
-        attributes: {
-          image: {
-            url: '../../../assets/icons/filter_alt_black_24dp.svg',
-            scale: 0.5,
-          },
-          x: -400,
-          text: { content: type },
-        },
-      },
-      {
-        id: 'add-' + this.addId + 1,
-        data: { name: 'add' },
-        attributes: {
-          image: {
-            url: '../../../assets/icons/add_circle_black_24dp.svg',
-            scale: 0.5,
-          },
-          x: -250,
-          text: { content: 'add process' },
-          shape: 'circle',
-        },
-      },
-    ]);
+    });
+    this.ogma.addEdge({
+      id: this.edgeId,
+      source: src,
+      target: `add-${this.addId}`,
+    });
 
-    this.ogma.addEdges([
-      { id: this.edgeId, source: src, target: 'add-' + this.addId },
-      { id: this.edgeId, source: 'add-' + this.addId, target: nameFilter },
-      { id: this.edgeId, source: nameFilter, target: 'add-' + this.addId + 1 },
-      { id: this.edgeId + 1, source: 'add-' + this.addId + 1, dis: dist },
-    ]);
-    this.edgeId += 3;
-    this.addId += 4;
+    this.edgeId += 2;
+
+    this.ogma.addNode({
+      id: nameFilter,
+      data: { name: 'process-filter' },
+      attributes: {
+        image: {
+          url: '../../../assets/icons/filter_alt_black_24dp.svg',
+          scale: 0.5,
+        },
+        x: xSrc + 200,
+        text: { content: type },
+      },
+    });
+
+    this.ogma.addEdge({
+      id: this.edgeId,
+      source: `add-${this.addId}`,
+      target: nameFilter,
+    });
+
+    this.addId += 3;
+    this.edgeId += 2;
+    this.ogma.addNode({
+      id: `add-${this.addId}`,
+      data: { name: 'add' },
+      attributes: {
+        image: {
+          url: '../../../assets/icons/add_circle_black_24dp.svg',
+          scale: 0.5,
+        },
+        x: xSrc + 300,
+        text: { content: 'add process' },
+        shape: 'circle',
+      },
+    });
+
+    this.ogma.addEdge({
+      id: this.edgeId,
+      source: nameFilter,
+      target: `add-${this.addId}`,
+    });
+
+    this.edgeId += 2;
+
+    this.ogma.addEdge({
+      id: this.edgeId,
+      source: `add-${this.addId}`,
+      target: dist,
+    });
+
+    this.edgeId += 7;
+    this.addId += 11;
+    this.distNode.setAttributes({ x: xSrc + 400 });
   }
 }

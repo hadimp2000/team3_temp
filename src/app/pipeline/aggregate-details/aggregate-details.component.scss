@@ -10,7 +10,9 @@ section {
   padding: $density-normal;
   overflow-y: auto;
 }
-input, label, select {
+input,
+label,
+select {
   display: block;
 }
 h3 {
@@ -20,12 +22,12 @@ h3 {
 h4 {
   color: $color-dark-gray;
   margin-bottom: $density-large;
-
 }
-input , select{
+input,
+select {
   margin-bottom: $density-large;
   width: 100%;
-  padding:0 $density-large;
+  padding: 0 $density-large;
   outline: none;
   height: $density-larger;
   border: none;
@@ -38,7 +40,6 @@ input , select{
 label {
   margin-bottom: $density-normal;
   color: $color-dark-gray;
-
 }
 button {
   margin-top: $density-large;
@@ -56,4 +57,3 @@ button {
 .groups {
   margin-top: $density-larger;
 }
-
