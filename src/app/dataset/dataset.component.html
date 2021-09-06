@@ -1,0 +1,6 @@
+<div class="container">
+  <app-banner></app-banner>
+  <app-data-set-table (sampleIcon)="showSampleTable($event)" ></app-data-set-table>  <!--  <app-filter-details *ngIf="showDetails"></app-filter-details>-->
+  <app-data-set-sample-table *ngIf='showTable'></app-data-set-sample-table>
+</div>
+

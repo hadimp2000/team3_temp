@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
+import {FetchUserDataService} from "../../services/fetch-user-data-service.service";
+import {signInModel_email, SignInModel_username} from "../models/signIn.model";
 
 @Component({
   selector: 'app-log-in',
@@ -12,6 +14,7 @@ export class LogInComponent {
   public username: string = '';
 
   constructor(
+    private fetchDataService: FetchUserDataService,
     private router: Router
   ) {
   }
@@ -23,36 +26,21 @@ export class LogInComponent {
   }
 
   public login(formValues: any) {
-    // if (this.validateEmail(formValues.email)) {
-    //   const user_email: signInModel_email = {
-    //     email: formValues.email,
-    //     password: formValues.password,
-    //   };
-    //   this.fetchDataService.signInSubmit(user_email).subscribe(
-    //     async (result) => {
-    //       localStorage.setItem('token', result.token);
-    //       await this.fetchDataService.fetchUsername(result.id);
-    //       await this.router.navigateByUrl('/user');
-    //     },
-    //     (response) => {
-    //       alert(response.error.message);
-    //     }
-    //   );
-    // } else {
-    //   const user_username: SignInModel_username = {
-    //     username: formValues.email,
-    //     password: formValues.password,
-    //   };
-    //   this.fetchDataService.signInSubmit(user_username).subscribe(
-    //     async (result) => {
-    //       localStorage.setItem('token', result.token);
-    //       await this.fetchDataService.fetchUsername(result.id);
-    //       await this.router.navigateByUrl('/user');
-    //     },
-    //     (response) => {
-    //       alert(response.error.message);
-    //     }
-    //   );
-    // }
+
+      const user_username: SignInModel_username = {
+        username: formValues.email,
+        password: formValues.password,
+      };
+      this.fetchDataService.signInSubmit(user_username).subscribe(
+        async (result) => {
+          localStorage.setItem('token', result.token);
+          await this.fetchDataService.fetchUsername(result.id);
+          await this.router.navigateByUrl('/pipelines/dataSet');
+        },
+        (response) => {
+          alert(response.error.message);
+        }
+      );
+
   }
 }

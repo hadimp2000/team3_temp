@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {SignUpModel} from "../models";
+import {FetchUserDataService} from "../../services/fetch-user-data-service.service";
 
 @Component({
   selector: 'app-sign-up',
@@ -16,6 +17,7 @@ export class SignUpComponent {
   public lastName: string = '';
 
   constructor(
+    private fetchDataService: FetchUserDataService,
     private router: Router
   ) {
   }
@@ -28,14 +30,15 @@ export class SignUpComponent {
       firstName: formValues.firstName,
       lastName: formValues.lastName,
     };
-    // this.fetchDataService.signUpSubmit(user).subscribe(
-    //   async (result) => {
-    //     await this.router.navigateByUrl('/signIn');
-    //   },
-    //   (response) => {
-    //     alert(response.error.message);
-    //   }
-    // );
+    this.fetchDataService.signUpSubmit(user).subscribe(
+      async (result) => {
+        await this.router.navigateByUrl('/signIn');
+      },
+      (response) => {
+        alert(response.error.message);
+      }
+    );
   }
+
 
 }

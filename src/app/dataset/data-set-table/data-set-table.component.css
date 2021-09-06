@@ -1,22 +1,14 @@
+table {
+  box-shadow: none;
+}
 table .number {
   width: 4%;
-}
-table .mat-checkbox-checked.mat-accent .mat-checkbox-background {
-  background-color: black !important;
 }
 table th {
   padding: 2rem 0.1px;
 }
 table td {
   padding: 0.8rem 0;
-}
-table td .name-column {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  grid-template-columns: auto 1fr;
-  grid-gap: 0 1rem;
-  height: 100%;
 }
 table td svg {
   width: 2rem;
@@ -25,12 +17,14 @@ table td svg {
   margin-left: 4%;
 }
 table td .talend-icon {
-  fill: gray;
+  vertical-align: middle;
+  fill: #54586f;
+  margin-left: 0.2rem;
 }
 table td .talend-icon:hover {
   fill: #6643B5;
 }
-table td button {
+table td .sample-button {
   color: white;
   font-weight: normal;
   font-size: 70%;
@@ -48,7 +42,7 @@ table td .trash-icon {
   width: 2.2rem;
   height: 2.2rem;
   margin-right: 0.5rem;
-  fill: #430F58;
+  fill: #64529e;
 }
 table .symbol-column {
   width: 13%;
@@ -62,6 +56,20 @@ table tr:hover {
 }
 table tr:hover .talend-icon {
   fill: #6643B5;
+}
+@media screen and (max-width: 600px) {
+  table .sample-button {
+    background-color: inherit;
+    padding: 0;
+    border-radius: 1000rem;
+  }
+  table .sample-button .sample-icon {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+  table .sample-button .title {
+    display: none;
+  }
 }
 
 /*# sourceMappingURL=data-set-table.component.css.map */

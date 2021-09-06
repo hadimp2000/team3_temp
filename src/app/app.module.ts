@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import {AppRoutingModule, routes} from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layouts/header/header.component';
@@ -24,9 +23,12 @@ import { PipelineTableComponent } from './pipeline/pipeline-table/pipeline-table
 import { FilterDetailsComponent } from './pipeline/filter-page/filter-details/filter-details.component';
 import { FilterPageComponent } from './pipeline/filter-page/filter-page.component';
 import { PipelineBoardComponent } from './pipeline/pipeline-board/pipeline-board.component';
-import { DataSetTableComponent } from './data-set-table/data-set-table.component';
-import { BannerComponent } from './banner/banner.component';
+import { DataSetTableComponent } from './dataset/data-set-table/data-set-table.component';
+import { BannerComponent } from './dataset/banner/banner.component';
 import {MaterialModule} from "./material/material.module";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { DatasetComponent } from './dataset/dataset.component';
+import { DataSetSampleTableComponent } from './dataset/data-set-sample-table/data-set-sample-table.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import {MaterialModule} from "./material/material.module";
     FilterPageComponent,
     PipelineBoardComponent,
     DataSetTableComponent,
-    BannerComponent
+    BannerComponent,
+    DatasetComponent,
+    DataSetSampleTableComponent
   ],
   imports: [
     BrowserModule,
@@ -59,10 +63,14 @@ import {MaterialModule} from "./material/material.module";
     ReactiveFormsModule,
     MatButtonModule,
     RouterModule.forRoot(routes),
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
 
   ],
-  providers: [],
+  providers: [
+    HttpClient,
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

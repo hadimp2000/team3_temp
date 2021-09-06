@@ -1,6 +1,7 @@
 <div class="container">
   <button mat-raised-button color="primary">افزودن دیتاست</button>
-  <a mat-raised-button href="#" target="_blank">بارگزاری فایل</a>
+  <input id="file" type="file"  (change)="fileChange($event)" />
+
   <div></div>
 
   <form  class="search-box"  #searchBox="ngForm"  (ngSubmit)="search(searchBox.value)">
