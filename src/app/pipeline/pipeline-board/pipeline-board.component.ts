@@ -1,7 +1,4 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { AddDataModalComponent } from './modals/add-data-modal/add-data-modal.component';
-import { BoardService } from './service/board.service';
-declare var require: any;
 
 @Component({
   selector: 'app-pipeline-board',
@@ -11,15 +8,9 @@ declare var require: any;
 export class PipelineBoardComponent implements OnInit {
   @ViewChild('board') board: ElementRef | null = null;
   private zoom = 1;
-  constructor(private _pipelineService: BoardService) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    const Ogma = require('../../../assets/Ogma/ogma.min.js');
-    this._pipelineService.ogma = new Ogma({
-      container: 'graph-container',
-    });
-    this._pipelineService.ngInitFunc();
-  }
+  ngOnInit(): void {}
   ngAfterViewInit() {
     if (this.board) this.board.nativeElement.style.zoom = `${this.zoom}`;
   }

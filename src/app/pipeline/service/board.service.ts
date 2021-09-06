@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AddDataModalComponent } from '../modals/add-data-modal/add-data-modal.component';
+import { AddDataModalComponent } from '../pipeline-board/modals/add-data-modal/add-data-modal.component';
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +32,7 @@ export class BoardService {
           url: '../../../assets/icons/add_circle_black_24dp.svg',
           scale: 0.5,
         },
-        x: -300,
+        x: 0,
         text: { content: 'add source' },
       },
     });
@@ -44,7 +44,7 @@ export class BoardService {
             radius: 20,
             color: 'transparent',
             shape: 'circle',
-            y: -200,
+            y: 0,
           };
         }
         return {
@@ -53,7 +53,7 @@ export class BoardService {
           color: 'white',
           outerStroke: 'transparent',
           innerStroke: 'grey',
-          y: -200,
+          y: 0,
         };
       },
     });
@@ -105,7 +105,7 @@ export class BoardService {
               url: '../../../assets/icons/folder_black_24dp.svg',
               scale: 0.5,
             },
-            x: -300,
+            x: 0,
             text: { content: sourceName },
           },
         },
@@ -117,7 +117,7 @@ export class BoardService {
               url: '../../../assets/icons/add_circle_black_24dp.svg',
               scale: 0.5,
             },
-            x: -100,
+            x: 100,
             text: { content: 'add Destination' },
           },
         },
@@ -137,7 +137,7 @@ export class BoardService {
           url: '../../../assets/icons/add_circle_black_24dp.svg',
           scale: 0.5,
         },
-        x: -150,
+        x: 50,
         text: { content: 'add process' },
         shape: 'circle',
       },
@@ -150,7 +150,7 @@ export class BoardService {
           url: '../../../assets/icons/folder_black_24dp.svg',
           scale: 0.5,
         },
-        x: 0,
+        x: 100,
         text: { content: disName },
       },
     });
@@ -166,7 +166,7 @@ export class BoardService {
     let nameFilter = 'filterNode-' + Math.random() * 100 * 33 + 1;
     let xSrc = this.ogma.getNode(src).getAttribute('x');
     let xDist = this.ogma.getNode(dist).getAttribute('x');
-    console.log(xSrc,xDist);
+    console.log(xSrc, xDist);
     this.ogma.addNode({
       id: `add-${this.addId}`,
       data: { name: 'add' },
@@ -175,7 +175,7 @@ export class BoardService {
           url: '../../../assets/icons/add_circle_black_24dp.svg',
           scale: 0.5,
         },
-        x: xSrc+100,
+        x: xSrc + 100,
         text: { content: 'add process' },
         shape: 'circle',
       },
@@ -196,7 +196,7 @@ export class BoardService {
           url: '../../../assets/icons/filter_alt_black_24dp.svg',
           scale: 0.5,
         },
-        x: -100,
+        x: xSrc + 200,
         text: { content: type },
       },
     });
@@ -217,7 +217,7 @@ export class BoardService {
           url: '../../../assets/icons/add_circle_black_24dp.svg',
           scale: 0.5,
         },
-        x: -100,
+        x: xSrc + 300,
         text: { content: 'add process' },
         shape: 'circle',
       },
@@ -239,6 +239,6 @@ export class BoardService {
 
     this.edgeId += 7;
     this.addId += 11;
-    this.distNode.setAttributes({ x: -100 });
+    this.distNode.setAttributes({ x: xSrc + 400 });
   }
 }
