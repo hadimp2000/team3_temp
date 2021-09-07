@@ -1,4 +1,4 @@
-$main-color: #ff6d70;
+$main-color: #430F58;
 $navlink-color: #7a8289;
 $navbtn-color: #404346;
 
@@ -32,6 +32,8 @@ header {
           outline: transparent;
           &:hover {
             background-color: $main-color;
+            color: #fff;
+
           }
         }
       }
