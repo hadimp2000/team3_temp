@@ -1,0 +1,63 @@
+<button (click)="createPipeline()" mat-raised-button color="primary">
+  افزودن سناریو
+</button>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!-- Checkbox Column -->
+  <ng-container class="select" matColumnDef="select">
+    <th class="number" mat-header-cell *matHeaderCellDef>
+      <mat-checkbox color="primary" (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    [aria-label]="checkboxLabel()">
+
+
+      </mat-checkbox>
+    </th>
+    <td   mat-cell *matCellDef="let row;let i=index" class=number{{i}}>
+      <mat-checkbox color="primary" (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)"
+                    [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="position">
+    <th class="number" mat-header-cell *matHeaderCellDef> </th>
+    <td  mat-cell *matCellDef="let element;let i=index" class=number{{i}}> {{element.position}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container   matColumnDef="name">
+
+    <th class="name" mat-header-cell *matHeaderCellDef> <span> نام</span> </th>
+    <td mat-cell *matCellDef="let element;let i=index" class=number{{i}}>
+      <!--      <div class="name-column">-->
+
+      {{element.name}}
+      <!--      </div>-->
+    </td>
+  </ng-container>
+
+
+
+
+
+  <!--  delete column-->
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef>  </th>
+    <td class="delete-column" mat-cell *matCellDef="let element;let i=index" class=number{{i}}>
+      <div class="container">
+        <svg xmlns="http://www.w3.org/2000/svg" class="trash-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M3 6l3 18h12l3-18h-18zm19-4v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.316c0 .901.73 2 1.631 2h5.711z"/></svg>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+      (click)="selection.toggle(row)">
+  </tr>
+</table>
