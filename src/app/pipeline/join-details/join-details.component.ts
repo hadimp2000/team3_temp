@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FilterDetailsModel} from "../filter-page/filter-details.model";
 import {JoinDetailsModel} from "./join-details.model";
+import {BoardService} from "../service/board.service";
 
 @Component({
   selector: 'app-join-details',
@@ -9,19 +10,26 @@ import {JoinDetailsModel} from "./join-details.model";
 })
 export class JoinDetailsComponent implements OnInit {
   @Input() join_details!: JoinDetailsModel;
-  // public joinName: string = 'join1';
+  @Input() joinId!: string ;
   public datasets: string[] = ['covid', 'email', 'marketing'];
   public table1_columns: string[] = ['x', 'y', 'z'];
   public table2_columns: string[] = ['a', 'b', 'c'];
 
-  constructor() {
+  constructor(private boardService:BoardService) {
   }
 
   ngOnInit(): void {
   }
 
   public saveJoin(formValues: any) {
-    console.log(formValues)
+    const data={
+      name:'process-join',
+      dataset:formValues.dataset,
+      joinType:formValues.joinType,
+      rightKey: formValues.rightKey,
+      leftKey: formValues.leftKey
+    }
+    this.boardService.changeNodeData(this.joinId,data);
   }
 
 }

@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {FilterDetailsModel} from "./filter-details.model";
+import {BoardService} from "../service/board.service";
 
 @Component({
   selector: 'app-filter-page',
@@ -22,7 +23,7 @@ export class FilterPageComponent implements OnInit, AfterViewInit {
   public width!: number;
   public height!: number;
 
-  constructor() {
+  constructor(private boardService:BoardService) {
     this.filter_details = {
       showForm: false,
       id: "",
@@ -35,9 +36,19 @@ export class FilterPageComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     // @ts-ignore
     const Ogma = require('../../../assets/ogma.min.js');
-    this.ogma = new Ogma({
-      container: 'graph-container',
-    });
+    if (Object.keys(this.tree).length !== 0)
+    {
+      console.log(this.tree)
+      this.ogma = new Ogma({
+        graph: JSON.parse(this.tree),
+        container: 'graph-container',
+      });
+    }
+    else {
+      this.ogma = new Ogma({
+        container: 'graph-container',
+      });
+    }
     this.width = this.ogma.getContainer().offsetWidth;
     this.height = this.ogma.getContainer().offsetHeight;
     this.ogma.styles.setSelectedNodeAttributes({
@@ -215,13 +226,22 @@ export class FilterPageComponent implements OnInit, AfterViewInit {
     })[0].value;
   }
 
-  public saveFilters() {
-    this.ogma.export.json({
-      download: false,
-      pretty: true
-    }).then(function (json: any) {
-      console.log(json);
+  public async saveFilters() {
+    let data={};
+    const promise = new Promise<void>((resolve, reject) => {
+        this.ogma.export.json({
+          download: false,
+          pretty: true
+        }).then(function (json: any) {
+          data = {
+            name: 'process-filter',
+            filterTree: json
+          }
+        });
+        resolve();
     });
+    await promise;
+    this.boardService.changeNodeData(this.filterId,data);
     this.changeMode.emit("pipeline")
   }
 
