@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AddDataModalComponent } from '../pipeline-board/modals/add-data-modal/add-data-modal.component';
 import { AddProcessModalComponent } from '../pipeline-board/modals/add-process-modal/add-process-modal.component';
-
+import { ActivatedRoute, Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
@@ -9,10 +9,21 @@ export class BoardService {
   public ogma: any;
   private addId = 0;
   private edgeId = 0;
+  public pipelineId = 0;
   constructor(
     public _addDataModal: AddDataModalComponent,
-    public _addProcessModal: AddProcessModalComponent
-  ) {}
+    public _addProcessModal: AddProcessModalComponent,
+    public _router: Router,
+    public _Activatedroute: ActivatedRoute
+  ) {
+    this._Activatedroute.paramMap.subscribe((params) => {
+      let pipeline_id = params.get('id');
+      if (pipeline_id) this.pipelineId = parseInt(pipeline_id);
+    });
+    setInterval(() => {
+      console.log('active');
+    }, 1000);
+  }
 
   private ObjAddNode = (id: string, x: Number) => ({
     id: id,
@@ -96,7 +107,6 @@ export class BoardService {
         text: { content: 'add source' },
       },
     });
-    this.AllOnClickEvents();
     this.ogma.styles.addRule({
       nodeAttributes: function (node: any) {
         if (node.getData('name') === 'add') {
@@ -117,48 +127,6 @@ export class BoardService {
           text: { color: '#0675C1' },
         };
       },
-    });
-  }
-
-  AllOnClickEvents(): void {
-    this.ogma.events.onClick((evt: any) => {
-      if (evt.target === null) {
-      } else if (evt.target.isNode) {
-        if (evt.target.getId() == 'selectSrc') {
-          this._addDataModal.openDialog();
-          //if seleced returns a name ,then pass to this function
-          this.tempFuncAddSrc('name from output modal');
-        } else if (evt.target.getId() == 'selectDis') {
-          this._addDataModal.openDialog();
-          //if seleced returns a name ,then pass to this function
-          this.tempFuncAddDis('name from output modal');
-        } else if (evt.target.getData('name') === 'add') {
-          let i = evt.target.getAdjacentNodes();
-          this._addProcessModal.openDialog(this, {
-            src: i.get(0).getId(),
-            dist: i.get(1).getId(),
-            id: evt.target.getId(),
-          });
-        } else if ('process-filter' === evt.target.getData('name')) {
-        } else {
-          this.ogma.export
-            .json({
-              download: false,
-              pretty: true,
-            })
-            .then((json: any) => {
-              console.log(json);
-            });
-        }
-      } else {
-        var edge = evt.target;
-        console.log(
-          'clicked on an edge between ',
-          edge.getSource().getId(),
-          ' and',
-          edge.getTarget().getId()
-        );
-      }
     });
   }
 
@@ -208,17 +176,18 @@ export class BoardService {
     idAdd: String
   ): void {
     this.ogma.removeNode(idAdd);
-    let nameFilter = 'filterNode-' + Math.random() * 100 * 33 + 1;
-    let nameAgg = 'aggregateNode-' + Math.random() * 100 * 33 + 1;
-    let nameJoin = 'joinNode-' + Math.random() * 100 * 33 + 1;
+    let random = Math.ceil(Math.random() * 100 * 33 + 1);
+    let nameFilter = 'filterNode-' + random;
+    let nameAgg = 'aggregateNode-' + random;
+    let nameJoin = 'joinNode-' + random;
     let xSrc = this.ogma.getNode(src).getAttribute('x');
 
     this.ogma
       .getNode(src)
-      .setAttributes({ x: xSrc - 178 + Math.random() * 22 });
+      .setAttributes({ x: xSrc - 178 + Math.random() * 50 });
     this.ogma
       .getNode(dist)
-      .setAttributes({ x: xSrc + 178 + Math.random() * 22 });
+      .setAttributes({ x: xSrc + 178 + Math.random() * 50 });
 
     this.ogma.addNode(
       this.ObjAddNode(`add-${this.addId}`, xSrc - 94 + Math.random() * 22)

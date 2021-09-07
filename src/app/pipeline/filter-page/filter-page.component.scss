@@ -1,12 +1,18 @@
 @use '../../../styles/defs' as *;
-
+section {
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  z-index: 20000;
+  top: 0;
+}
 .x {
   height: 35rem;
   width: 80%;
   box-shadow: 0 0 4rem $color-lightGray;
   margin: auto;
   margin-top: $density-larger;
-
 }
 .main {
   margin-right: 25rem;
@@ -21,8 +27,9 @@ app-filter-details {
   box-shadow: 0 0 $density-normal gray;
   padding: $density-larger;
 }
-h3 , h2{
-  margin: $density-larger;
+h3,
+h2 {
+  margin: $density-large;
 }
 h2 {
   margin-bottom: 0;
@@ -31,14 +38,14 @@ h2 {
 hr {
   background-color: $color-purple;
 }
-.save, .cancel {
-  margin:  $density-larger 0 $density-larger $density-large;
+.save,
+.cancel {
+  margin: $density-larger 0 $density-larger $density-large;
   border-radius: $density-small;
   width: $density-largest;
   border: none;
   height: $density-larger;
   cursor: pointer;
-
 }
 .save {
   background-color: $color-purple;
@@ -50,32 +57,28 @@ hr {
 .cancel {
   background-color: $color-lightGray;
   &:hover {
-    background-color: darken($color-lightGray,20%);
+    background-color: darken($color-lightGray, 20%);
   }
-
 }
- .toolbar button {
-   border-radius: 999rem;
-   width: 7.5rem;
-   height: 7.5rem;
-   border: none;
-   cursor: pointer;
-   margin-right: $density-normal;
- }
+.toolbar button {
+  border-radius: 999rem;
+  width: 7.5rem;
+  height: 7.5rem;
+  border: none;
+  cursor: pointer;
+  margin-right: $density-normal;
+}
 #condition {
   background-color: $color-purple;
   color: white;
-
 }
 #or {
   background-color: $color-blue;
   color: white;
-
 }
 #and {
   background-color: $color-darkPurple;
   color: white;
-
 }
 .toolbar {
   width: 80%;
@@ -86,7 +89,6 @@ hr {
 form {
   float: left;
 }
-
 
 .switch {
   width: 100%;
