@@ -36,9 +36,28 @@ export class PipelineComponent implements OnInit {
       container: 'graph-container',
     });
     this._pipelineService.ngInitFunc();
+    this._pipelineService.ogma.events.onKeyPress('del', this.deleteNodes);
     this.AllOnClickEvents();
   }
 
+  deleteNodes = () => {
+    const selectedNodes = this._pipelineService.ogma.getSelectedNodes();
+    if (selectedNodes) {
+      let node = selectedNodes.get(0);
+      if (
+        node.getId() === 'source' ||
+        node.getId() === 'selectSrc' ||
+        node.getId() === 'selectDis' ||
+        node.getData('name') === 'add'
+      ) {
+        return;
+      } else {
+        this.detailsMode = 'pipeline';
+        this._pipelineService.deleteNodes(node);
+        this._pipelineService.ogma.removeNodes(selectedNodes);
+      }
+    }
+  };
   AllOnClickEvents(): void {
     this._pipelineService.ogma.events.onClick((evt: any) => {
       if (evt.target === null) {
