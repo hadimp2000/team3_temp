@@ -34,12 +34,21 @@ export class FilterPageComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    console.log(this.tree)
     // @ts-ignore
     const Ogma = require('../../../assets/ogma.min.js');
-    this.ogma = new Ogma({
-      container: 'graph-container',
-    });
+    if (Object.keys(this.tree).length !== 0)
+    {
+      console.log(this.tree)
+      this.ogma = new Ogma({
+        graph: JSON.parse(this.tree),
+        container: 'graph-container',
+      });
+    }
+    else {
+      this.ogma = new Ogma({
+        container: 'graph-container',
+      });
+    }
     this.width = this.ogma.getContainer().offsetWidth;
     this.height = this.ogma.getContainer().offsetHeight;
     this.ogma.styles.setSelectedNodeAttributes({
