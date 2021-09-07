@@ -5,8 +5,8 @@
     <select name="dataset" id="dataset" [(ngModel)]="join_details.dataset">
       <option *ngFor="let dataset of datasets" [value]="dataset">{{dataset}}</option>
     </select>
-    <label for="joinTypes">نوع اتصال</label>
-    <select name="joinTypes" id="joinTypes" [(ngModel)]="join_details.joinType">
+    <label for="joinType">نوع اتصال</label>
+    <select name="joinType" id="joinType" [(ngModel)]="join_details.joinType">
       <option value="left">Left outer join</option>
       <option value="inner">Inner join</option>
       <option value="full">Full outer join</option>

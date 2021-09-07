@@ -25,7 +25,7 @@ export class PipelineComponent implements OnInit {
     outputName:'',
     groupColumns:['']
   }
-  public filterId!:string;
+  public selectedNodeId!:string;
   public filterTree!:any;
 
   constructor(private _pipelineService: BoardService) {}
@@ -42,6 +42,7 @@ export class PipelineComponent implements OnInit {
   AllOnClickEvents(): void {
     this._pipelineService.ogma.events.onClick((evt: any) => {
       if (evt.target === null) {
+        this.detailsMode='pipeline'
       } else if (evt.target.isNode) {
         if (evt.target.getId() == 'selectSrc') {
           this._pipelineService._addDataModal.openDialog();
@@ -65,10 +66,11 @@ export class PipelineComponent implements OnInit {
           // this._pipelineService._router.navigateByUrl(
           //   `pipeline/${this._pipelineService.pipelineId}/${evt.target.getId()}`
           // );
-          this.filterId= evt.target.getId();
+          this.selectedNodeId= evt.target.getId();
           this.filterTree= evt.target.getData('filterTree')
           this.detailsMode = 'filter';
         } else if ('process-join' === evt.target.getData('name')) {
+          this.selectedNodeId= evt.target.getId();
           this.joinDetails={
             dataset: evt.target.getData('dataset'),
             joinType: evt.target.getData('joinType'),
@@ -77,6 +79,7 @@ export class PipelineComponent implements OnInit {
           }
           this.detailsMode = 'join';
         } else {
+          this.selectedNodeId= evt.target.getId();
           this.aggregateDetails={
             column:evt.target.getData('column'),
             operation:evt.target.getData('operation'),
