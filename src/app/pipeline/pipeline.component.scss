@@ -24,8 +24,9 @@ app-header {
 main {
   grid-area: content;
   width: 100%;
-  max-height: 48vh;
+  height: 100%;
   max-width: 1200px;
+  max-height: 45vh;
 }
 .ogma-container {
   width: 100%;

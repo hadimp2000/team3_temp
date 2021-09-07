@@ -1,7 +1,7 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { JoinDetailsModel } from './join-details/join-details.model';
 import { BoardService } from './service/board.service';
-import {AggregateDetailsModel} from "./aggregate-details/aggregate-details.model";
+import { AggregateDetailsModel } from './aggregate-details/aggregate-details.model';
 declare var require: any;
 @Component({
   selector: 'app-pipeline',
@@ -20,13 +20,13 @@ export class PipelineComponent implements OnInit {
     rightKey: '',
   };
   public aggregateDetails: AggregateDetailsModel = {
-    column:'',
-    operation:'',
-    outputName:'',
-    groupColumns:['']
-  }
-  public filterId!:string;
-  public filterTree!:any;
+    column: '',
+    operation: '',
+    outputName: '',
+    groupColumns: [''],
+  };
+  public filterId!: string;
+  public filterTree!: any;
 
   constructor(private _pipelineService: BoardService) {}
 
@@ -36,9 +36,28 @@ export class PipelineComponent implements OnInit {
       container: 'graph-container',
     });
     this._pipelineService.ngInitFunc();
+    this._pipelineService.ogma.events.onKeyPress('del', this.deleteNodes);
     this.AllOnClickEvents();
   }
 
+  deleteNodes = () => {
+    const selectedNodes = this._pipelineService.ogma.getSelectedNodes();
+    if (selectedNodes) {
+      let node = selectedNodes.get(0);
+      if (
+        node.getId() === 'source' ||
+        node.getId() === 'selectSrc' ||
+        node.getId() === 'selectDis' ||
+        node.getData('name') === 'add'
+      ) {
+        return;
+      } else {
+        this.detailsMode = 'pipeline';
+        this._pipelineService.deleteNodes(node);
+        this._pipelineService.ogma.removeNodes(selectedNodes);
+      }
+    }
+  };
   AllOnClickEvents(): void {
     this._pipelineService.ogma.events.onClick((evt: any) => {
       if (evt.target === null) {
@@ -65,24 +84,24 @@ export class PipelineComponent implements OnInit {
           // this._pipelineService._router.navigateByUrl(
           //   `pipeline/${this._pipelineService.pipelineId}/${evt.target.getId()}`
           // );
-          this.filterId= evt.target.getId();
-          this.filterTree= evt.target.getData('filterTree')
+          this.filterId = evt.target.getId();
+          this.filterTree = evt.target.getData('filterTree');
           this.detailsMode = 'filter';
         } else if ('process-join' === evt.target.getData('name')) {
-          this.joinDetails={
+          this.joinDetails = {
             dataset: evt.target.getData('dataset'),
             joinType: evt.target.getData('joinType'),
             leftKey: evt.target.getData('leftKey'),
             rightKey: evt.target.getData('rightKey'),
-          }
+          };
           this.detailsMode = 'join';
         } else {
-          this.aggregateDetails={
-            column:evt.target.getData('column'),
-            operation:evt.target.getData('operation'),
-            outputName:evt.target.getData('outputName'),
-            groupColumns:evt.target.getData('groupColumns')
-          }
+          this.aggregateDetails = {
+            column: evt.target.getData('column'),
+            operation: evt.target.getData('operation'),
+            outputName: evt.target.getData('outputName'),
+            groupColumns: evt.target.getData('groupColumns'),
+          };
           this.detailsMode = 'aggregate';
         }
       } else {
@@ -100,21 +119,13 @@ export class PipelineComponent implements OnInit {
 
   public showOrHideDetails() {
     this.showDetails = !this.showDetails;
-    if (this.main)
-      this.main.nativeElement.style.maxWidth = this.showDetails
-        ? '1200px'
-        : '1500px';
   }
 
   public showOrHideTable() {
     this.showTable = !this.showTable;
-    if (this.main)
-      this.main.nativeElement.style.maxHeight = this.showTable
-        ? '48vh'
-        : '80vh';
   }
 
   public changeMode() {
-    this.detailsMode="pipeline"
+    this.detailsMode = 'pipeline';
   }
 }

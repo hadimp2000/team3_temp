@@ -3,7 +3,6 @@ import { AddDataModalComponent } from '../pipeline-board/modals/add-data-modal/a
 import { AddProcessModalComponent } from '../pipeline-board/modals/add-process-modal/add-process-modal.component';
 import { ActivatedRoute, Router } from '@angular/router';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -22,9 +21,6 @@ export class BoardService {
       let pipeline_id = params.get('id');
       if (pipeline_id) this.pipelineId = parseInt(pipeline_id);
     });
-    setInterval(() => {
-      console.log('active');
-    }, 1000);
   }
 
   private ObjAddNode = (id: string, x: Number) => ({
@@ -63,7 +59,7 @@ export class BoardService {
     id: name,
     data: {
       name: 'process-filter',
-      filterTree: {}
+      filterTree: {},
     },
     attributes: {
       image: {
@@ -81,7 +77,7 @@ export class BoardService {
       dataset: '',
       joinType: '',
       rightKey: '',
-      leftKey: ''
+      leftKey: '',
     },
     attributes: {
       image: {
@@ -99,7 +95,7 @@ export class BoardService {
       column: '',
       operation: '',
       outputName: '',
-      groupColumns: ['']
+      groupColumns: [''],
     },
     attributes: {
       image: {
@@ -110,7 +106,23 @@ export class BoardService {
       text: { content: type },
     },
   });
-
+  deleteNodes = (node: any) => {
+    let adj = node.getAdjacentNodes().get(0).getId();
+    let adj2 = node.getAdjacentNodes().get(1).getAdjacentNodes().get(0).getId();
+    if (adj2 === node.getId()) {
+      adj2 = node.getAdjacentNodes().get(1).getAdjacentNodes().get(1).getId();
+    }
+    let add = node.getAdjacentNodes().get(1).getId();
+    if (adj && adj2) {
+      this.ogma.addEdge({
+        id: this.edgeId,
+        source: adj,
+        target: adj2,
+      });
+      this.edgeId++;
+    }
+    this.ogma.removeNode(add);
+  };
   ngInitFunc(): void {
     this.ogma.addNode({
       id: 'selectSrc',
@@ -137,7 +149,7 @@ export class BoardService {
         return {
           radius: 30,
           shape: 'square',
-          color: 'white',
+          color: '#F3F3F3',
           outerStroke: 'transparent',
           innerStroke: '#0675C1',
           y: 0,
