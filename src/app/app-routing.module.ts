@@ -13,11 +13,8 @@ import { FilterPageComponent } from './pipeline/filter-page/filter-page.componen
 export const routes: Routes = [
   { path: 'signUp', component: SignUpComponent },
   { path: '', component: LandingComponent },
-  { path: 'logIn', component: LogInComponent },
-  {
-    path: 'pipeline/:id',
-    component: PipelineComponent,
-  },
+  {path:'logIn',component:LogInComponent},
+  {path:'pipeline/:id',component:PipelineComponent},
   {
     path: 'pipelines',
     children: [
@@ -26,11 +23,11 @@ export const routes: Routes = [
     ],
     component: PageComponent,
   },
-  // { path: '**', redirectTo: '' },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

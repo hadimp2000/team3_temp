@@ -2,6 +2,13 @@ import { Injectable } from '@angular/core';
 import { AddDataModalComponent } from '../pipeline-board/modals/add-data-modal/add-data-modal.component';
 import { AddProcessModalComponent } from '../pipeline-board/modals/add-process-modal/add-process-modal.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {AddDataModalComponent} from '../pipeline-board/modals/add-data-modal/add-data-modal.component';
+import {AddProcessModalComponent} from '../pipeline-board/modals/add-process-modal/add-process-modal.component';
+import {ActivatedRoute, Router} from "@angular/router";
+import {JoinDetailsModel} from "../join-details/join-details.model";
+import {AggregateDetailsModel} from "../aggregate-details/aggregate-details.model";
+
 @Injectable({
   providedIn: 'root',
 })
@@ -71,7 +78,13 @@ export class BoardService {
   });
   private ObjJoinNode = (name: String, _x: Number, type: String) => ({
     id: name,
-    data: { name: 'process-join' },
+    data: {
+      name: 'process-join',
+      dataset: '',
+      joinType: '',
+      rightKey: '',
+      leftKey: ''
+    },
     attributes: {
       image: {
         url: '../../../assets/icons/library_add_black_24dp.svg',
@@ -83,7 +96,13 @@ export class BoardService {
   });
   private ObjAggNode = (name: String, _x: Number, type: String) => ({
     id: name,
-    data: { name: 'process-aggregate' },
+    data: {
+      name: 'process-aggregate',
+      column: '',
+      operation: '',
+      outputName: '',
+      groupColumns: ['']
+    },
     attributes: {
       image: {
         url: '../../../assets/icons/widgets_black_24dp.svg',

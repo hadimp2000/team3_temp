@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { JoinDetailsModel } from './join-details/join-details.model';
 import { BoardService } from './service/board.service';
 declare var require: any;
@@ -11,7 +11,7 @@ export class PipelineComponent implements OnInit {
   @ViewChild('mainOgma') main: ElementRef | null = null;
   public showDetails: boolean = true;
   public showTable: boolean = true;
-  public detailsMode: string = 'pipeline';
+  public detailsMode: string = 'aggregate';
   public joinDetails: JoinDetailsModel = {
     dataset: '',
     joinType: '',

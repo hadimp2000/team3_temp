@@ -1,6 +1,5 @@
 <section>
-  <h3>{{joinName}}</h3>
-  <h4>Join</h4>
+  <h3>اتصال دو جدول</h3>
   <form action="" #joinForm="ngForm" (ngSubmit)="saveJoin(joinForm.value)">
     <label for="dataset">اتصال جدول</label>
     <select name="dataset" id="dataset" [(ngModel)]="join_details.dataset">
