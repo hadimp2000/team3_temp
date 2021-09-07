@@ -23,6 +23,11 @@ export class BoardService {
     });
   }
 
+  public changeNodeData(nodeId:string,data:object):void {
+    const changedNode = this.ogma.getNode(nodeId);
+    changedNode.setData(data);
+  }
+
   private ObjAddNode = (id: string, x: Number) => ({
     id: id,
     data: { name: 'add', type: 'add' },

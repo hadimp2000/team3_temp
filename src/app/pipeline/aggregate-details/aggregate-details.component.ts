@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AggregateDetailsModel} from "./aggregate-details.model";
+import {BoardService} from "../service/board.service";
 
 @Component({
   selector: 'app-aggregate-details',
@@ -8,10 +9,10 @@ import {AggregateDetailsModel} from "./aggregate-details.model";
 })
 export class AggregateDetailsComponent implements OnInit {
   @Input() aggregate_details!: AggregateDetailsModel;
-  // public aggregateName:string='aggregate1';
+  @Input() aggregateId!: string ;
   public columns: string[] = ['location', 'code', 'date', 'total cases'];
 
-  constructor() {
+  constructor(private boardService:BoardService) {
   }
 
   ngOnInit(): void {
@@ -24,13 +25,14 @@ export class AggregateDetailsComponent implements OnInit {
   public save(formValues:any){
     const {columns,operations,outputName, ...groupsObj} = formValues;
     const groupArray:string[]= Object.values(groupsObj);
-    const temp:AggregateDetailsModel={
+    const data={
+      name:'process-aggregate',
       column: formValues.columns,
       operation: formValues.operations,
       outputName: formValues.outputName,
       groupColumns:groupArray
     }
-    console.log(temp)
+    this.boardService.changeNodeData(this.aggregateId,data);
   }
 
 }
