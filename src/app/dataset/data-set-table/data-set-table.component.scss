@@ -1,7 +1,7 @@
-@use '../../styles/defs' as *;
+@use '../../../styles/defs' as *;
 
 table {
-
+  box-shadow: none;
   .number {
     width: 4%;
   }
@@ -9,9 +9,12 @@ table {
   th {
     padding: 2rem 0.1px;
   }
-;
+
+
 
   td {
+
+
     padding: 0.8rem 0;
 
 

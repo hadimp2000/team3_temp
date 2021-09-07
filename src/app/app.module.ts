@@ -23,15 +23,18 @@ import { PipelineTableComponent } from './pipeline/pipeline-table/pipeline-table
 import { FilterDetailsComponent } from './pipeline/filter-page/filter-details/filter-details.component';
 import { FilterPageComponent } from './pipeline/filter-page/filter-page.component';
 import { PipelineBoardComponent } from './pipeline/pipeline-board/pipeline-board.component';
-import { DataSetTableComponent } from './data-set-table/data-set-table.component';
-import { BannerComponent } from './banner/banner.component';
-import { MaterialModule } from './material/material.module';
 import { CommonModule } from '@angular/common';
 import { AddDataModalComponent } from './pipeline/pipeline-board/modals/add-data-modal/add-data-modal.component';
 import { AddProcessModalComponent } from './pipeline/pipeline-board/modals/add-process-modal/add-process-modal.component';
 import { JoinDetailsComponent } from './pipeline/join-details/join-details.component';
 import { AggregateDetailsComponent } from './pipeline/aggregate-details/aggregate-details.component';
 import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DataSetTableComponent } from './dataset/data-set-table/data-set-table.component';
+import { BannerComponent } from './dataset/banner/banner.component';
+import {MaterialModule} from "./material/material.module";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { DatasetComponent } from './dataset/dataset.component';
+import { DataSetSampleTableComponent } from './dataset/data-set-sample-table/data-set-sample-table.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +62,9 @@ import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
     BannerComponent,
     JoinDetailsComponent,
     AggregateDetailsComponent,
+    BannerComponent,
+    DatasetComponent,
+    DataSetSampleTableComponent
   ],
   imports: [
     BrowserModule,
@@ -72,12 +78,17 @@ import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
     MaterialModule,
     CommonModule,
     MatDialogModule,
+    MaterialModule,
+    HttpClientModule
+
   ],
+
   providers: [
     { provide: MAT_DIALOG_DATA, useValue: {} },
+    HttpClient,
     AddDataModalComponent,
     AddProcessModalComponent,
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
