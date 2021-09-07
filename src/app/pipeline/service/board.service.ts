@@ -20,9 +20,6 @@ export class BoardService {
       let pipeline_id = params.get('id');
       if (pipeline_id) this.pipelineId = parseInt(pipeline_id);
     });
-    setInterval(() => {
-      console.log('active');
-    }, 1000);
   }
 
   private ObjAddNode = (id: string, x: Number) => ({
@@ -93,7 +90,47 @@ export class BoardService {
       text: { content: type },
     },
   });
-
+  deleteNodes = () => {
+    const selectedNodes = this.ogma.getSelectedNodes();
+    if (selectedNodes) {
+      let node = selectedNodes.get(0);
+      if (
+        node.getId() === 'source' ||
+        node.getId() === 'selectSrc' ||
+        node.getId() === 'selectDis' ||
+        node.getData('name') === 'add'
+      ) {
+        return;
+      } else {
+        let adj = node.getAdjacentNodes().get(0).getId();
+        let adj2 = node
+          .getAdjacentNodes()
+          .get(1)
+          .getAdjacentNodes()
+          .get(0)
+          .getId();
+        if (adj2 === node.getId()) {
+          adj2 = node
+            .getAdjacentNodes()
+            .get(1)
+            .getAdjacentNodes()
+            .get(1)
+            .getId();
+        }
+        let add = node.getAdjacentNodes().get(1).getId();
+        if (adj && adj2) {
+          this.ogma.addEdge({
+            id: this.edgeId,
+            source: adj,
+            target: adj2,
+          });
+          this.edgeId++;
+        }
+        this.ogma.removeNode(add);
+        this.ogma.removeNodes(selectedNodes);
+      }
+    }
+  };
   ngInitFunc(): void {
     this.ogma.addNode({
       id: 'selectSrc',
@@ -107,6 +144,7 @@ export class BoardService {
         text: { content: 'add source' },
       },
     });
+    this.ogma.events.onKeyPress('del', this.deleteNodes);
     this.ogma.styles.addRule({
       nodeAttributes: function (node: any) {
         if (node.getData('name') === 'add') {
@@ -120,7 +158,7 @@ export class BoardService {
         return {
           radius: 30,
           shape: 'square',
-          color: 'white',
+          color: '#F3F3F3',
           outerStroke: 'transparent',
           innerStroke: '#0675C1',
           y: 0,
