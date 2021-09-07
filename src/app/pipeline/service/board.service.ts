@@ -61,7 +61,10 @@ export class BoardService {
 
   private ObjFilterNode = (name: String, _x: Number, type: String) => ({
     id: name,
-    data: { name: 'process-filter' },
+    data: {
+      name: 'process-filter',
+      filterTree: {}
+    },
     attributes: {
       image: {
         url: '../../../assets/icons/filter_alt_black_24dp.svg',

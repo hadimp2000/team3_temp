@@ -4,8 +4,8 @@
   <div *ngIf="showDetails" class="details" [ngSwitch]="detailsMode">
     <app-join-details *ngSwitchCase="'join'" [join_details]="joinDetails"></app-join-details>
     <app-pipeline-details *ngSwitchCase="'pipeline'"></app-pipeline-details>
-    <app-aggregate-details *ngSwitchCase="'aggregate'"></app-aggregate-details>
-    <app-filter-page *ngSwitchCase="'filter'"></app-filter-page>
+    <app-aggregate-details *ngSwitchCase="'aggregate'" [aggregate_details]="aggregateDetails"></app-aggregate-details>
+    <app-filter-page *ngSwitchCase="'filter'" [filterId]="filterId" [tree]="filterTree" (changeMode)="changeMode()"></app-filter-page>
   </div>
   <main #mainOgma>
     <div id="graph-container" class="ogma-container"></div>

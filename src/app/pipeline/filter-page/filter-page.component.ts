@@ -1,7 +1,5 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {FilterDetailsModel} from "./filter-details.model";
-import {ActivatedRoute} from "@angular/router";
-
 
 @Component({
   selector: 'app-filter-page',
@@ -11,7 +9,9 @@ import {ActivatedRoute} from "@angular/router";
 export class FilterPageComponent implements OnInit, AfterViewInit {
   @ViewChild('toolbar') toolbar!: ElementRef;
   @ViewChild('form') form!: ElementRef;
-  public filter_name: string = 'filter1';
+  @Input() filterId!: string ;
+  @Input() tree!:any;
+  @Output() changeMode:EventEmitter<string>=new EventEmitter<string>();
   public filter_details: FilterDetailsModel;
   public counter = 0;
   public edgeCounter = 0;
@@ -22,7 +22,7 @@ export class FilterPageComponent implements OnInit, AfterViewInit {
   public width!: number;
   public height!: number;
 
-  constructor(private rout:ActivatedRoute) {
+  constructor() {
     this.filter_details = {
       showForm: false,
       id: "",
@@ -30,8 +30,6 @@ export class FilterPageComponent implements OnInit, AfterViewInit {
       operation: "",
       value: ""
     }
-    // console.log(    this.rout.snapshot.params['id'])
-    // console.log(    this.rout.snapshot.params['filterId'])
   }
 
   ngOnInit(): void {
@@ -224,6 +222,7 @@ export class FilterPageComponent implements OnInit, AfterViewInit {
     }).then(function (json: any) {
       console.log(json);
     });
+    this.changeMode.emit("pipeline")
   }
 
   public addFilter(event: FilterDetailsModel) {
@@ -236,5 +235,8 @@ export class FilterPageComponent implements OnInit, AfterViewInit {
       value: event.value
     });
     changedNode.setAttribute('text', `${event.column} ${event.operation} ${event.value}`);
+  }
+  public cancel(){
+    this.changeMode.emit("pipeline")
   }
 }

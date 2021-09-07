@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { JoinDetailsModel } from './join-details/join-details.model';
 import { BoardService } from './service/board.service';
+import {AggregateDetailsModel} from "./aggregate-details/aggregate-details.model";
 declare var require: any;
 @Component({
   selector: 'app-pipeline',
@@ -11,13 +12,21 @@ export class PipelineComponent implements OnInit {
   @ViewChild('mainOgma') main: ElementRef | null = null;
   public showDetails: boolean = true;
   public showTable: boolean = true;
-  public detailsMode: string = 'aggregate';
+  public detailsMode: string = 'pipeline';
   public joinDetails: JoinDetailsModel = {
     dataset: '',
     joinType: '',
     leftKey: '',
     rightKey: '',
   };
+  public aggregateDetails: AggregateDetailsModel = {
+    column:'',
+    operation:'',
+    outputName:'',
+    groupColumns:['']
+  }
+  public filterId!:string;
+  public filterTree!:any;
 
   constructor(private _pipelineService: BoardService) {}
 
@@ -53,19 +62,33 @@ export class PipelineComponent implements OnInit {
             }
           );
         } else if ('process-filter' === evt.target.getData('name')) {
-          this._pipelineService._router.navigateByUrl(
-            `pipeline/${this._pipelineService.pipelineId}/${evt.target.getId()}`
-          );
+          // this._pipelineService._router.navigateByUrl(
+          //   `pipeline/${this._pipelineService.pipelineId}/${evt.target.getId()}`
+          // );
+          this.filterId= evt.target.getId();
+          this.filterTree= evt.target.getData('filterTree')
           this.detailsMode = 'filter';
         } else if ('process-join' === evt.target.getData('name')) {
+          this.joinDetails={
+            dataset: evt.target.getData('dataset'),
+            joinType: evt.target.getData('joinType'),
+            leftKey: evt.target.getData('leftKey'),
+            rightKey: evt.target.getData('rightKey'),
+          }
           this.detailsMode = 'join';
         } else {
+          this.aggregateDetails={
+            column:evt.target.getData('column'),
+            operation:evt.target.getData('operation'),
+            outputName:evt.target.getData('outputName'),
+            groupColumns:evt.target.getData('groupColumns')
+          }
           this.detailsMode = 'aggregate';
         }
       } else {
         this._pipelineService.ogma.export
           .json({
-            download: false,
+            download: true,
             pretty: true,
           })
           .then((json: any) => {
@@ -89,5 +112,9 @@ export class PipelineComponent implements OnInit {
       this.main.nativeElement.style.maxHeight = this.showTable
         ? '48vh'
         : '80vh';
+  }
+
+  public changeMode() {
+    this.detailsMode="pipeline"
   }
 }
