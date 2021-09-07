@@ -25,7 +25,7 @@ export class BoardService {
 
   private ObjAddNode = (id: string, x: Number) => ({
     id: id,
-    data: { name: 'add' },
+    data: { name: 'add', type: 'add' },
     attributes: {
       image: {
         url: '../../../assets/icons/add_circle_black_24dp.svg',
@@ -44,7 +44,7 @@ export class BoardService {
     _x: Number
   ) => ({
     id: id,
-    data: { name: content },
+    data: { name: content, type: 'common' },
     attributes: {
       image: {
         url: urlImg,
@@ -60,6 +60,7 @@ export class BoardService {
     data: {
       name: 'process-filter',
       filterTree: {},
+      type: 'filter',
     },
     attributes: {
       image: {
@@ -74,6 +75,7 @@ export class BoardService {
     id: name,
     data: {
       name: 'process-join',
+      type: 'join',
       dataset: '',
       joinType: '',
       rightKey: '',
@@ -92,6 +94,7 @@ export class BoardService {
     id: name,
     data: {
       name: 'process-aggregate',
+      type: 'aggregate',
       column: '',
       operation: '',
       outputName: '',
