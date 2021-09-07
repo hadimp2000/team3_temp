@@ -3,7 +3,6 @@ import { AddDataModalComponent } from '../pipeline-board/modals/add-data-modal/a
 import { AddProcessModalComponent } from '../pipeline-board/modals/add-process-modal/add-process-modal.component';
 import { ActivatedRoute, Router } from '@angular/router';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -60,7 +59,7 @@ export class BoardService {
     id: name,
     data: {
       name: 'process-filter',
-      filterTree: {}
+      filterTree: {},
     },
     attributes: {
       image: {
@@ -78,7 +77,7 @@ export class BoardService {
       dataset: '',
       joinType: '',
       rightKey: '',
-      leftKey: ''
+      leftKey: '',
     },
     attributes: {
       image: {
@@ -96,7 +95,7 @@ export class BoardService {
       column: '',
       operation: '',
       outputName: '',
-      groupColumns: ['']
+      groupColumns: [''],
     },
     attributes: {
       image: {
