@@ -2,11 +2,11 @@
   <h3>تجمیع</h3>
   <form action="" #aggregate_form="ngForm" (ngSubmit)="save(aggregate_form.value)">
     <label for="columns">ستون</label>
-    <select name="columns" id="columns" [(ngModel)]="aggregate_details.column">
+    <select name="columns" id="columns" [(ngModel)]="aggregate_details.column" required>
       <option *ngFor="let column of columns" [value]="column">{{column}}</option>
     </select>
     <label for="operations">عملیات</label>
-    <select name="operations" id="operations" [(ngModel)]="aggregate_details.operation">
+    <select name="operations" id="operations" [(ngModel)]="aggregate_details.operation" required>
       <option value="sum">Sum</option>
       <option value="count">Count</option>
       <option value="min">Min</option>
@@ -14,7 +14,7 @@
       <option value="average">Average</option>
     </select>
     <label for="output">نام ستون خروجی</label>
-    <input type="text" id="output" name="outputName" [(ngModel)]="aggregate_details.outputName">
+    <input type="text" id="output" name="outputName" [(ngModel)]="aggregate_details.outputName" required>
     <svg (click)="addGroup()" width="2.5rem" height="2.5rem" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
          fill="none"
          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"

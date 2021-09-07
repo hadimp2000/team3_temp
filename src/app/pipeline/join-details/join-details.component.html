@@ -2,22 +2,22 @@
   <h3>اتصال دو جدول</h3>
   <form action="" #joinForm="ngForm" (ngSubmit)="saveJoin(joinForm.value)">
     <label for="dataset">اتصال جدول</label>
-    <select name="dataset" id="dataset" [(ngModel)]="join_details.dataset">
+    <select name="dataset" id="dataset" [(ngModel)]="join_details.dataset" required>
       <option *ngFor="let dataset of datasets" [value]="dataset">{{dataset}}</option>
     </select>
     <label for="joinType">نوع اتصال</label>
-    <select name="joinType" id="joinType" [(ngModel)]="join_details.joinType">
+    <select name="joinType" id="joinType" [(ngModel)]="join_details.joinType" required>
       <option value="left">Left outer join</option>
       <option value="inner">Inner join</option>
       <option value="full">Full outer join</option>
       <option value="right">Right outer join</option>
     </select>
     <label for="rightKey">ستون جدول اول</label>
-    <select name="rightKey" id="rightKey" [(ngModel)]="join_details.rightKey">
+    <select name="rightKey" id="rightKey" [(ngModel)]="join_details.rightKey" required>
       <option *ngFor="let table1_column of table1_columns" [value]="table1_column">{{table1_column}}</option>
     </select>
     <label for="leftKey">ستون جدول دوم</label>
-    <select name="leftKey" id="leftKey" [(ngModel)]="join_details.leftKey">
+    <select name="leftKey" id="leftKey" [(ngModel)]="join_details.leftKey" required>
       <option *ngFor="let table2_column of table2_columns" [value]="table2_column">{{table2_column}}</option>
     </select>
     <button type="submit">ذخیره</button>
