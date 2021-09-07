@@ -1,10 +1,9 @@
-@use '../../styles/defs';
 
 //btn gradiant color
-$btn-gradiant-color1: #d85b6c;
-$btn-gradiant-color2: #320f57;
+$btn-gradiant-color1: #6643B5;
+$btn-gradiant-color2: #430F58;
 //btn norm color
-$btn-solid-color: #ff6d70;
+$btn-solid-color: #8594E4;
 
 .main-banner {
   background-image: url("../../assets/images/LandingBanner.png");
@@ -105,7 +104,8 @@ $btn-solid-color: #ff6d70;
       padding: 0;
     }
     text-align: center;
-    background-color: #f1d6d6;
+    border-radius: 8px;
+    background-color: #D5DEF5;
     max-width: 200px;
     width: 100%;
     padding: 10px;

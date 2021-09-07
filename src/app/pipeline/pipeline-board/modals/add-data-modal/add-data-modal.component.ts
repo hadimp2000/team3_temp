@@ -14,7 +14,7 @@ export class AddDataModalComponent implements OnInit {
   public openDialog() {
     const dialogRef = this._dialog.open(AddDataModalComponent, {
       data: {},
-      panelClass: 'my-custom-dialog-class',
+      panelClass: 'dialog-class',
     });
 
     dialogRef.afterClosed().subscribe((result) => {});
