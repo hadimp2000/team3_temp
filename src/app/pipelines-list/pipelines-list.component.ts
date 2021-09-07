@@ -28,21 +28,25 @@ export class PipelinesListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataSetService=new DataSetServiceService();
-    this.dataSource = new MatTableDataSource(this.dataSetService.getDataSets());
-    this.selection = new SelectionModel(true, []);
+
     this.datas=this.dataSetService.getDataSets();
+    this.dataSetService=new DataSetServiceService();
+    this.dataSource = new MatTableDataSource(this.datas);
+    // this.dataSource.push(this.dataSetService.createData("pipeline",this.dataSource.length+1))
+    this.selection = new SelectionModel(true, []);
+    // this.datas=this.dataSetService.getDataSets();
 
   }
 
+  createPipeline(){
+    this.datas.push(this.dataSetService.createData("pipeline"+(this.datas.length+1),this.datas.length+1))
+    this.dataSource = new MatTableDataSource(this.datas);
+  }
+  removePipeline(){
+
+  }
 
   displayedColumns: string[] = ['select', 'position', 'name','delete'];
-
-  notShowSample:boolean=false;
-  @Output() sampleIcon: EventEmitter<string> = new EventEmitter<string>();
-
-
-
 
 
 
