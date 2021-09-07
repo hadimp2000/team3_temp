@@ -5,6 +5,9 @@
   width: fit-content;
   background-color: #E7E9EB;
 }
+.side-bar .active {
+  background-color: #8594E4;
+}
 .side-bar > .side-bar-inner {
   display: flex;
   flex-direction: column;

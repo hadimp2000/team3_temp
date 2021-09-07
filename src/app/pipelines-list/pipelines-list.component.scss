@@ -1,0 +1,96 @@
+@use '../../styles/defs' as *;
+
+button{
+  margin: 1rem;
+}
+table {
+  box-shadow: none;
+  .number {
+    width: 4%;
+  }
+
+  th {
+    padding: 2rem 0.1px;
+  }
+
+  td {
+
+
+    padding: 0.8rem 0;
+
+    svg {
+      width: 2rem;
+      height: 2rem;
+      fill: white;
+      margin-left: 4%;
+    }
+
+    .talend-icon {
+      vertical-align: middle;
+      fill: lighten($color-dark-gray, 20%);
+      margin-left: 0.2rem;
+
+      &:hover {
+        fill: $color-purple;
+      }
+    }
+
+    .sample-button {
+      color: white;
+      font-weight: normal;
+      font-size: 70%;
+      text-align: center;
+      place-content: center;
+      width: 100%;
+      background-color: $color-darker;
+    }
+
+    .container {
+      position: relative;
+      bottom: 1.2rem;
+    }
+
+    .trash-icon {
+      position: absolute;
+      width: 2.2rem;
+      height: 2.2rem;
+      margin-right: $density-small;
+      fill: $color-mixBlue;
+    }
+  }
+
+  .symbol-column {
+    width: 13%;
+  }
+
+  .delete-column {
+    width: 6%;
+  }
+
+  tr:hover {
+    background-color: lighten($color-lightGray, 2%);
+    transition: 500ms;
+
+    .talend-icon {
+      fill: $color-purple;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .sample-button {
+      background-color: inherit;
+      padding: 0;
+      border-radius: 1000rem;
+      .sample-icon{
+        width: 2.2rem;
+        height: 2.2rem;
+      }
+      .title {
+        display: none;
+      }
+    }
+  }
+}
+
+
+

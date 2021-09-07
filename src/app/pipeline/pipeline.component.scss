@@ -6,6 +6,12 @@
   box-shadow: 0 0 $density-normal gray;
   padding: $density-large;
 }
+app-filter-page {
+  background-color: white;
+  z-index: 20000;
+  width: 100vw;
+  min-height: 70rem;
+}
 app-pipeline-table {
   grid-area: table;
 }

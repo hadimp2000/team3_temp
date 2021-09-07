@@ -9,6 +9,17 @@ import {HttpClient} from "@angular/common/http";
 export class DataSetServiceService {
 
   constructor() { }
+
+  createData(name:string,position:number){
+    return {
+      name:name,
+      position:position,
+      symbol:'',
+      deleteIcon:''
+    }
+
+  }
+
   getDataSets(){
     return dataSets;
   }
@@ -32,6 +43,4 @@ export const dataSets: PeriodicElement[] = [
   {position: 1, name: 'Hydrogen',  symbol: '',deleteIcon:''},
   {position: 2, name: 'Helium', symbol: '',deleteIcon:''},
   {position: 3, name: 'Lithium', symbol: '',deleteIcon:''},
-
-
 ];
