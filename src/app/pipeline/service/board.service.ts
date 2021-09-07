@@ -2,12 +2,7 @@ import { Injectable } from '@angular/core';
 import { AddDataModalComponent } from '../pipeline-board/modals/add-data-modal/add-data-modal.component';
 import { AddProcessModalComponent } from '../pipeline-board/modals/add-process-modal/add-process-modal.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import {Injectable} from '@angular/core';
-import {AddDataModalComponent} from '../pipeline-board/modals/add-data-modal/add-data-modal.component';
-import {AddProcessModalComponent} from '../pipeline-board/modals/add-process-modal/add-process-modal.component';
-import {ActivatedRoute, Router} from "@angular/router";
-import {JoinDetailsModel} from "../join-details/join-details.model";
-import {AggregateDetailsModel} from "../aggregate-details/aggregate-details.model";
+
 
 @Injectable({
   providedIn: 'root',

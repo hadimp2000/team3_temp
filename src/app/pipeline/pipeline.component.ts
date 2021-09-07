@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { JoinDetailsModel } from './join-details/join-details.model';
 import { BoardService } from './service/board.service';
 declare var require: any;
