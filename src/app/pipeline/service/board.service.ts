@@ -11,6 +11,8 @@ export class BoardService {
   private addId = 0;
   private edgeId = 0;
   public pipelineId = 0;
+  public sourceName = '';
+  public DistName = '';
   constructor(
     public _addDataModal: AddDataModalComponent,
     public _addProcessModal: AddProcessModalComponent,
@@ -23,7 +25,7 @@ export class BoardService {
     });
   }
 
-  public changeNodeData(nodeId:string,data:object):void {
+  public changeNodeData(nodeId: string, data: object): void {
     const changedNode = this.ogma.getNode(nodeId);
     changedNode.setData(data);
   }
@@ -274,5 +276,6 @@ export class BoardService {
     });
     this.edgeId += 7;
     this.addId += 11;
+    this.ogma.layouts.hierarchical({ direction: 'LR' });
   }
 }
