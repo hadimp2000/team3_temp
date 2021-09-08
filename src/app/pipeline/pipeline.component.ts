@@ -66,12 +66,12 @@ export class PipelineComponent implements OnInit {
         if (evt.target.getId() === 'selectSrc') {
           this._pipelineService._addDataModal.openDialog(
             this._pipelineService,
-            "source"
+            'source'
           );
         } else if (evt.target.getId() === 'selectDis') {
           this._pipelineService._addDataModal.openDialog(
             this._pipelineService,
-            "dist"
+            'dist'
           );
         } else if (evt.target.getData('name') === 'add') {
           let i = evt.target.getAdjacentNodes();
@@ -99,7 +99,7 @@ export class PipelineComponent implements OnInit {
             rightKey: evt.target.getData('rightKey'),
           };
           this.detailsMode = 'join';
-        } else {
+        } else if ('process-aggregate' === evt.target.getData('name')) {
           this.selectedNodeId = evt.target.getId();
           this.aggregateDetails = {
             column: evt.target.getData('column'),
@@ -108,6 +108,8 @@ export class PipelineComponent implements OnInit {
             groupColumns: evt.target.getData('groupColumns'),
           };
           this.detailsMode = 'aggregate';
+        } else {
+          this.detailsMode = 'pipeline';
         }
       } else {
         this._pipelineService.ogma.export
