@@ -143,7 +143,4 @@ export class PipelineComponent implements OnInit {
     this.detailsMode="pipeline"
   }
 
-  public download() {
-
-  }
 }

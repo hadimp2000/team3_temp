@@ -1,5 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Router} from "@angular/router";
+import {PipelineServiceService} from "../../services/pipeline-service.service";
 
 @Component({
   selector: 'app-pipeline-header',
@@ -7,11 +8,11 @@ import {Router} from "@angular/router";
   styleUrls: ['./pipeline-header.component.scss']
 })
 export class PipelineHeaderComponent implements OnInit {
+  @Input()pipelineName!:string;
   @Output() detailsIcon: EventEmitter<string> = new EventEmitter<string>();
   @Output() tableIcon: EventEmitter<string> = new EventEmitter<string>();
-  @Output() downloadIcon: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private router: Router) {
+  constructor(private router: Router,private pipelineServiceService:PipelineServiceService) {
   }
 
   ngOnInit(): void {
@@ -29,8 +30,8 @@ export class PipelineHeaderComponent implements OnInit {
     await this.router.navigateByUrl('/pipelines/dataSet');
   }
 
-  public download(){
-    this.downloadIcon.emit("clicked");
+  public async download(){
+    await this.pipelineServiceService.downloadYML(this.pipelineName);
   }
 
 }

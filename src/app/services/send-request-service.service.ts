@@ -11,8 +11,10 @@ export class SendRequestService {
   ): Promise<any> {
     const init: RequestInit = {
       headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://songs.code-star.ir/user/alter',
+        'content-type': 'application/json',
+        'charset':'utf-8',
+        'date': 'Tue07 Sep 2021 12:52:08 GMT',
+        'server': 'Kestrel',
         'Cache-Control':
           'no-cache, no-store, must-revalidate, post-check=0, pre-check=0',
         Pragma: 'no-cache',
@@ -25,6 +27,7 @@ export class SendRequestService {
     }
     return fetch(url, init).then((res) => {
       if (res.ok) {
+        console.log(res);
         if (hasJson) return res.json();
         return;
       }

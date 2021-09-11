@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {SendRequestService} from "./send-request-service.service";
 import {SignUpModel} from "../identify/models";
@@ -13,7 +13,7 @@ export class FetchUserDataService {
   public signUpSubmit(user: SignUpModel) {
     const options = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json;charset=utf-8',
+        'content-type': 'application/json',
       }),
     };
     return this.http.post<any>(
