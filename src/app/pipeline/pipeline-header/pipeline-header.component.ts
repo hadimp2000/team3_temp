@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
 export class PipelineHeaderComponent implements OnInit {
   @Output() detailsIcon: EventEmitter<string> = new EventEmitter<string>();
   @Output() tableIcon: EventEmitter<string> = new EventEmitter<string>();
+  @Output() downloadIcon: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private router: Router) {
   }
@@ -26,6 +27,10 @@ export class PipelineHeaderComponent implements OnInit {
 
   public async prevPage() {
     await this.router.navigateByUrl('/pipelines/dataSet');
+  }
+
+  public download(){
+    this.downloadIcon.emit("clicked");
   }
 
 }

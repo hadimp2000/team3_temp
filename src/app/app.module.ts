@@ -31,11 +31,12 @@ import { AggregateDetailsComponent } from './pipeline/aggregate-details/aggregat
 import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DataSetTableComponent } from './dataset/data-set-table/data-set-table.component';
 import { BannerComponent } from './dataset/banner/banner.component';
-import {MaterialModule} from "./material/material.module";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { MaterialModule } from './material/material.module';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DatasetComponent } from './dataset/dataset.component';
 import { DataSetSampleTableComponent } from './dataset/data-set-sample-table/data-set-sample-table.component';
 import { PipelinesListComponent } from './pipelines-list/pipelines-list.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,7 @@ import { PipelinesListComponent } from './pipelines-list/pipelines-list.componen
     BannerComponent,
     DatasetComponent,
     DataSetSampleTableComponent,
-    PipelinesListComponent
+    PipelinesListComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,8 +82,8 @@ import { PipelinesListComponent } from './pipelines-list/pipelines-list.componen
     CommonModule,
     MatDialogModule,
     MaterialModule,
-    HttpClientModule
-
+    HttpClientModule,
+    MatRadioModule,
   ],
 
   providers: [
@@ -91,6 +92,6 @@ import { PipelinesListComponent } from './pipelines-list/pipelines-list.componen
     AddDataModalComponent,
     AddProcessModalComponent,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
