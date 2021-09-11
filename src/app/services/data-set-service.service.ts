@@ -46,24 +46,17 @@ export class DataSetServiceService implements OnInit {
     return dataSets;
   }
 
-  async getCsvDataSet(name:string):Promise<object[]>{
+  async getCsvDataSet(name:string):Promise<any[]>{
     const details={
       filename:name,
       token:localStorage.getItem('token')
     }
-    const {dataSet}=await SendRequestService.sendRequest(
+    const {content}=await SendRequestService.sendRequest(
       `https://localhost:5001/dataset/csv/${name}?token=${details.token}`,
       true
     )
-    return dataSet;
+    return content;
   }
 
 }
 
-
-
-// export const dataSets = [
-//   {position: 1, name: 'Hydrogen',  symbol: '',deleteIcon:''},
-//   {position: 2, name: 'Helium', symbol: '',deleteIcon:''},
-//   {position: 3, name: 'Lithium', symbol: '',deleteIcon:''},
-// ];
