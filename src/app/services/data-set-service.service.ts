@@ -57,6 +57,13 @@ export class DataSetServiceService implements OnInit {
     )
     return content;
   }
+  async deleteCsvDataSet(name:string){
+    await SendRequestService.sendRequest(
+      `https://localhost:5001/dataset/csv/delete/${name}?token=${localStorage.getItem('token')}`,
+      false
+    )
+
+  }
 
 }
 
