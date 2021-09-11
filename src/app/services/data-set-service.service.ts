@@ -32,11 +32,9 @@ export class DataSetServiceService implements OnInit {
       true,
 
     )
-    console.log(csvFiles);
-    let dataSets: any;
+    let dataSets: object[]=[];
 
     for (const csv of csvFiles) {
-      console.log(csv);
       dataSets.push({
           position: dataSets.length + 1,
           name: csv,
@@ -46,24 +44,19 @@ export class DataSetServiceService implements OnInit {
       )
     }
     return dataSets;
-
-
   }
 
-  // async getCsvDataSet(name:string):Promise<object[]>{
-  //   const details={
-  //     filename:name,
-  //     token:'II0Q3IUIG3T1ETV6'
-  //   }
-  //
-  //
-  //
-  //   const {dataSet}=await SendRequestService.sendRequest(
-  //     'https://localhost:5001/dataset/csv/'+name+'?token='+details.token',
-  //     true
-  //   )
-  //   return dataSet;
-  // }
+  async getCsvDataSet(name:string):Promise<object[]>{
+    const details={
+      filename:name,
+      token:localStorage.getItem('token')
+    }
+    const {dataSet}=await SendRequestService.sendRequest(
+      `https://localhost:5001/dataset/csv/${name}?token=${details.token}`,
+      true
+    )
+    return dataSet;
+  }
 
 }
 
