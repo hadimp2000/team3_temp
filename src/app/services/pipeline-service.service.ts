@@ -10,6 +10,6 @@ export class PipelineServiceService {
 
   public async downloadYML(name:string){
     const token=localStorage.getItem('token');
-    await SendRequestService.sendRequest(`https://localhost:5001/pipeline/yml/download/${name}?token=${token}`,true);
+    await SendRequestService.sendRequest(`https://localhost:5001/pipeline/yml/download/${name}?token=${token}`,false);
   }
 }

@@ -1,5 +1,10 @@
+import { BooleanInput } from '@angular/cdk/coercion';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
+import { DataSetServiceService } from 'src/app/services/data-set-service.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Inject } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-data-modal',
@@ -7,19 +12,45 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./add-data-modal.component.scss'],
 })
 export class AddDataModalComponent implements OnInit {
-  constructor(public _dialog: MatDialog) {}
-
-  ngOnInit(): void {}
-
-  public openDialog() {
-    const dialogRef = this._dialog.open(AddDataModalComponent, {
-      data: {},
-      panelClass: 'dialog-class',
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {});
+  constructor(
+    dataSetService: DataSetServiceService,
+    public _dialog: MatDialog,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    this.dataSetService = dataSetService;
   }
-  onClick(): void {
+  public nameDataset = '';
+  dataSetService: any;
+  dataSource: any;
+  selectedName: any;
+  isDisabled: BooleanInput = true;
+  displayedColumns: string[] = ['name'];
+
+  ngOnInit(): void {
+    this.dataSetService = new DataSetServiceService();
+    this.dataSource = new MatTableDataSource(this.dataSetService.getAllDataSets());
+  }
+
+  public openDialog(service: any, type: String) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      service,
+      type: type,
+    };
+    this._dialog.open(AddDataModalComponent, dialogConfig);
+  }
+  activeBtn() {
+    this.isDisabled = false;
+  }
+  setName() {
+    this.data.type === 'source'
+      ? this.data.service.tempFuncAddSrc(this.selectedName)
+      : this.data.service.tempFuncAddDis(this.selectedName);
+    this._dialog.closeAll();
+  }
+  Cancle(): void {
     this._dialog.closeAll();
   }
 }

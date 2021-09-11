@@ -1,15 +1,14 @@
 <div class="container">
   <button mat-raised-button color="primary">
-
-
     <div>
       <label for="file">بارگزاری دیتاست</label>
-      <input id="file" type="file" (change)="fileChange($event)" style="visibility:hidden;"/>
+      <input id="file" type="file" (change)="fileChange($event)"  style="visibility: hidden"/>
     </div>
   </button>
+  <a mat-raised-button href="/" target="_blank">افزودن دیتاست</a>
   <div></div>
 
-  <form class="search-box" #searchBox="ngForm" (ngSubmit)="search(searchBox.value)">
+  <form class="search-box" #searchBox="ngForm" >
     <input [(ngModel)]="query" type="search" name="query" placeholder="جستجو"/>
     <button aria-label="Search">
       <svg

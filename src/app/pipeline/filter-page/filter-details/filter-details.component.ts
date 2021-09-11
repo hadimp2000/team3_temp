@@ -6,6 +6,8 @@ import {
   Output
 } from '@angular/core';
 import {FilterDetailsModel} from "../filter-details.model";
+import {DataSetServiceService} from "../../../services/data-set-service.service";
+import {BoardService} from "../../service/board.service";
 
 
 @Component({
@@ -20,13 +22,16 @@ export class FilterDetailsComponent implements OnInit {
   public temp: boolean = true;
   public value!: string;
   public column!: string;
-  public columns: string[] = ['location', 'code', 'date', 'total cases'];
+  public columns: string[] = [];
   public operations: string[] = ['=', '<', '>'];
 
-  constructor() {
+  constructor(private dataSetServiceService:DataSetServiceService,private boardService:BoardService) {
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    const datatable=await this.dataSetServiceService.getCsvDataSet(""+this.boardService.sourceName)
+    // @ts-ignore
+    this.columns=datatable[0];
   }
 
   public saveFilter(formValues: any) {

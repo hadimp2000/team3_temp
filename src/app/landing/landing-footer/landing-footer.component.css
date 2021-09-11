@@ -1,6 +1,6 @@
 footer {
   text-align: center;
-  background-color: #f1d6d6;
+  background-color: #430F58;
   padding: 12px;
 }
 footer .foote_bottom_ul {
@@ -12,11 +12,12 @@ footer .foote_bottom_ul li {
   display: inline;
 }
 footer .foote_bottom_ul li a {
-  color: #000;
+  color: #fff;
   margin: 0 12px;
 }
 footer p {
   font-size: 10px;
+  color: #fff;
 }
 
 /*# sourceMappingURL=landing-footer.component.css.map */
