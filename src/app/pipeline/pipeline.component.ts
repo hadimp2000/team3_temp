@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { JoinDetailsModel } from './join-details/join-details.model';
 import { BoardService } from './service/board.service';
 import {AggregateDetailsModel} from "./aggregate-details/aggregate-details.model";
+import {ActivatedRoute} from "@angular/router";
 declare var require: any;
 @Component({
   selector: 'app-pipeline',
@@ -10,6 +11,7 @@ declare var require: any;
 })
 export class PipelineComponent implements OnInit {
   @ViewChild('mainOgma') main: ElementRef | null = null;
+  public pipelineName!:string;
   public showDetails: boolean = true;
   public showTable: boolean = true;
   public detailsMode: string = 'pipeline';
@@ -28,9 +30,10 @@ export class PipelineComponent implements OnInit {
   public selectedNodeId!:string;
   public filterTree!:any;
 
-  constructor(private _pipelineService: BoardService) {}
+  constructor(private rout: ActivatedRoute,private _pipelineService: BoardService) {}
 
   ngOnInit(): void {
+    this.pipelineName= this.rout.snapshot.params['id']
     const Ogma = require('../../assets/Ogma/ogma.min.js');
     this._pipelineService.ogma = new Ogma({
       container: 'graph-container',
