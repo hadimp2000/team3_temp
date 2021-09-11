@@ -132,11 +132,15 @@ export class PipelineComponent implements OnInit {
     this.showTable = !this.showTable;
     if (this.main)
       this.main.nativeElement.style.maxHeight = this.showTable
-        ? '48vh'
+        ? '30rem'
         : '80vh';
   }
 
   public changeMode() {
     this.detailsMode="pipeline"
+  }
+
+  public download() {
+
   }
 }

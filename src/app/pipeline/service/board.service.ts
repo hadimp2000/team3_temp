@@ -272,4 +272,5 @@ export class BoardService {
     this.edgeId += 7;
     this.addId += 11;
   }
+
 }
