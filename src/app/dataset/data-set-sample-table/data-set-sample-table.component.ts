@@ -18,11 +18,11 @@ export class DataSetSampleTableComponent implements OnInit {
 
     this.dataSet_Service=dataSetService;
   }
-  ngOnInit(): void {
-    // this.data=this.dataSet_Service.getAllDataSets(this.route.snapshot.params['name'])
-    this.dataset_keys= this.dataset[0];
+  async ngOnInit() {
+    this.data=await this.dataSet_Service.getCsvDataSet(this.route.snapshot.params['name'])
+    this.dataset_keys= this.data[0];
     let counter=0;
-    for (const obj of this.dataset) {
+    for (const obj of this.data) {
       if (counter!==0)
         this.dataset_values.push(obj);
       counter++;
