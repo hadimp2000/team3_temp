@@ -1,46 +1,76 @@
-import { Injectable } from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
+import {SendRequestService} from "./send-request-service.service";
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class DataSetServiceService {
+export class DataSetServiceService implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
-  createData(name:string,position:number){
+  async ngOnInit() {
+  }
+
+  createData(name: string, position: number) {
     return {
-      name:name,
-      position:position,
-      symbol:'',
-      deleteIcon:''
+      name: name,
+      position: position,
+      symbol: '',
+      deleteIcon: ''
     }
 
   }
 
-  getDataSets(){
+
+  async getAllDataSets(): Promise<object[]> {
+    const {csvFiles} = await SendRequestService.sendRequest(
+      `https://localhost:5001/users/${localStorage.getItem('username')}/csvs`,
+      true,
+
+    )
+    console.log(csvFiles);
+    let dataSets: any;
+
+    for (const csv of csvFiles) {
+      console.log(csv);
+      dataSets.push({
+          position: dataSets.length + 1,
+          name: csv,
+          symbol: '',
+          deleteIcon: ''
+        }
+      )
+    }
     return dataSets;
-  }
-  getDataSet(name:string):any{
-    for (let i = 0; i <dataSets.length ; i++) {
-      if(dataSets[i].name===name)
-        return dataSets[i];
-    }
+
 
   }
 
-}
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  symbol: string;
-  deleteIcon:string;
+  // async getCsvDataSet(name:string):Promise<object[]>{
+  //   const details={
+  //     filename:name,
+  //     token:'II0Q3IUIG3T1ETV6'
+  //   }
+  //
+  //
+  //
+  //   const {dataSet}=await SendRequestService.sendRequest(
+  //     'https://localhost:5001/dataset/csv/'+name+'?token='+details.token',
+  //     true
+  //   )
+  //   return dataSet;
+  // }
+
 }
 
-export const dataSets: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen',  symbol: '',deleteIcon:''},
-  {position: 2, name: 'Helium', symbol: '',deleteIcon:''},
-  {position: 3, name: 'Lithium', symbol: '',deleteIcon:''},
-];
+
+
+// export const dataSets = [
+//   {position: 1, name: 'Hydrogen',  symbol: '',deleteIcon:''},
+//   {position: 2, name: 'Helium', symbol: '',deleteIcon:''},
+//   {position: 3, name: 'Lithium', symbol: '',deleteIcon:''},
+// ];

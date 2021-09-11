@@ -5,7 +5,7 @@ header .nav {
 }
 header .nav .nav__logo {
   width: 11%;
-  color: #ff6d70;
+  color: #430F58;
 }
 header .nav .nav__links {
   width: 70%;
@@ -20,7 +20,7 @@ header .nav .nav__links ul p {
 }
 header .nav .nav__links ul button {
   color: #404346;
-  border: 2px solid #ff6d70;
+  border: 2px solid #430F58;
   border-radius: 8px;
   background-color: transparent;
   cursor: pointer;
@@ -30,7 +30,8 @@ header .nav .nav__links ul button {
   outline: transparent;
 }
 header .nav .nav__links ul button:hover {
-  background-color: #ff6d70;
+  background-color: #430F58;
+  color: #fff;
 }
 
 .slider-small-screen {
@@ -53,7 +54,7 @@ header .nav .nav__links ul button:hover {
   height: 0.3rem;
   margin-bottom: 0.5rem;
   position: relative;
-  background: #ff6d70;
+  background: #430F58;
   border-radius: 3px;
   z-index: 1;
   transform-origin: 4px 0px;

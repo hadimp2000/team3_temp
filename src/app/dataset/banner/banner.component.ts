@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {query} from "@angular/animations";
 import {HttpClient} from "@angular/common/http";
 import {DataSetServiceService} from "../../services/data-set-service.service";
+import {SendRequestService} from "../../services/send-request-service.service";
 
 @Component({
   selector: 'app-banner',
@@ -19,31 +20,42 @@ export class BannerComponent implements OnInit {
   constructor(
     private router:Router,
     private httpClient:HttpClient,
-    private dataSetService:DataSetServiceService
+    private dataSetService:DataSetServiceService,
+    private sendRequestService:SendRequestService
   ) {}
 
   ngOnInit(): void {
     this.currentSearchTerm.subscribe((current) => (this.query = current));
   }
 
-  search(value: any) {
-    console.log(value.query);
-    let element_data= this.dataSetService.getDataSets().filter((data)=> data.name===value.query);
-
-    console.log(element_data[0].name);
-    // this.router.navigate(['/dataSet', value.query]);
-  }
-  public fileChange(event:any) {
-    let files:any;
+  // async search(value: any) {
+  //   console.log(value.query);
+  //   let element_data= this.dataSetService.getDataSets().filter((data:any)=> data.name===value.query);
+  //
+  //   // this.router.navigate(['/dataSet', value.query]);
+  // }
+   async fileChange(event:any) {
+    let files:FileList | null;
+    let details:any;
     if (event.target!==null) {
-      // @ts-ignore
-      files = (event.target as HTMLInputElement).files[0];
-    }
-    if (files && files.length > 0) {
-      let file = files[0];
-      let formData = new FormData();
-      formData.append('file', file);
-      this.httpClient.post('url',formData).subscribe(res => console.log('File Uploaded ...'));
+
+      files = (event.target as HTMLInputElement).files;
+
+
+      if (files && files.length > 0) {
+        let file = files[0];
+        let formData = new FormData();
+        details = {
+          Name: 'data3',
+          ColDelimiter: ',',
+          RowDelimiter: 'newline',
+          HasHeader: 'true'
+        }
+        formData.append('details', JSON.stringify(details));
+        formData.append('file', file);
+        // let response = await SendRequestService.sendRequest(`https://localhost:5001/dataset/csv/create?token=${localStorage.getItem('token')}`, false, formData);
+        // this.httpClient.post('url',formData).subscribe(res => console.log('File Uploaded ...'));
+      }
     }
   }
 }

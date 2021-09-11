@@ -12,12 +12,8 @@ export class SendRequestService {
     const init: RequestInit = {
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://songs.code-star.ir/user/alter',
-        'Cache-Control':
-          'no-cache, no-store, must-revalidate, post-check=0, pre-check=0',
-        Pragma: 'no-cache',
-        Expires: '0',
       },
+
     };
     if (body) {
       init.method = 'POST';
@@ -28,6 +24,7 @@ export class SendRequestService {
         if (hasJson) return res.json();
         return;
       }
+      console.log(res.json());
       throw res.json();
     });
   }

@@ -32,9 +32,11 @@ export class LogInComponent {
         password: formValues.password,
       };
       this.fetchDataService.signInSubmit(user_username).subscribe(
+
         async (result) => {
+          localStorage.setItem('username',formValues.email);
           localStorage.setItem('token', result.token);
-          await this.fetchDataService.fetchUsername(result.id);
+          await this.fetchDataService.fetchUsername(result.token);
           await this.router.navigateByUrl('/pipelines/dataSet');
         },
         (response) => {

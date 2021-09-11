@@ -12,27 +12,26 @@ import {DataSetServiceService} from "../../services/data-set-service.service";
   styleUrls: ['./data-set-table.component.scss']
 })
 export class DataSetTableComponent implements OnInit{
-  dataSetService:any;
   dataSource:any;
   selection:any;
   datas:any;
 
   elements:any;
-  elementRef:ElementRef;
 
-  constructor(dataSetService:DataSetServiceService,private router:Router, elementRef:ElementRef) {
-    this.dataSetService=dataSetService;
-    this.elementRef=elementRef;
+  constructor(
+    private router:Router,
+    private elementRef:ElementRef,
+    private dataSetService:DataSetServiceService
+    ) {}
 
-  }
+  async ngOnInit() {
+     this.dataSetService = new DataSetServiceService();
+     this.dataSource = new MatTableDataSource( await this.dataSetService.getAllDataSets());
+     this.selection = new SelectionModel(true, []);
+     this.datas = this.dataSetService.getAllDataSets();
 
-  ngOnInit() {
-    this.dataSetService=new DataSetServiceService();
-    this.dataSource = new MatTableDataSource(this.dataSetService.getDataSets());
-    this.selection = new SelectionModel(true, []);
-    this.datas=this.dataSetService.getDataSets();
+   }
 
-  }
 
 
   displayedColumns: string[] = ['select', 'position', 'name', 'symbol','delete'];
@@ -68,14 +67,14 @@ export class DataSetTableComponent implements OnInit{
 
 
   /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected() {
+  isAllSelected():boolean  {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
+   masterToggle() {
     if (this.isAllSelected()) {
       this.selection.clear();
       return;
