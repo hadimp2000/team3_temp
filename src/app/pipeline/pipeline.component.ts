@@ -102,17 +102,15 @@ export class PipelineComponent implements OnInit {
             rightKey: evt.target.getData('rightKey'),
           }
           this.detailsMode = 'join';
-        } else if ('process-aggregate' === evt.target.getData('name')) {
-          this.selectedNodeId = evt.target.getId();
-          this.aggregateDetails = {
-            column: evt.target.getData('column'),
-            operation: evt.target.getData('operation'),
-            outputName: evt.target.getData('outputName'),
-            groupColumns: evt.target.getData('groupColumns'),
-          };
-          this.detailsMode = 'aggregate';
         } else {
-          this.detailsMode = 'pipeline';
+          this.selectedNodeId= evt.target.getId();
+          this.aggregateDetails={
+            column:evt.target.getData('column'),
+            operation:evt.target.getData('operation'),
+            outputName:evt.target.getData('outputName'),
+            groupColumns:evt.target.getData('groupColumns')
+          }
+          this.detailsMode = 'aggregate';
         }
       } else {
         this._pipelineService.ogma.export

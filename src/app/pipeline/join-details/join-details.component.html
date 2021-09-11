@@ -2,7 +2,7 @@
   <h3>اتصال دو جدول</h3>
   <form action="" #joinForm="ngForm" (ngSubmit)="saveJoin(joinForm.value)">
     <label for="dataset">اتصال جدول</label>
-    <select name="dataset" id="dataset" [(ngModel)]="join_details.dataset" required>
+    <select (change)="chooseDataset($event)" name="dataset" id="dataset" [(ngModel)]="join_details.dataset" required>
       <option *ngFor="let dataset of datasets" [value]="dataset">{{dataset}}</option>
     </select>
     <label for="joinType">نوع اتصال</label>
