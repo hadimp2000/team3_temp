@@ -24,7 +24,6 @@ export class SendRequestService {
         if (hasJson) return res.json();
         return;
       }
-      console.log(res.json());
       throw res.json();
     });
   }
