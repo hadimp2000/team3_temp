@@ -32,8 +32,7 @@ export class SignUpComponent {
     };
     this.fetchDataService.signUpSubmit(user).subscribe(
       async (result) => {
-        alert(result.message)
-        await this.router.navigateByUrl('/login');
+        await this.router.navigateByUrl('/logIn');
       },
       (response) => {
         alert(response.error.message);

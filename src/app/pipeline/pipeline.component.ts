@@ -66,14 +66,16 @@ export class PipelineComponent implements OnInit {
       if (evt.target === null) {
         this.detailsMode='pipeline'
       } else if (evt.target.isNode) {
-        if (evt.target.getId() == 'selectSrc') {
-          this._pipelineService._addDataModal.openDialog();
-          //if seleced returns a name ,then pass to this function
-          this._pipelineService.tempFuncAddSrc('source name');
-        } else if (evt.target.getId() == 'selectDis') {
-          this._pipelineService._addDataModal.openDialog();
-          //if seleced returns a name ,then pass to this function
-          this._pipelineService.tempFuncAddDis('dist name');
+        if (evt.target.getId() === 'selectSrc') {
+          this._pipelineService._addDataModal.openDialog(
+            this._pipelineService,
+            'source'
+          );
+        } else if (evt.target.getId() === 'selectDis') {
+          this._pipelineService._addDataModal.openDialog(
+            this._pipelineService,
+            'dist'
+          );
         } else if (evt.target.getData('name') === 'add') {
           let i = evt.target.getAdjacentNodes();
           this._pipelineService._addProcessModal.openDialog(
@@ -143,4 +145,7 @@ export class PipelineComponent implements OnInit {
     this.detailsMode="pipeline"
   }
 
+  public download() {
+
+  }
 }
