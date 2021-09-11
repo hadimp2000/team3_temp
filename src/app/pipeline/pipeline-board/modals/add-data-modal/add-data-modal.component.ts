@@ -26,9 +26,9 @@ export class AddDataModalComponent implements OnInit {
   isDisabled: BooleanInput = true;
   displayedColumns: string[] = ['name'];
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.dataSetService = new DataSetServiceService();
-    this.dataSource = new MatTableDataSource(this.dataSetService.getDataSets());
+    this.dataSource = new MatTableDataSource(await this.dataSetService.getAllDataSets());
   }
 
   public openDialog(service: any, type: String) {

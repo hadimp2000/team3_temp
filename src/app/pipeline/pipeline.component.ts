@@ -1,7 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { JoinDetailsModel } from './join-details/join-details.model';
 import { BoardService } from './service/board.service';
-import { AggregateDetailsModel } from './aggregate-details/aggregate-details.model';
+import {AggregateDetailsModel} from "./aggregate-details/aggregate-details.model";
+import {ActivatedRoute} from "@angular/router";
 declare var require: any;
 @Component({
   selector: 'app-pipeline',
@@ -10,6 +11,7 @@ declare var require: any;
 })
 export class PipelineComponent implements OnInit {
   @ViewChild('mainOgma') main: ElementRef | null = null;
+  public pipelineName!:string;
   public showDetails: boolean = true;
   public showTable: boolean = true;
   public detailsMode: string = 'pipeline';
@@ -20,17 +22,18 @@ export class PipelineComponent implements OnInit {
     rightKey: '',
   };
   public aggregateDetails: AggregateDetailsModel = {
-    column: '',
-    operation: '',
-    outputName: '',
-    groupColumns: [''],
-  };
-  public selectedNodeId!: string;
-  public filterTree!: any;
+    column:'',
+    operation:'',
+    outputName:'',
+    groupColumns:['']
+  }
+  public selectedNodeId!:string;
+  public filterTree!:any;
 
-  constructor(private _pipelineService: BoardService) {}
+  constructor(private rout: ActivatedRoute,private _pipelineService: BoardService) {}
 
   ngOnInit(): void {
+    this.pipelineName= this.rout.snapshot.params['id']
     const Ogma = require('../../assets/Ogma/ogma.min.js');
     this._pipelineService.ogma = new Ogma({
       container: 'graph-container',
@@ -61,7 +64,7 @@ export class PipelineComponent implements OnInit {
   AllOnClickEvents(): void {
     this._pipelineService.ogma.events.onClick((evt: any) => {
       if (evt.target === null) {
-        this.detailsMode = 'pipeline';
+        this.detailsMode='pipeline'
       } else if (evt.target.isNode) {
         if (evt.target.getId() === 'selectSrc') {
           this._pipelineService._addDataModal.openDialog(
@@ -87,17 +90,17 @@ export class PipelineComponent implements OnInit {
           // this._pipelineService._router.navigateByUrl(
           //   `pipeline/${this._pipelineService.pipelineId}/${evt.target.getId()}`
           // );
-          this.selectedNodeId = evt.target.getId();
-          this.filterTree = evt.target.getData('filterTree');
+          this.selectedNodeId= evt.target.getId();
+          this.filterTree= evt.target.getData('filterTree')
           this.detailsMode = 'filter';
         } else if ('process-join' === evt.target.getData('name')) {
-          this.selectedNodeId = evt.target.getId();
-          this.joinDetails = {
+          this.selectedNodeId= evt.target.getId();
+          this.joinDetails={
             dataset: evt.target.getData('dataset'),
             joinType: evt.target.getData('joinType'),
             leftKey: evt.target.getData('leftKey'),
             rightKey: evt.target.getData('rightKey'),
-          };
+          }
           this.detailsMode = 'join';
         } else if ('process-aggregate' === evt.target.getData('name')) {
           this.selectedNodeId = evt.target.getId();
@@ -141,7 +144,7 @@ export class PipelineComponent implements OnInit {
   }
 
   public changeMode() {
-    this.detailsMode = 'pipeline';
+    this.detailsMode="pipeline"
   }
 
   public download() {
