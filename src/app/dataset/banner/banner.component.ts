@@ -46,15 +46,16 @@ export class BannerComponent implements OnInit {
         let file = files[0];
         let formData = new FormData();
         details = {
-          Name: 'data3',
+          Name: file.name,
           ColDelimiter: ',',
           RowDelimiter: 'newline',
           HasHeader: 'true'
         }
         formData.append('details', JSON.stringify(details));
         formData.append('file', file);
-        // let response = await SendRequestService.sendRequest(`https://localhost:5001/dataset/csv/create?token=${localStorage.getItem('token')}`, false, formData);
-        // this.httpClient.post('url',formData).subscribe(res => console.log('File Uploaded ...'));
+        // let response=await SendRequestService.sendRequest(`https://localhost:5001/dataset/csv/create?token=${localStorage.getItem('token')}`, false, formData);
+        this.httpClient.post(`https://localhost:5001/dataset/csv/create?token=${localStorage.getItem('token')}`,formData).subscribe(res => console.log('File Uploaded ...'));
+        location.reload();
       }
     }
   }

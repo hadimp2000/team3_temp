@@ -26,9 +26,9 @@ export class DataSetTableComponent implements OnInit{
 
   async ngOnInit() {
      this.dataSetService = new DataSetServiceService();
-     this.dataSource = new MatTableDataSource( await this.dataSetService.getAllDataSets());
+     this.dataSource = new MatTableDataSource( await this.dataSetService.getAllCsvDataSets());
      this.selection = new SelectionModel(true, []);
-     this.datas = this.dataSetService.getAllDataSets();
+     this.datas = this.dataSetService.getAllCsvDataSets();
 
    }
 

@@ -26,7 +26,7 @@ export class DataSetServiceService implements OnInit {
   }
 
 
-  async getAllDataSets(): Promise<object[]> {
+  async getAllCsvDataSets(): Promise<object[]> {
     const {csvFiles} = await SendRequestService.sendRequest(
       `https://localhost:5001/users/${localStorage.getItem('username')}/csvs`,
       true,
