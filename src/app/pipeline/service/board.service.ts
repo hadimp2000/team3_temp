@@ -11,6 +11,8 @@ export class BoardService {
   private addId = 0;
   private edgeId = 0;
   public pipelineId = 0;
+  public sourceName!: String;
+  public DistName!: String;
   constructor(
     public _addDataModal: AddDataModalComponent,
     public _addProcessModal: AddProcessModalComponent,
@@ -23,14 +25,14 @@ export class BoardService {
     });
   }
 
-  public changeNodeData(nodeId:string,data:object):void {
+  public changeNodeData(nodeId: string, data: object): void {
     const changedNode = this.ogma.getNode(nodeId);
     changedNode.setData(data);
   }
 
   private ObjAddNode = (id: string, x: Number) => ({
     id: id,
-    data: { name: 'add' },
+    data: { name: 'add', type: 'add' },
     attributes: {
       image: {
         url: '../../../assets/icons/add_circle_black_24dp.svg',
@@ -49,7 +51,7 @@ export class BoardService {
     _x: Number
   ) => ({
     id: id,
-    data: { name: content },
+    data: { name: content, type: 'common' },
     attributes: {
       image: {
         url: urlImg,
@@ -65,6 +67,7 @@ export class BoardService {
     data: {
       name: 'process-filter',
       filterTree: {},
+      type: 'filter',
     },
     attributes: {
       image: {
@@ -79,6 +82,7 @@ export class BoardService {
     id: name,
     data: {
       name: 'process-join',
+      type: 'join',
       dataset: '',
       joinType: '',
       rightKey: '',
@@ -97,6 +101,7 @@ export class BoardService {
     id: name,
     data: {
       name: 'process-aggregate',
+      type: 'aggregate',
       column: '',
       operation: '',
       outputName: '',
@@ -165,6 +170,7 @@ export class BoardService {
   }
 
   tempFuncAddSrc(sourceName: String): void {
+    this.sourceName = sourceName;
     this.ogma.setGraph({
       nodes: [
         this.ObjCmnNode(
@@ -185,6 +191,7 @@ export class BoardService {
   }
 
   tempFuncAddDis(disName: String): void {
+    this.DistName = disName;
     this.ogma.removeNode('selectDis');
     this.addId++;
     this.ogma.addNode(this.ObjAddNode('add-' + this.addId, 0));
@@ -271,6 +278,7 @@ export class BoardService {
     });
     this.edgeId += 7;
     this.addId += 11;
+    this.ogma.layouts.hierarchical({ direction: 'LR' });
   }
 
 }

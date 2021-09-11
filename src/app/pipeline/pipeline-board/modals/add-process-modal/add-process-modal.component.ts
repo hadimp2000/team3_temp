@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BoardService } from 'src/app/pipeline/service/board.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
