@@ -37,6 +37,7 @@ import { DatasetComponent } from './dataset/dataset.component';
 import { DataSetSampleTableComponent } from './dataset/data-set-sample-table/data-set-sample-table.component';
 import { PipelinesListComponent } from './pipelines-list/pipelines-list.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { SendRequestService } from './services/send-request-service.service';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,7 @@ import { MatRadioModule } from '@angular/material/radio';
     MaterialModule,
     HttpClientModule,
     MatRadioModule,
-    MatGridListModule
+    MatGridListModule,
   ],
 
   providers: [

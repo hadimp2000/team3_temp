@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {PipelineServiceService} from "../../services/pipeline-service.service";
+import {BoardService} from "../service/board.service";
 
 @Component({
   selector: 'app-pipeline-details',
@@ -6,8 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pipeline-details.component.scss']
 })
 export class PipelineDetailsComponent implements OnInit {
-
-  constructor() { }
+  constructor(public boardService:BoardService) { }
 
   ngOnInit(): void {
   }

@@ -27,7 +27,7 @@ export class PipelineServiceService {
     });
   }
 
-  public async updatePipeline(body:any) {
+  public async updatePipeline(body: any) {
     const token = localStorage.getItem('token');
     const init: RequestInit = {
       headers: {
@@ -46,5 +46,22 @@ export class PipelineServiceService {
         throw res;
       }
     );
+  }
+
+  public async getPipeline(name: String) {
+    const token = localStorage.getItem('token');
+    const init: RequestInit = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const data = await SendRequestService.sendRequest(
+      `https://localhost:5001/pipeline/${name}?token=${token}`,
+      true
+    ).catch(() => {
+      return {};
+    });
+    console.log(data);
+    return data;
   }
 }

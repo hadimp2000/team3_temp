@@ -30,12 +30,13 @@ export class PipelineComponent implements OnInit {
   public filterTree!: any;
 
   constructor(
-    private rout: ActivatedRoute,
-    public _pipelineService: BoardService
+    public _pipelineService: BoardService,
+    public _Activatedroute : ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this._pipelineService.pipelineName = this.rout.snapshot.params['id'];
+    this._pipelineService.pipelineName =
+      this._Activatedroute.snapshot.params['id'];
     const Ogma = require('../../assets/Ogma/ogma.min.js');
     this._pipelineService.ogma = new Ogma({
       container: 'graph-container',

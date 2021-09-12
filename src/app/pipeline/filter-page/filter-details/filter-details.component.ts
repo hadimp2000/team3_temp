@@ -18,20 +18,42 @@ import {BoardService} from "../../service/board.service";
 export class FilterDetailsComponent implements OnInit {
   @Input() filter_details!: FilterDetailsModel;
   @Output() filter_changes: EventEmitter<FilterDetailsModel> = new EventEmitter<FilterDetailsModel>();
+  public dataset!: Array<string>[];
   public operation!: string;
   public temp: boolean = true;
   public value!: string;
   public column!: string;
   public columns: string[] = [];
-  public operations: string[] = ['=', '<', '>'];
+  public operations: string[] = ['='];
 
-  constructor(private dataSetServiceService:DataSetServiceService,private boardService:BoardService) {
+  constructor(private dataSetServiceService: DataSetServiceService, private boardService: BoardService) {
   }
 
   async ngOnInit() {
-    const datatable=await this.dataSetServiceService.getCsvDataSet(""+this.boardService.sourceName)
+    this.dataset = await this.dataSetServiceService.getCsvDataSet("" + this.boardService.sourceName)
     // @ts-ignore
-    this.columns=datatable[0];
+    this.columns = this.dataset[0];
+    if (this.filter_details.column!==""){
+      const input = this.filter_details.column;
+      const index = this.dataset[0].indexOf(input);
+      const value = this.dataset[1][index];
+      if (!isNaN(+Number(value))) {
+        this.operations.push(">","<");
+      }
+      else
+        this.operations=["="]
+    }
+  }
+
+  public checkOperations(event: any) {
+    const input = event.target.value;
+    const index = this.dataset[0].indexOf(input);
+    const value = this.dataset[1][index];
+    if (!isNaN(+Number(value))) {
+      this.operations.push(">","<");
+    }
+    else
+      this.operations=["="]
   }
 
   public saveFilter(formValues: any) {

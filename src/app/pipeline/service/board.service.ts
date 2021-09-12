@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AddDataModalComponent } from '../pipeline-board/modals/add-data-modal/add-data-modal.component';
 import { AddProcessModalComponent } from '../pipeline-board/modals/add-process-modal/add-process-modal.component';
-import { ActivatedRoute, Router } from '@angular/router';
 import { PipelineServiceService } from 'src/app/services/pipeline-service.service';
 
 @Injectable({
@@ -11,15 +10,13 @@ export class BoardService {
   public ogma: any;
   private addId = 0;
   private edgeId = 0;
-  public pipelineName!:string;
+  public pipelineName!: string;
   public sourceName!: String;
   public DistName!: String;
   public graph = '';
   constructor(
     public _addDataModal: AddDataModalComponent,
     public _addProcessModal: AddProcessModalComponent,
-    public _router: Router,
-    public _Activatedroute: ActivatedRoute,
     public _pipelineService: PipelineServiceService
   ) {}
 
@@ -116,14 +113,13 @@ export class BoardService {
     },
   });
   updateDb = () => {
-    console.log(this.ogma.getNodes([]));
     this.ogma.export
       .json({
         download: false,
         pretty: false,
+        nodeAttributes: ['image', 'x', 'text', 'shape'],
       })
       .then((json: any) => {
-        console.log({ name: this.pipelineName, content: json });
         this._pipelineService.updatePipeline({
           name: this.pipelineName,
           content: `${json}`,
@@ -148,19 +144,26 @@ export class BoardService {
     this.ogma.removeNode(add);
     this.updateDb();
   };
-  ngInitFunc(): void {
-    this.ogma.addNode({
-      id: 'selectSrc',
-      data: { name: 'Source' },
-      attributes: {
-        image: {
-          url: '../../../assets/icons/add_circle_black_24dp.svg',
-          scale: 0.5,
+  async ngInitFunc(): Promise<void> {
+    const { content } = await this._pipelineService.getPipeline(
+      this.pipelineName
+    );
+    if (content && content !== '{"nodes":[],"edges":[]}') {
+      this.ogma.setGraph(JSON.parse(content));
+    } else {
+      this.ogma.addNode({
+        id: 'selectSrc',
+        data: { name: 'Source' },
+        attributes: {
+          image: {
+            url: '../../../assets/icons/add_circle_black_24dp.svg',
+            scale: 0.5,
+          },
+          x: 0,
+          text: { content: 'add source' },
         },
-        x: 0,
-        text: { content: 'add source' },
-      },
-    });
+      });
+    }
     this.ogma.styles.addRule({
       nodeAttributes: function (node: any) {
         if (node.getData('name') === 'add') {
@@ -169,6 +172,10 @@ export class BoardService {
             color: 'transparent',
             shape: 'circle',
             y: 0,
+            image: {
+              url: '../../../assets/icons/add_circle_black_24dp.svg',
+              scale: 0.5,
+            },
           };
         }
         return {
@@ -179,7 +186,25 @@ export class BoardService {
           innerStroke: '#0675C1',
           y: 0,
           text: { color: '#0675C1' },
+          image: {
+            scale: 0.5,
+          },
         };
+      },
+    });
+
+    this.ogma.styles.setSelectedNodeAttributes({
+      color: false,
+      outline: false,
+      outerStroke: {
+        color: '#6643B5',
+      },
+    });
+    this.ogma.styles.setHoveredNodeAttributes({
+      color: false,
+      outline: false,
+      outerStroke: {
+        color: '#6643B5',
       },
     });
     this.updateDb();
