@@ -28,7 +28,7 @@ export class AddDataModalComponent implements OnInit {
 
   async ngOnInit() {
     this.dataSetService = new DataSetServiceService();
-    this.dataSource = new MatTableDataSource(await this.dataSetService.getAllDataSets());
+    this.dataSource = new MatTableDataSource(await this.dataSetService.getAllCsvDataSets());
   }
 
   public openDialog(service: any, type: String) {

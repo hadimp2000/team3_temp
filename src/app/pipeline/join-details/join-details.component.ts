@@ -20,7 +20,7 @@ export class JoinDetailsComponent implements OnInit {
   }
 
   async ngOnInit() {
-    let datasets:object[]=await this.dataSetServiceService.getAllDataSets();
+    let datasets:object[]=await this.dataSetServiceService.getAllCsvDataSets();
     if(datasets.length===0){
       this.datasets=[];
     }
