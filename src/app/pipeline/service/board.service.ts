@@ -16,13 +16,7 @@ export class BoardService {
   constructor(
     public _addDataModal: AddDataModalComponent,
     public _addProcessModal: AddProcessModalComponent,
-    public _router: Router,
-    public _Activatedroute: ActivatedRoute
   ) {
-    this._Activatedroute.paramMap.subscribe((params) => {
-      let pipeline_id = params.get('id');
-      if (pipeline_id) this.pipelineName = pipeline_id;
-    });
   }
 
   public changeNodeData(nodeId: string, data: object): void {

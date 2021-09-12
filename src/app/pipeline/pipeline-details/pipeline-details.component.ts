@@ -8,8 +8,6 @@ import {BoardService} from "../service/board.service";
   styleUrls: ['./pipeline-details.component.scss']
 })
 export class PipelineDetailsComponent implements OnInit {
-  @Input()pipelineName!:string;
-
   constructor(public boardService:BoardService) { }
 
   ngOnInit(): void {

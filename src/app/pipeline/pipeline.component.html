@@ -3,7 +3,7 @@
   <app-pipeline-header (detailsIcon)="showOrHideDetails()" (tableIcon)="showOrHideTable()"></app-pipeline-header>
   <div *ngIf="showDetails" class="details" [ngSwitch]="detailsMode">
     <app-join-details [joinId]="selectedNodeId" *ngSwitchCase="'join'" [join_details]="joinDetails"></app-join-details>
-    <app-pipeline-details [pipelineName]="pipelineName"  *ngSwitchCase="'pipeline'"></app-pipeline-details>
+    <app-pipeline-details *ngSwitchCase="'pipeline'"></app-pipeline-details>
     <app-aggregate-details [aggregateId]="selectedNodeId" *ngSwitchCase="'aggregate'" [aggregate_details]="aggregateDetails"></app-aggregate-details>
     <app-filter-page *ngSwitchCase="'filter'" [filterId]="selectedNodeId" [tree]="filterTree" (changeMode)="changeMode()"></app-filter-page>
   </div>
