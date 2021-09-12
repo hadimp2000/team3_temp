@@ -24,4 +24,9 @@ export class PipelineServiceService {
       throw res;
     });
   }
+  public async getStatus(): Promise<string>{
+    const token=localStorage.getItem('token');
+    const response=await SendRequestService.sendRequest(`https://localhost:5001/pipeline/status?token=${token}`,true);
+    return response.status;
+  }
 }
