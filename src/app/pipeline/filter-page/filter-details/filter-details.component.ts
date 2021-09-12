@@ -37,7 +37,7 @@ export class FilterDetailsComponent implements OnInit {
       const input = this.filter_details.column;
       const index = this.dataset[0].indexOf(input);
       const value = this.dataset[1][index];
-      if (!isNaN(+Number(value))) {
+      if (!isNaN(+Number(value)) || !isNaN(Date.parse(value))) {
         this.operations.push(">","<");
       }
       else
