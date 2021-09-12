@@ -30,7 +30,7 @@ export class PipelineComponent implements OnInit {
   public selectedNodeId!:string;
   public filterTree!:any;
 
-  constructor(private rout: ActivatedRoute,private _pipelineService: BoardService) {}
+  constructor(private rout: ActivatedRoute,public _pipelineService: BoardService) {}
 
   ngOnInit(): void {
     this.pipelineName= this.rout.snapshot.params['id']
@@ -87,9 +87,6 @@ export class PipelineComponent implements OnInit {
             }
           );
         } else if ('process-filter' === evt.target.getData('name')) {
-          // this._pipelineService._router.navigateByUrl(
-          //   `pipeline/${this._pipelineService.pipelineId}/${evt.target.getId()}`
-          // );
           this.selectedNodeId= evt.target.getId();
           this.filterTree= evt.target.getData('filterTree')
           this.detailsMode = 'filter';
@@ -102,7 +99,7 @@ export class PipelineComponent implements OnInit {
             rightKey: evt.target.getData('rightKey'),
           }
           this.detailsMode = 'join';
-        } else {
+        } else if ('process-aggregate' === evt.target.getData('name'))  {
           this.selectedNodeId= evt.target.getId();
           this.aggregateDetails={
             column:evt.target.getData('column'),

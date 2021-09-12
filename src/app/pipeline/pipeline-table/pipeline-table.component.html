@@ -1,13 +1,13 @@
 <section>
   <h2>{{dataName}}</h2>
   <p>50 رکورد</p>
-  <div class="table">
+  <div *ngIf="dataset" class="table">
     <table>
       <tr>
-        <th *ngFor="let key of dataset_keys">{{key}}</th>
+        <th *ngFor="let key of dataset[0]">{{key}}</th>
       </tr>
-      <tr *ngFor="let obj of dataset_values">
-        <td *ngFor="let value of obj">{{value}}</td>
+      <tr *ngFor="let item of createRange(dataset?.length); let currentElementIndex=index">
+        <td *ngFor="let value of dataset[currentElementIndex+1]">{{value}}</td>
       </tr>
     </table>
   </div>
