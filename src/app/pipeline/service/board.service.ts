@@ -150,6 +150,8 @@ export class BoardService {
     );
     if (content && content !== '{"nodes":[],"edges":[]}') {
       this.ogma.setGraph(JSON.parse(content));
+      this.sourceName = this.ogma.getNode('source').getData().name;
+      this.DistName = this.ogma.getNode('destination').getData().name;
     } else {
       this.ogma.addNode({
         id: 'selectSrc',
