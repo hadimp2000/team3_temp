@@ -1,21 +1,23 @@
 import { Injectable } from '@angular/core';
-import {SendRequestService} from "./send-request-service.service";
+import { SendRequestService } from './send-request-service.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PipelineServiceService {
+  constructor() {}
 
-  constructor() { }
-
-  public async downloadYML(name:string){
-    const token=localStorage.getItem('token');
+  public async downloadYML(name: string) {
+    const token = localStorage.getItem('token');
     const init: RequestInit = {
       headers: {
         'Content-Type': 'application/json',
       },
     };
-     fetch(`https://localhost:5001/pipeline/yml/download/${name}?token=${token}`, init).then((res) => {
+    fetch(
+      `https://localhost:5001/pipeline/yml/download/${name}?token=${token}`,
+      init
+    ).then((res) => {
       if (res.ok) {
         window.open(res.url);
         return;
@@ -25,20 +27,24 @@ export class PipelineServiceService {
     });
   }
 
-  public async updatePipeline(name:string){
-    const token=localStorage.getItem('token');
+  public async updatePipeline(body:any) {
+    const token = localStorage.getItem('token');
     const init: RequestInit = {
       headers: {
         'Content-Type': 'application/json',
       },
+      method: 'POST',
+      body: JSON.stringify(body),
     };
-     fetch(`https://localhost:5001/pipeline/yml/download/${name}?token=${token}`, init).then((res) => {
-      if (res.ok) {
-        window.open(res.url);
-        return;
+    fetch(`https://localhost:5001/pipeline/create?token=${token}`, init).then(
+      (res) => {
+        if (res.ok) {
+          window.open(res.url);
+          return;
+        }
+        console.log(res);
+        throw res;
       }
-      console.log(res);
-      throw res;
-    });
+    );
   }
 }

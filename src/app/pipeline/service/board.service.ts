@@ -3,7 +3,6 @@ import { AddDataModalComponent } from '../pipeline-board/modals/add-data-modal/a
 import { AddProcessModalComponent } from '../pipeline-board/modals/add-process-modal/add-process-modal.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PipelineServiceService } from 'src/app/services/pipeline-service.service';
-import { CompileStylesheetMetadata } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +14,7 @@ export class BoardService {
   public pipelineId = '';
   public sourceName!: String;
   public DistName!: String;
+  public graph = '';
   constructor(
     public _addDataModal: AddDataModalComponent,
     public _addProcessModal: AddProcessModalComponent,
@@ -26,6 +26,7 @@ export class BoardService {
   public changeNodeData(nodeId: string, data: object): void {
     const changedNode = this.ogma.getNode(nodeId);
     changedNode.setData(data);
+    this.updateDb();
   }
 
   private ObjAddNode = (id: string, x: Number) => ({
@@ -114,6 +115,21 @@ export class BoardService {
       text: { content: type },
     },
   });
+  updateDb = () => {
+    console.log(this.ogma.getNodes([]));
+    this.ogma.export
+      .json({
+        download: false,
+        pretty: false,
+      })
+      .then((json: any) => {
+        console.log({ name: this.pipelineId, content: json });
+        this._pipelineService.updatePipeline({
+          name: this.pipelineId,
+          content: `${json}`,
+        });
+      });
+  };
   deleteNodes = (node: any) => {
     let adj = node.getAdjacentNodes().get(0).getId();
     let adj2 = node.getAdjacentNodes().get(1).getAdjacentNodes().get(0).getId();
@@ -130,6 +146,7 @@ export class BoardService {
       this.edgeId++;
     }
     this.ogma.removeNode(add);
+    this.updateDb();
   };
   ngInitFunc(): void {
     this.ogma.addNode({
@@ -165,6 +182,7 @@ export class BoardService {
         };
       },
     });
+    this.updateDb();
   }
 
   tempFuncAddSrc(sourceName: String): void {
@@ -186,6 +204,7 @@ export class BoardService {
       ],
       edges: [{ id: 1, source: 'source', target: 'selectDis' }],
     });
+    this.updateDb();
   }
 
   tempFuncAddDis(disName: String): void {
@@ -206,6 +225,7 @@ export class BoardService {
       { id: this.edgeId + 1, source: 'add-1', target: 'destination' },
     ]);
     this.edgeId += 3;
+    this.updateDb();
   }
 
   public addNodeBetween(
