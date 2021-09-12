@@ -11,7 +11,7 @@ export class BoardService {
   public ogma: any;
   private addId = 0;
   private edgeId = 0;
-  public pipelineId = '';
+  public pipelineName!:string;
   public sourceName!: String;
   public DistName!: String;
   public graph = '';
@@ -123,9 +123,9 @@ export class BoardService {
         pretty: false,
       })
       .then((json: any) => {
-        console.log({ name: this.pipelineId, content: json });
+        console.log({ name: this.pipelineName, content: json });
         this._pipelineService.updatePipeline({
-          name: this.pipelineId,
+          name: this.pipelineName,
           content: `${json}`,
         });
       });

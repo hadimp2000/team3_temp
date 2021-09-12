@@ -11,7 +11,6 @@ declare var require: any;
 })
 export class PipelineComponent implements OnInit {
   @ViewChild('mainOgma') main: ElementRef | null = null;
-  public pipelineName!: string;
   public showDetails: boolean = true;
   public showTable: boolean = true;
   public detailsMode: string = 'pipeline';
@@ -36,7 +35,7 @@ export class PipelineComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this._pipelineService.pipelineId = this.rout.snapshot.params['id'];
+    this._pipelineService.pipelineName = this.rout.snapshot.params['id'];
     const Ogma = require('../../assets/Ogma/ogma.min.js');
     this._pipelineService.ogma = new Ogma({
       container: 'graph-container',

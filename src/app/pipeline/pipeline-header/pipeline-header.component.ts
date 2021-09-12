@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Router} from "@angular/router";
 import {PipelineServiceService} from "../../services/pipeline-service.service";
+import {BoardService} from "../service/board.service";
 
 @Component({
   selector: 'app-pipeline-header',
@@ -8,11 +9,10 @@ import {PipelineServiceService} from "../../services/pipeline-service.service";
   styleUrls: ['./pipeline-header.component.scss']
 })
 export class PipelineHeaderComponent implements OnInit {
-  @Input()pipelineName!:string;
   @Output() detailsIcon: EventEmitter<string> = new EventEmitter<string>();
   @Output() tableIcon: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private router: Router,private pipelineServiceService:PipelineServiceService) {
+  constructor(public boardService:BoardService,private router: Router,private pipelineServiceService:PipelineServiceService) {
   }
 
   ngOnInit(): void {
@@ -31,7 +31,7 @@ export class PipelineHeaderComponent implements OnInit {
   }
 
   public async download(){
-    await this.pipelineServiceService.downloadYML(this.pipelineName);
+    await this.pipelineServiceService.downloadYML(this.boardService.pipelineName);
   }
 
 }
