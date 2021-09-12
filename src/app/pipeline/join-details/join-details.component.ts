@@ -31,6 +31,10 @@ export class JoinDetailsComponent implements OnInit {
     const datatable=await this.dataSetServiceService.getCsvDataSet(""+this.boardService.sourceName)
     // @ts-ignore
     this.table1_columns=datatable[0];
+    if (this.join_details.dataset!=="") {
+      const datatable2=await this.dataSetServiceService.getCsvDataSet(this.join_details.dataset)
+      this.table2_columns=datatable2[0];
+    }
 
   }
 

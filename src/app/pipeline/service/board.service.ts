@@ -167,6 +167,20 @@ export class BoardService {
         };
       },
     });
+    this.ogma.styles.setSelectedNodeAttributes({
+      color: false,
+      outline: false,
+      outerStroke: {
+        color: '#6643B5'
+      }
+    });
+    this.ogma.styles.setHoveredNodeAttributes({
+      color: false,
+      outline: false,
+      outerStroke: {
+        color: '#6643B5'
+      }
+    });
   }
 
   tempFuncAddSrc(sourceName: String): void {

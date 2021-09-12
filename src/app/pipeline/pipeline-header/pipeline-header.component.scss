@@ -106,6 +106,18 @@ section {
   height: 24px;
   color: $color-darkest;
 }
+span {
+  position: absolute;
+  right: calc(50% + 30px);
+  top: $density-large;
+  color: $color-dark-gray;
+  font-weight: bold;
+  cursor: pointer;
+  &:hover{
+    color: lighten($color-dark-gray,20%)
+  }
+
+}
 
 .run {
 
@@ -120,6 +132,9 @@ section {
   }
   path {
     fill: darken($color-purple, 10%);;
+  }
+  &:hover{
+    transform: scale(1.1, 1.1)
   }
 }
  .back {

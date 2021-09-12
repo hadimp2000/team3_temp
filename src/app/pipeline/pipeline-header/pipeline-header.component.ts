@@ -11,6 +11,7 @@ import {BoardService} from "../service/board.service";
 export class PipelineHeaderComponent implements OnInit {
   @Output() detailsIcon: EventEmitter<string> = new EventEmitter<string>();
   @Output() tableIcon: EventEmitter<string> = new EventEmitter<string>();
+  public canCancel:boolean=false;
 
   constructor(public boardService:BoardService,private router: Router,private pipelineServiceService:PipelineServiceService) {
   }
@@ -32,6 +33,18 @@ export class PipelineHeaderComponent implements OnInit {
 
   public async download(){
     await this.pipelineServiceService.downloadYML(this.boardService.pipelineName);
+  }
+
+  public async run(){
+    if (!this.canCancel)
+    {
+      this.canCancel=true;
+      //run
+    }
+  }
+
+  public cancel(){
+
   }
 
 }
