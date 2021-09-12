@@ -16,13 +16,24 @@ table {
   td {
 
 
-    padding: 0.8rem 0;
+    padding: 1.2rem 0;
 
     svg {
       width: 2rem;
       height: 2rem;
       fill: white;
       margin-left: 4%;
+      &:hover {
+        cursor: pointer;
+      }
+
+    }
+    .name-column{
+
+
+      &:hover{
+        cursor:pointer;
+      }
     }
 
     .talend-icon {

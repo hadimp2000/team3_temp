@@ -15,34 +15,37 @@ export class PipelinesListComponent implements OnInit {
   dataSetService:any;
   dataSource:any;
   selection:any;
-  datas:any;
+  pipelines:any;
   httpClient:any;
   elements:any;
-  elementRef:ElementRef;
 
   constructor(dataSetService:DataSetServiceService,private router:Router, elementRef:ElementRef,httpClient:HttpClient) {
-    this.dataSetService=dataSetService;
-    this.elementRef=elementRef;
-    this.httpClient=httpClient;
-
   }
 
-  ngOnInit() {
-
-    this.datas=this.dataSetService.getDataSets();
-    this.dataSetService=new DataSetServiceService();
-    this.dataSource = new MatTableDataSource(this.datas);
+  async ngOnInit() {
+    this.dataSetService = new DataSetServiceService();
+    this.pipelines=await this.dataSetService.getAllPipelines();
+    this.dataSource = new MatTableDataSource(this.pipelines);
     // this.dataSource.push(this.dataSetService.createData("pipeline",this.dataSource.length+1))
     this.selection = new SelectionModel(true, []);
     // this.datas=this.dataSetService.getDataSets();
 
   }
 
-  createPipeline(){
-    this.datas.push(this.dataSetService.createData("pipeline"+(this.datas.length+1),this.datas.length+1))
-    this.dataSource = new MatTableDataSource(this.datas);
+  async createpipeline(){
+   await this.dataSetService.createPipeline();
   }
-  removePipeline(){
+
+   deletepipeline(i:number){
+    let name=this.pipelines[i].name;
+    console.log(name);
+     this.dataSetService.deletePipeline(name);
+  }
+
+
+  navigateToPipeline(num:number){
+    let name=this.pipelines[num].name;
+    this.router.navigateByUrl(`/pipeline/${name}`);
 
   }
 
