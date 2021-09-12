@@ -117,7 +117,7 @@ export class BoardService {
       .json({
         download: false,
         pretty: false,
-        nodeAttributes: ['image', 'x', 'text', 'shape'],
+        nodeAttributes: ['image', 'text', 'x'],
       })
       .then((json: any) => {
         this._pipelineService.updatePipeline({
@@ -150,8 +150,8 @@ export class BoardService {
     );
     if (content && content !== '{"nodes":[],"edges":[]}') {
       this.ogma.setGraph(JSON.parse(content));
-      this.sourceName = this.ogma.getNode('source').getData().name;
-      this.DistName = this.ogma.getNode('destination').getData().name;
+      this.sourceName = this.ogma.getNode('source')?.getData()?.name;
+      this.DistName = this.ogma.getNode('destination')?.getData()?.name;
     } else {
       this.ogma.addNode({
         id: 'selectSrc',
