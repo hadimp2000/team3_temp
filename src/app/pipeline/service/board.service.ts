@@ -10,7 +10,7 @@ export class BoardService {
   public ogma: any;
   private addId = 0;
   private edgeId = 0;
-  public pipelineId = 0;
+  public pipelineName!:string;
   public sourceName!: String;
   public DistName!: String;
   constructor(
@@ -21,7 +21,7 @@ export class BoardService {
   ) {
     this._Activatedroute.paramMap.subscribe((params) => {
       let pipeline_id = params.get('id');
-      if (pipeline_id) this.pipelineId = parseInt(pipeline_id);
+      if (pipeline_id) this.pipelineName = pipeline_id;
     });
   }
 

@@ -11,7 +11,6 @@ declare var require: any;
 })
 export class PipelineComponent implements OnInit {
   @ViewChild('mainOgma') main: ElementRef | null = null;
-  public pipelineName!:string;
   public showDetails: boolean = true;
   public showTable: boolean = true;
   public detailsMode: string = 'pipeline';
@@ -30,10 +29,9 @@ export class PipelineComponent implements OnInit {
   public selectedNodeId!:string;
   public filterTree!:any;
 
-  constructor(private rout: ActivatedRoute,public _pipelineService: BoardService) {}
+  constructor(public _pipelineService: BoardService) {}
 
   ngOnInit(): void {
-    this.pipelineName= this.rout.snapshot.params['id']
     const Ogma = require('../../assets/Ogma/ogma.min.js');
     this._pipelineService.ogma = new Ogma({
       container: 'graph-container',
