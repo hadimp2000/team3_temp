@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { AddDataModalComponent } from '../pipeline-board/modals/add-data-modal/add-data-modal.component';
 import { AddProcessModalComponent } from '../pipeline-board/modals/add-process-modal/add-process-modal.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PipelineServiceService } from 'src/app/services/pipeline-service.service';
+import { CompileStylesheetMetadata } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root',
@@ -10,20 +12,16 @@ export class BoardService {
   public ogma: any;
   private addId = 0;
   private edgeId = 0;
-  public pipelineId = 0;
+  public pipelineId = '';
   public sourceName!: String;
   public DistName!: String;
   constructor(
     public _addDataModal: AddDataModalComponent,
     public _addProcessModal: AddProcessModalComponent,
     public _router: Router,
-    public _Activatedroute: ActivatedRoute
-  ) {
-    this._Activatedroute.paramMap.subscribe((params) => {
-      let pipeline_id = params.get('id');
-      if (pipeline_id) this.pipelineId = parseInt(pipeline_id);
-    });
-  }
+    public _Activatedroute: ActivatedRoute,
+    public _pipelineService: PipelineServiceService
+  ) {}
 
   public changeNodeData(nodeId: string, data: object): void {
     const changedNode = this.ogma.getNode(nodeId);
@@ -280,5 +278,4 @@ export class BoardService {
     this.addId += 11;
     this.ogma.layouts.hierarchical({ direction: 'LR' });
   }
-
 }

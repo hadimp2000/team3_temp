@@ -24,4 +24,21 @@ export class PipelineServiceService {
       throw res;
     });
   }
+
+  public async updatePipeline(name:string){
+    const token=localStorage.getItem('token');
+    const init: RequestInit = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+     fetch(`https://localhost:5001/pipeline/yml/download/${name}?token=${token}`, init).then((res) => {
+      if (res.ok) {
+        window.open(res.url);
+        return;
+      }
+      console.log(res);
+      throw res;
+    });
+  }
 }
