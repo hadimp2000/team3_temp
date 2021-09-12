@@ -38,9 +38,8 @@ export class FilterPageComponent implements OnInit, AfterViewInit {
     const Ogma = require('../../../assets/ogma.min.js');
     if (Object.keys(this.tree).length !== 0)
     {
-      console.log(this.tree)
       this.ogma = new Ogma({
-        graph: JSON.parse(this.tree),
+        graph: this.tree,
         container: 'graph-container',
       });
     }
@@ -235,7 +234,7 @@ export class FilterPageComponent implements OnInit, AfterViewInit {
         }).then(function (json: any) {
           data = {
             name: 'process-filter',
-            filterTree: json
+            filterTree: JSON.parse(json)
           }
         });
         resolve();
