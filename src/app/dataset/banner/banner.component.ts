@@ -68,8 +68,10 @@ export class BannerComponent implements OnInit {
             )}`,
             formData
           )
-          .subscribe((res) => console.log('File Uploaded ...'));
-        location.reload();
+          .subscribe((res) => {
+            console.log('File Uploaded ...');
+            location.reload();
+          });
       }
     }
   }
