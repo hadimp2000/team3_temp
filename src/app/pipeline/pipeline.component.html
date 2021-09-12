@@ -10,5 +10,5 @@
   <main #mainOgma>
     <div id="graph-container" class="ogma-container"></div>
   </main>
-  <app-pipeline-table *ngIf="showTable"></app-pipeline-table>
+  <app-pipeline-table *ngIf="showTable && _pipelineService.sourceName"></app-pipeline-table>
 </div>
