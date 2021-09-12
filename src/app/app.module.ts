@@ -73,7 +73,6 @@ import { MatRadioModule } from '@angular/material/radio';
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    MatGridListModule,
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
@@ -84,6 +83,7 @@ import { MatRadioModule } from '@angular/material/radio';
     MaterialModule,
     HttpClientModule,
     MatRadioModule,
+    MatGridListModule
   ],
 
   providers: [
