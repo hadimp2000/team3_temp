@@ -47,7 +47,6 @@
         <path d="M5.67 13.363l -.175.183c-.667.7-1.583 1.656-2.562 1.656-.459 0-.91-.2-1.382-.616-.463-.408-.699-.832-.717-1.295-.039-.99.935-1.987 1.518-2.584l.14-.144 7.813-8.1 3.178 2.798-7.813 8.102zM16 5.207L10.087 0 8.901 1.227l.791.696C8.25 3.418 2.614 9.261 1.88 10.025l-.136.14c-.67.686-1.795 1.833-1.74 3.157.025.675.356 1.3.983 1.852.623.547 1.278.826 1.947.826 1.347 0 2.405-1.109 3.178-1.918l7.984-8.28.72.634L16 5.207z"></path>
       </svg></svg>
         <span class=number{{i}} *ngIf="!notShowSample" class="title">مشاهده ی نمونه ها</span>
-        <span class=number{{i}} *ngIf="notShowSample" class="title">عدم نمایش نمونه ها</span>
       </button>
     </td>
   </ng-container>
@@ -56,8 +55,8 @@
   <ng-container matColumnDef="delete">
     <th mat-header-cell *matHeaderCellDef>  </th>
     <td class="delete-column" mat-cell *matCellDef="let element;let i=index" class=number{{i}}>
-    <div class="container">
-        <svg xmlns="http://www.w3.org/2000/svg" class="trash-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M3 6l3 18h12l3-18h-18zm19-4v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.316c0 .901.73 2 1.631 2h5.711z"/></svg>
+    <div (click)="deleteDataSet(i)" class=number{{i}} class="container" >
+        <svg class=number{{i}} xmlns="http://www.w3.org/2000/svg" class="trash-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M3 6l3 18h12l3-18h-18zm19-4v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.316c0 .901.73 2 1.631 2h5.711z"/></svg>
       </div>
     </td>
   </ng-container>

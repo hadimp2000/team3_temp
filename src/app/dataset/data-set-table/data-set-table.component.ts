@@ -26,13 +26,18 @@ export class DataSetTableComponent implements OnInit{
 
   async ngOnInit() {
      this.dataSetService = new DataSetServiceService();
-     this.dataSource = new MatTableDataSource( await this.dataSetService.getAllDataSets());
+     this.datas=await this.dataSetService.getAllCsvDataSets();
+     this.dataSource = new MatTableDataSource( this.datas);
      this.selection = new SelectionModel(true, []);
-     this.datas = this.dataSetService.getAllDataSets();
 
    }
 
-
+  async deleteDataSet(i:number){
+    console.log(i);
+    let name=this.datas[i].name;
+    await this.dataSetService.deleteCsvDataSet(name);
+    location.reload();
+  }
 
   displayedColumns: string[] = ['select', 'position', 'name', 'symbol','delete'];
 
@@ -42,7 +47,9 @@ export class DataSetTableComponent implements OnInit{
    async sampleIconClick(event:any){
      const dom:HTMLElement = this.elementRef.nativeElement;
      this.elements = dom.getElementsByClassName((event.target as Element).classList[1]);
+     // console.log(this.elements);
      let name=this.elements[2].innerText.trim();
+     // console.log(name);
 
     this.sampleIcon.emit('clicked');
     await this.router.navigateByUrl('pipelines/dataSet/'+name);
