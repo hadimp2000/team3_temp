@@ -1,7 +1,13 @@
 <h2>جزئیات سناریو</h2>
+<h3>نام سناریو</h3>
+<p>{{boardService.pipelineName}}</p>
 <h3>وضعیت</h3>
-<p>موفقیت آمیز</p>
-<h3>آخرین ویرایش</h3>
-<p>10 دقیقه پیش</p>
-<h3>زمان اجرا</h3>
-<p>00:00:29</p>
+<p>{{status}}</p>
+<div *ngIf="boardService.sourceName">
+  <h3>دیتاست مبدا</h3>
+  <p>{{boardService.sourceName}}</p>
+</div>
+<div *ngIf="boardService.DistName">
+  <h3>دیتاست مقصد</h3>
+  <p>{{boardService.DistName}}</p>
+</div>

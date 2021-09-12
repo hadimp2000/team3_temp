@@ -6,12 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  public username:string="parmida-khani";
+  public username!:string | null;
   public firstName:string="parmida";
   public lastName:string="khani"
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.username=localStorage.getItem('username');
+  }
   public myFunction() {
     // document.getElementById("myDropdown").classList.toggle("show");
   }

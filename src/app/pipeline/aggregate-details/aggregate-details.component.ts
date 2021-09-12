@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AggregateDetailsModel} from "./aggregate-details.model";
 import {BoardService} from "../service/board.service";
+import {DataSetServiceService} from "../../services/data-set-service.service";
 
 @Component({
   selector: 'app-aggregate-details',
@@ -10,12 +11,15 @@ import {BoardService} from "../service/board.service";
 export class AggregateDetailsComponent implements OnInit {
   @Input() aggregate_details!: AggregateDetailsModel;
   @Input() aggregateId!: string ;
-  public columns: string[] = ['location', 'code', 'date', 'total cases'];
+  public columns: string[] = [];
 
-  constructor(private boardService:BoardService) {
+  constructor(private boardService:BoardService,private dataSetServiceService:DataSetServiceService) {
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    const datatable=await this.dataSetServiceService.getCsvDataSet(""+this.boardService.sourceName)
+    // @ts-ignore
+    this.columns=datatable[0];
   }
 
   public addGroup() {

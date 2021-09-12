@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AddDataModalComponent } from '../pipeline-board/modals/add-data-modal/add-data-modal.component';
 import { AddProcessModalComponent } from '../pipeline-board/modals/add-process-modal/add-process-modal.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { PipelineServiceService } from 'src/app/services/pipeline-service.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,24 +10,20 @@ export class BoardService {
   public ogma: any;
   private addId = 0;
   private edgeId = 0;
-  public pipelineId = 0;
+  public pipelineName!: string;
   public sourceName!: String;
   public DistName!: String;
+  public graph = '';
   constructor(
     public _addDataModal: AddDataModalComponent,
     public _addProcessModal: AddProcessModalComponent,
-    public _router: Router,
-    public _Activatedroute: ActivatedRoute
-  ) {
-    this._Activatedroute.paramMap.subscribe((params) => {
-      let pipeline_id = params.get('id');
-      if (pipeline_id) this.pipelineId = parseInt(pipeline_id);
-    });
-  }
+    public _pipelineService: PipelineServiceService
+  ) {}
 
   public changeNodeData(nodeId: string, data: object): void {
     const changedNode = this.ogma.getNode(nodeId);
     changedNode.setData(data);
+    this.updateDb();
   }
 
   private ObjAddNode = (id: string, x: Number) => ({
@@ -116,6 +112,20 @@ export class BoardService {
       text: { content: type },
     },
   });
+  updateDb = () => {
+    this.ogma.export
+      .json({
+        download: false,
+        pretty: false,
+        nodeAttributes: ['image', 'text', 'x'],
+      })
+      .then((json: any) => {
+        this._pipelineService.updatePipeline({
+          name: this.pipelineName,
+          content: `${json}`,
+        });
+      });
+  };
   deleteNodes = (node: any) => {
     let adj = node.getAdjacentNodes().get(0).getId();
     let adj2 = node.getAdjacentNodes().get(1).getAdjacentNodes().get(0).getId();
@@ -132,20 +142,30 @@ export class BoardService {
       this.edgeId++;
     }
     this.ogma.removeNode(add);
+    this.updateDb();
   };
-  ngInitFunc(): void {
-    this.ogma.addNode({
-      id: 'selectSrc',
-      data: { name: 'Source' },
-      attributes: {
-        image: {
-          url: '../../../assets/icons/add_circle_black_24dp.svg',
-          scale: 0.5,
+  async ngInitFunc(): Promise<void> {
+    const { content } = await this._pipelineService.getPipeline(
+      this.pipelineName
+    );
+    if (content && content !== '{"nodes":[],"edges":[]}') {
+      this.ogma.setGraph(JSON.parse(content));
+      this.sourceName = this.ogma.getNode('source')?.getData()?.name;
+      this.DistName = this.ogma.getNode('destination')?.getData()?.name;
+    } else {
+      this.ogma.addNode({
+        id: 'selectSrc',
+        data: { name: 'Source' },
+        attributes: {
+          image: {
+            url: '../../../assets/icons/add_circle_black_24dp.svg',
+            scale: 0.5,
+          },
+          x: 0,
+          text: { content: 'add source' },
         },
-        x: 0,
-        text: { content: 'add source' },
-      },
-    });
+      });
+    }
     this.ogma.styles.addRule({
       nodeAttributes: function (node: any) {
         if (node.getData('name') === 'add') {
@@ -154,6 +174,10 @@ export class BoardService {
             color: 'transparent',
             shape: 'circle',
             y: 0,
+            image: {
+              url: '../../../assets/icons/add_circle_black_24dp.svg',
+              scale: 0.5,
+            },
           };
         }
         return {
@@ -164,9 +188,28 @@ export class BoardService {
           innerStroke: '#0675C1',
           y: 0,
           text: { color: '#0675C1' },
+          image: {
+            scale: 0.5,
+          },
         };
       },
     });
+
+    this.ogma.styles.setSelectedNodeAttributes({
+      color: false,
+      outline: false,
+      outerStroke: {
+        color: '#6643B5',
+      },
+    });
+    this.ogma.styles.setHoveredNodeAttributes({
+      color: false,
+      outline: false,
+      outerStroke: {
+        color: '#6643B5',
+      },
+    });
+    this.updateDb();
   }
 
   tempFuncAddSrc(sourceName: String): void {
@@ -188,6 +231,7 @@ export class BoardService {
       ],
       edges: [{ id: 1, source: 'source', target: 'selectDis' }],
     });
+    this.updateDb();
   }
 
   tempFuncAddDis(disName: String): void {
@@ -208,6 +252,7 @@ export class BoardService {
       { id: this.edgeId + 1, source: 'add-1', target: 'destination' },
     ]);
     this.edgeId += 3;
+    this.updateDb();
   }
 
   public addNodeBetween(
@@ -280,5 +325,4 @@ export class BoardService {
     this.addId += 11;
     this.ogma.layouts.hierarchical({ direction: 'LR' });
   }
-
 }

@@ -1,5 +1,7 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Router} from "@angular/router";
+import {PipelineServiceService} from "../../services/pipeline-service.service";
+import {BoardService} from "../service/board.service";
 
 @Component({
   selector: 'app-pipeline-header',
@@ -9,9 +11,9 @@ import {Router} from "@angular/router";
 export class PipelineHeaderComponent implements OnInit {
   @Output() detailsIcon: EventEmitter<string> = new EventEmitter<string>();
   @Output() tableIcon: EventEmitter<string> = new EventEmitter<string>();
-  @Output() downloadIcon: EventEmitter<string> = new EventEmitter<string>();
+  public canCancel:boolean=false;
 
-  constructor(private router: Router) {
+  constructor(public boardService:BoardService,private router: Router,private pipelineServiceService:PipelineServiceService) {
   }
 
   ngOnInit(): void {
@@ -29,8 +31,20 @@ export class PipelineHeaderComponent implements OnInit {
     await this.router.navigateByUrl('/pipelines/dataSet');
   }
 
-  public download(){
-    this.downloadIcon.emit("clicked");
+  public async download(){
+    await this.pipelineServiceService.downloadYML(this.boardService.pipelineName);
+  }
+
+  public async run(){
+    if (!this.canCancel)
+    {
+      this.canCancel=true;
+      //run
+    }
+  }
+
+  public cancel(){
+
   }
 
 }
