@@ -14,6 +14,7 @@ export class BoardService {
   public sourceName!: String;
   public DistName!: String;
   public graph = '';
+  public status!:string;
   constructor(
     public _addDataModal: AddDataModalComponent,
     public _addProcessModal: AddProcessModalComponent,

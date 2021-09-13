@@ -8,12 +8,11 @@ import {BoardService} from "../service/board.service";
   styleUrls: ['./pipeline-details.component.scss']
 })
 export class PipelineDetailsComponent implements OnInit {
-  public status!:string;
 
   constructor(public boardService:BoardService,private pipelineServiceService:PipelineServiceService) { }
 
   async ngOnInit() {
-    this.status=await this.pipelineServiceService.getStatus();
+    this.boardService.status=await this.pipelineServiceService.getStatus(this.boardService.pipelineName);
 
   }
 
