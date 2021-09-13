@@ -41,6 +41,12 @@ export class PipelineHeaderComponent implements OnInit {
     {
       this.canCancel=true;
       await this.pipelineServiceService.run(""+this.boardService.DistName,this.boardService.pipelineName);
+      let status='';
+      while(status==='Running')
+      {
+        status=await this.pipelineServiceService.getStatus();
+      }
+      this.canCancel=false;
     }
   }
 
