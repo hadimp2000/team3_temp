@@ -15,7 +15,6 @@
 }
 
 .page {
-  min-height: 100%;
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr;
@@ -30,10 +29,7 @@
 .page > .side-bar-container {
   width: fit-content;
 }
-
-footer {
-  position: absolute;
-  bottom: 0;
+.page footer {
   background-color: #282A35;
   color: white;
   text-align: center;
