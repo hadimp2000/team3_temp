@@ -48,8 +48,9 @@ export class DataSetServiceService implements OnInit {
   }
 
   async getCsvDataSet(name:string):Promise<any[]>{
-    const {content}=await SendRequestService.deleteRequest(
-      `https://localhost:5001/dataset/csv/${name}?token=${localStorage.getItem('token')}`
+    const {content}=await SendRequestService.sendRequest(
+      `https://localhost:5001/dataset/csv/${name}?token=${localStorage.getItem('token')}`,
+      true
     )
     return content;
   }
