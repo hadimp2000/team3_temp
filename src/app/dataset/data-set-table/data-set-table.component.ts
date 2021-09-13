@@ -44,13 +44,8 @@ export class DataSetTableComponent implements OnInit{
   notShowSample:boolean=false;
   @Output() sampleIcon: EventEmitter<string> = new EventEmitter<string>();
 
-   async sampleIconClick(event:any){
-     const dom:HTMLElement = this.elementRef.nativeElement;
-     this.elements = dom.getElementsByClassName((event.target as Element).classList[1]);
-     // console.log(this.elements);
-     let name=this.elements[2].innerText.trim();
-     // console.log(name);
-
+   async sampleIconClick(num:number){
+     let name=this.datas[num].name;
     this.sampleIcon.emit('clicked');
     await this.router.navigateByUrl('pipelines/dataSet/'+name);
   }
