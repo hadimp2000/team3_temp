@@ -33,14 +33,12 @@ export class DataSetTableComponent implements OnInit{
    }
 
   async deleteDataSet(i:number){
-    console.log(i);
-    let name=this.datas[i].name;
+    let name=this.datas[i].name
     await this.dataSetService.deleteCsvDataSet(name);
     location.reload();
   }
 
   displayedColumns: string[] = ['select', 'position', 'name', 'symbol','delete'];
-
   notShowSample:boolean=false;
   @Output() sampleIcon: EventEmitter<string> = new EventEmitter<string>();
 

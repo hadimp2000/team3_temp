@@ -48,16 +48,14 @@ export class DataSetServiceService implements OnInit {
   }
 
   async getCsvDataSet(name:string):Promise<any[]>{
-    const {content}=await SendRequestService.sendRequest(
-      `https://localhost:5001/dataset/csv/${name}?token=${localStorage.getItem('token')}`,
-      true
+    const {content}=await SendRequestService.deleteRequest(
+      `https://localhost:5001/dataset/csv/${name}?token=${localStorage.getItem('token')}`
     )
     return content;
   }
   async deleteCsvDataSet(name:string){
-    let response=await SendRequestService.sendRequest(
-      `https://localhost:5001/dataset/csv/delete/${name}?token=${localStorage.getItem('token')}`,
-      false
+    let response=await SendRequestService.deleteRequest(
+      `https://localhost:5001/dataset/csv/delete/${name}?token=${localStorage.getItem('token')}`
     )
 
   }
@@ -104,10 +102,10 @@ export class DataSetServiceService implements OnInit {
   }
 
   async deletePipeline(name:string):Promise<any>{
-    return await SendRequestService.sendRequest(
-      `https://localhost:5001/pipeline/delete/${name}?token=${localStorage.getItem('token')}`,
-      true
+    await SendRequestService.deleteRequest(
+      `https://localhost:5001/pipeline/delete/${name}?token=${localStorage.getItem('token')}`
     )
+    location.reload();
   }
 
 

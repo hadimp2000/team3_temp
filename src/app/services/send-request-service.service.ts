@@ -27,4 +27,21 @@ export class SendRequestService {
       throw res.json();
     });
   }
+
+  public static async deleteRequest(
+    url:string,
+  ): Promise<any> {
+      const init: RequestInit = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    init.method='DELETE';
+    return fetch(url, init).then((res) => {
+      if (res.ok) {
+        return;
+      }
+      throw res.json();
+    });
+  }
 }
