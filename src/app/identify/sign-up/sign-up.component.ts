@@ -35,6 +35,7 @@ export class SignUpComponent {
         await this.router.navigateByUrl('/logIn');
       },
       (response) => {
+        console.log(response)
         alert(response.error.message);
       }
     );
