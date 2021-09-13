@@ -25,6 +25,7 @@ export class PipelinesListComponent implements OnInit {
   async ngOnInit() {
     this.dataSetService = new DataSetServiceService();
     this.pipelines=await this.dataSetService.getAllPipelines();
+    console.log(this.pipelines.length);
     this.dataSource = new MatTableDataSource(this.pipelines);
     // this.dataSource.push(this.dataSetService.createData("pipeline",this.dataSource.length+1))
     this.selection = new SelectionModel(true, []);

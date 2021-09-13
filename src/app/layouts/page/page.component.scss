@@ -1,5 +1,7 @@
 @use '../../../styles/defs' as *;
 
+
+
 .top-bar-container {
   grid-area: top-bar;
 }
@@ -10,6 +12,7 @@
 
 .page-content {
   grid-area: page-content;
+
 }
 
 .footer {
@@ -17,7 +20,9 @@
 }
 
 .page {
-  min-height: 100%;
+
+
+
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr;
@@ -27,6 +32,7 @@
         'footer-area footer-area ';
 
   grid-gap: 0;
+
 
   > .top-bar-container {
     position: sticky;
@@ -38,15 +44,20 @@
 
     width: fit-content;
   }
+  footer {
+
+    background-color: #282A35;
+    color: white;
+    text-align: center;
+    padding: $density-normal $density-large;
+    //position: absolute;
+    //left: 0;
+    //bottom: 0;
+    //width: 100%;
+    //overflow: hidden;
+  }
 }
 
-footer {
-  position:absolute;
-  bottom: 0;
-  background-color: #282A35;
-  color: white;
-  text-align: center;
-  padding: $density-normal $density-large;
-}
+
 
 
