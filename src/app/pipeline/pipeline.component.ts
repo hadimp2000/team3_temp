@@ -31,7 +31,7 @@ export class PipelineComponent implements OnInit {
 
   constructor(
     public _pipelineService: BoardService,
-    public _Activatedroute : ActivatedRoute
+    public _Activatedroute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +52,7 @@ export class PipelineComponent implements OnInit {
       let node = selectedNodes.get(0);
       if (
         node.getId() === 'source' ||
+        node.getId() === 'destination' ||
         node.getId() === 'selectSrc' ||
         node.getId() === 'selectDis' ||
         node.getData('name') === 'add'
@@ -60,7 +61,6 @@ export class PipelineComponent implements OnInit {
       } else {
         this.detailsMode = 'pipeline';
         this._pipelineService.deleteNodes(node);
-        this._pipelineService.ogma.removeNodes(selectedNodes);
       }
     }
   };

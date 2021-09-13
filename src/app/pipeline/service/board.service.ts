@@ -22,11 +22,17 @@ export class BoardService {
 
   public changeNodeData(nodeId: string, data: object): void {
     const changedNode = this.ogma.getNode(nodeId);
-    changedNode.setData(data);
+    let preData = changedNode.getData();
+    changedNode.setData({
+      ...data,
+      type: preData.type,
+      name: preData.name,
+      source: this.pipelineName,
+    });
     this.updateDb();
   }
 
-  private ObjAddNode = (id: string, x: Number) => ({
+  private ObjAddNode = (id: string) => ({
     id: id,
     data: { name: 'add', type: 'add' },
     attributes: {
@@ -34,18 +40,12 @@ export class BoardService {
         url: '../../../assets/icons/add_circle_black_24dp.svg',
         scale: 0.5,
       },
-      x: x,
       text: { content: 'add process' },
       shape: 'circle',
     },
   });
 
-  private ObjCmnNode = (
-    id: String,
-    urlImg: String,
-    content: String,
-    _x: Number
-  ) => ({
+  private ObjCmnNode = (id: String, urlImg: String, content: String) => ({
     id: id,
     data: { name: content, type: 'common' },
     attributes: {
@@ -53,12 +53,11 @@ export class BoardService {
         url: urlImg,
         scale: 0.5,
       },
-      x: _x,
       text: { content: content },
     },
   });
 
-  private ObjFilterNode = (name: String, _x: Number, type: String) => ({
+  private ObjFilterNode = (name: String, type: String) => ({
     id: name,
     data: {
       name: 'process-filter',
@@ -70,11 +69,10 @@ export class BoardService {
         url: '../../../assets/icons/filter_alt_black_24dp.svg',
         scale: 0.5,
       },
-      x: _x,
       text: { content: type },
     },
   });
-  private ObjJoinNode = (name: String, _x: Number, type: String) => ({
+  private ObjJoinNode = (name: String, type: String) => ({
     id: name,
     data: {
       name: 'process-join',
@@ -89,11 +87,11 @@ export class BoardService {
         url: '../../../assets/icons/library_add_black_24dp.svg',
         scale: 0.5,
       },
-      x: _x,
+
       text: { content: type },
     },
   });
-  private ObjAggNode = (name: String, _x: Number, type: String) => ({
+  private ObjAggNode = (name: String, type: String) => ({
     id: name,
     data: {
       name: 'process-aggregate',
@@ -108,11 +106,18 @@ export class BoardService {
         url: '../../../assets/icons/widgets_black_24dp.svg',
         scale: 0.5,
       },
-      x: _x,
+
       text: { content: type },
     },
   });
   updateDb = () => {
+    this.ogma.layouts.sequential({
+      direction: 'LR',
+      locate: { maxNodeSizeOnScreen: 40 },
+      componentDistance: 100,
+      arrangeComponents: 'singleLine',
+      nodeDistance: 200,
+    });
     this.ogma.export
       .json({
         download: false,
@@ -125,23 +130,36 @@ export class BoardService {
           content: `${json}`,
         });
       });
+    this.ogma.export
+      .json({
+        download: false,
+        pretty: true,
+        nodeAttributes: ['image', 'text', 'x'],
+      })
+      .then((json: any) => {
+        console.log(json);
+      });
   };
   deleteNodes = (node: any) => {
-    let adj = node.getAdjacentNodes().get(0).getId();
-    let adj2 = node.getAdjacentNodes().get(1).getAdjacentNodes().get(0).getId();
-    if (adj2 === node.getId()) {
-      adj2 = node.getAdjacentNodes().get(1).getAdjacentNodes().get(1).getId();
+    let adj = node.getAdjacentNodes().get(0);
+    let adj2 = node.getAdjacentNodes().get(1);
+    console.log(adj.getData('name') === 'add');
+    let neighber;
+    if (adj.getAdjacentNodes().get(0).getId() === node.getId()) {
+      neighber = adj.getAdjacentNodes().get(1);
+    } else {
+      neighber = adj.getAdjacentNodes().get(0);
     }
-    let add = node.getAdjacentNodes().get(1).getId();
-    if (adj && adj2) {
+    if (adj2 && neighber) {
       this.ogma.addEdge({
         id: this.edgeId,
-        source: adj,
-        target: adj2,
+        source: adj2.getId(),
+        target: neighber.getId(),
       });
       this.edgeId++;
     }
-    this.ogma.removeNode(add);
+    this.ogma.removeNode(adj);
+    this.ogma.removeNode(node);
     this.updateDb();
   };
   async ngInitFunc(): Promise<void> {
@@ -161,7 +179,6 @@ export class BoardService {
             url: '../../../assets/icons/add_circle_black_24dp.svg',
             scale: 0.5,
           },
-          x: 0,
           text: { content: 'add source' },
         },
       });
@@ -173,7 +190,6 @@ export class BoardService {
             radius: 20,
             color: 'transparent',
             shape: 'circle',
-            y: 0,
             image: {
               url: '../../../assets/icons/add_circle_black_24dp.svg',
               scale: 0.5,
@@ -186,7 +202,6 @@ export class BoardService {
           color: '#F3F3F3',
           outerStroke: 'transparent',
           innerStroke: '#0675C1',
-          y: 0,
           text: { color: '#0675C1' },
           image: {
             scale: 0.5,
@@ -219,14 +234,12 @@ export class BoardService {
         this.ObjCmnNode(
           'source',
           '../../../assets/icons/folder_black_24dp.svg',
-          sourceName,
-          -100
+          sourceName
         ),
         this.ObjCmnNode(
           'selectDis',
           '../../../assets/icons/add_circle_black_24dp.svg',
-          'add-Destination',
-          100
+          'add-Destination'
         ),
       ],
       edges: [{ id: 1, source: 'source', target: 'selectDis' }],
@@ -238,13 +251,12 @@ export class BoardService {
     this.DistName = disName;
     this.ogma.removeNode('selectDis');
     this.addId++;
-    this.ogma.addNode(this.ObjAddNode('add-' + this.addId, 0));
+    this.ogma.addNode(this.ObjAddNode('add-' + this.addId));
     this.ogma.addNode(
       this.ObjCmnNode(
         'destination',
         '../../../assets/icons/folder_black_24dp.svg',
-        disName,
-        100
+        disName
       )
     );
     this.ogma.addEdges([
@@ -262,7 +274,7 @@ export class BoardService {
     idAdd: String
   ): void {
     this.ogma.removeNode(idAdd);
-    let random = Math.ceil(Math.random() * 100 * 33 + 1);
+    let random = Math.ceil(Math.random() * 1627 + 1);
     let nameFilter = 'filterNode-' + random;
     let nameAgg = 'aggregateNode-' + random;
     let nameJoin = 'joinNode-' + random;
@@ -275,10 +287,8 @@ export class BoardService {
       .getNode(dist)
       .setAttributes({ x: xSrc + 178 + Math.random() * 50 });
 
-    this.ogma.addNode(
-      this.ObjAddNode(`add-${this.addId}`, xSrc - 94 + Math.random() * 22)
-    );
-
+    this.ogma.addNode(this.ObjAddNode(`add-${this.addId}`));
+    console.log(src, dist);
     this.ogma.addEdge({
       id: this.edgeId,
       source: src,
@@ -286,16 +296,15 @@ export class BoardService {
     });
     this.edgeId += 2;
     let node, name;
-    let x = xSrc + Math.random() * 22;
 
     if (type === 'filter') {
-      node = this.ObjFilterNode(nameFilter, x, type);
+      node = this.ObjFilterNode(nameFilter, type);
       name = nameFilter;
     } else if (type === 'aggregate') {
-      node = this.ObjAggNode(nameAgg, x, type);
+      node = this.ObjAggNode(nameAgg, type);
       name = nameAgg;
     } else {
-      node = this.ObjJoinNode(nameJoin, x, type);
+      node = this.ObjJoinNode(nameJoin, type);
       name = nameJoin;
     }
 
@@ -307,9 +316,7 @@ export class BoardService {
     });
     this.addId += 3;
     this.edgeId += 2;
-    this.ogma.addNode(
-      this.ObjAddNode(`add-${this.addId}`, xSrc + 94 + Math.random() * 22)
-    );
+    this.ogma.addNode(this.ObjAddNode(`add-${this.addId}`));
     this.ogma.addEdge({
       id: this.edgeId,
       source: name,
@@ -323,6 +330,9 @@ export class BoardService {
     });
     this.edgeId += 7;
     this.addId += 11;
-    this.ogma.layouts.hierarchical({ direction: 'LR' });
+    this.ogma.layouts.sequential({
+      direction: 'LR',
+      locate: { maxNodeSizeOnScreen: 40 },
+    });
   }
 }

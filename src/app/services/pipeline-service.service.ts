@@ -64,7 +64,6 @@ export class PipelineServiceService {
     ).catch(() => {
       return {};
     });
-    console.log(data);
     return data;
   }
 }
