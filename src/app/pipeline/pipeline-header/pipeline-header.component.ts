@@ -28,7 +28,8 @@ export class PipelineHeaderComponent implements OnInit {
   }
 
   public async prevPage() {
-    await this.router.navigateByUrl('/pipelines/dataSet');
+    await this.router.navigateByUrl('/pipelines/pipelinesList');
+    // location.reload();
   }
 
   public async download(){
@@ -39,7 +40,7 @@ export class PipelineHeaderComponent implements OnInit {
     if (!this.canCancel)
     {
       this.canCancel=true;
-      //run
+      await this.pipelineServiceService.run(""+this.boardService.DistName,this.boardService.pipelineName);
     }
   }
 

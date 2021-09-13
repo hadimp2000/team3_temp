@@ -42,7 +42,6 @@ export class PipelineServiceService {
     fetch(`https://localhost:5001/pipeline/create?token=${token}`, init).then(
       (res) => {
         if (res.ok) {
-          window.open(res.url);
           return;
         }
         console.log(res);
@@ -65,5 +64,14 @@ export class PipelineServiceService {
       return {};
     });
     return data;
+  }
+  public async run(dest:string,name:string){
+    const token = localStorage.getItem('token');
+    const data = {
+      nodeId:dest,
+      name:name
+    }
+    const res=await SendRequestService.sendRequest(`https://localhost:5001/pipeline/run?token=${token}`,true,data)
+    console.log(res)
   }
 }
