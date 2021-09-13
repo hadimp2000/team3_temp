@@ -19,12 +19,6 @@ export class LogInComponent {
   ) {
   }
 
-  public validateEmail(info: string): boolean {
-    const response =
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return response.test(String(info).toLowerCase());
-  }
-
   public login(formValues: any) {
 
       const user_username: SignInModel_username = {
@@ -40,7 +34,7 @@ export class LogInComponent {
           await this.router.navigateByUrl('/pipelines/dataSet');
         },
         (response) => {
-          alert(response.error.message);
+          alert(response.error);
         }
       );
 
