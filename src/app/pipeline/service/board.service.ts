@@ -14,7 +14,7 @@ export class BoardService {
   public sourceName!: String;
   public DistName!: String;
   public graph = '';
-  public status!:string;
+  public status!: string;
   constructor(
     public _addDataModal: AddDataModalComponent,
     public _addProcessModal: AddProcessModalComponent,
@@ -28,7 +28,7 @@ export class BoardService {
       ...data,
       type: preData.type,
       name: preData.name,
-      source: this.pipelineName,
+      source: this.sourceName,
     });
     this.updateDb();
   }
@@ -131,20 +131,10 @@ export class BoardService {
           content: `${json}`,
         });
       });
-    this.ogma.export
-      .json({
-        download: false,
-        pretty: true,
-        nodeAttributes: ['image', 'text', 'x'],
-      })
-      .then((json: any) => {
-        console.log(json);
-      });
   };
   deleteNodes = (node: any) => {
     let adj = node.getAdjacentNodes().get(0);
     let adj2 = node.getAdjacentNodes().get(1);
-    console.log(adj.getData('name') === 'add');
     let neighber;
     if (adj.getAdjacentNodes().get(0).getId() === node.getId()) {
       neighber = adj.getAdjacentNodes().get(1);
@@ -193,6 +183,15 @@ export class BoardService {
             shape: 'circle',
             image: {
               url: '../../../assets/icons/add_circle_black_24dp.svg',
+              scale: 0.5,
+            },
+          };
+        } else if (node.getId() === 'source') {
+          return {
+            radius: 30,
+            color: '#6643B5',
+            shape: 'square',
+            image: {
               scale: 0.5,
             },
           };
@@ -252,14 +251,14 @@ export class BoardService {
     this.DistName = disName;
     this.ogma.removeNode('selectDis');
     this.addId++;
-    this.ogma.addNode(this.ObjAddNode('add-' + this.addId));
-    this.ogma.addNode(
+    this.ogma.addNodes([
+      this.ObjAddNode('add-' + this.addId),
       this.ObjCmnNode(
         'destination',
         '../../../assets/icons/folder_black_24dp.svg',
         disName
-      )
-    );
+      ),
+    ]);
     this.ogma.addEdges([
       { id: this.edgeId, source: 'source', target: 'add-1' },
       { id: this.edgeId + 1, source: 'add-1', target: 'destination' },
@@ -279,17 +278,8 @@ export class BoardService {
     let nameFilter = 'filterNode-' + random;
     let nameAgg = 'aggregateNode-' + random;
     let nameJoin = 'joinNode-' + random;
-    let xSrc = this.ogma.getNode(src).getAttribute('x');
-
-    this.ogma
-      .getNode(src)
-      .setAttributes({ x: xSrc - 178 + Math.random() * 50 });
-    this.ogma
-      .getNode(dist)
-      .setAttributes({ x: xSrc + 178 + Math.random() * 50 });
 
     this.ogma.addNode(this.ObjAddNode(`add-${this.addId}`));
-    console.log(src, dist);
     this.ogma.addEdge({
       id: this.edgeId,
       source: src,
@@ -308,7 +298,6 @@ export class BoardService {
       node = this.ObjJoinNode(nameJoin, type);
       name = nameJoin;
     }
-
     this.ogma.addNode(node);
     this.ogma.addEdge({
       id: this.edgeId,
@@ -318,22 +307,24 @@ export class BoardService {
     this.addId += 3;
     this.edgeId += 2;
     this.ogma.addNode(this.ObjAddNode(`add-${this.addId}`));
-    this.ogma.addEdge({
-      id: this.edgeId,
-      source: name,
-      target: `add-${this.addId}`,
-    });
+    this.ogma.addEdges([
+      {
+        id: this.edgeId,
+        source: `add-${this.addId}`,
+        target: dist,
+      },
+      {
+        id: this.edgeId + 1,
+        source: name,
+        target: `add-${this.addId}`,
+      },
+    ]);
     this.edgeId += 2;
-    this.ogma.addEdge({
-      id: this.edgeId,
-      source: `add-${this.addId}`,
-      target: dist,
-    });
     this.edgeId += 7;
     this.addId += 11;
     this.ogma.layouts.sequential({
       direction: 'LR',
-      locate: { maxNodeSizeOnScreen: 40 },
+      locate: { maxNodeSizeOnScreen: 60 },
     });
   }
 }

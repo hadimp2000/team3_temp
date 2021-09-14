@@ -42,7 +42,7 @@ export class PipelineComponent implements OnInit {
       container: 'graph-container',
     });
     this._pipelineService.ngInitFunc();
-    this._pipelineService.ogma.events.onKeyPress('del', this.deleteNodes);
+    this._pipelineService.ogma.events.onKeyPress('d', this.deleteNodes);
     this.AllOnClickEvents();
   }
 
@@ -113,14 +113,6 @@ export class PipelineComponent implements OnInit {
           this.detailsMode = 'aggregate';
         }
       } else {
-        this._pipelineService.ogma.export
-          .json({
-            download: true,
-            pretty: true,
-          })
-          .then((json: any) => {
-            console.log(json);
-          });
       }
     });
   }
