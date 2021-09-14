@@ -35,7 +35,10 @@ export class DataSetTableComponent implements OnInit {
 
   async deleteDataSet(i: number) {
     let name = this.datas[i].name
-    await this.dataSetService.deleteCsvDataSet(name);
+    if(this.datas[i].symbol!=='csv')
+      await this.dataSetService.deleteSqlDataSet(name);
+   else
+      await this.dataSetService.deleteCsvDataSet(name);
     location.reload();
   }
 

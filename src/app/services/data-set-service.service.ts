@@ -61,6 +61,12 @@ export class DataSetServiceService implements OnInit {
 
   }
 
+  async deleteSqlDataSet(name:string){
+    let response=await SendRequestService.deleteRequest(
+      `https://localhost:5001/dataset/sqlserver/delete/${name}?token=${localStorage.getItem('token')}`
+    )
+
+  }
 
 
   async getAllDataSets(): Promise<object[]> {
@@ -145,6 +151,22 @@ export class DataSetServiceService implements OnInit {
       true
     )
     return content;
+  }
+  async createSqlDataset(dbName:string,dbUserName:string,dbPassword:string,dbUrl:string,name:string,table:string){
+    const details={
+      dbName:dbName,
+      dbUsername:dbUserName,
+      dbPassword:dbPassword,
+      url:dbUrl,
+      name:name,
+      table:table
+
+    }
+    await SendRequestService.sendRequest(
+      `https://localhost:5001/dataset/sqlserver/create?token=${localStorage.getItem('token')}`,
+      true,
+      details
+    )
   }
 
   }

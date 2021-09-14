@@ -3,6 +3,7 @@ import {FetchUserDataService} from "../../../services/fetch-user-data-service.se
 import {Router} from "@angular/router";
 import {SignUpModel} from "../../../identify/models";
 import {DataSetServiceService} from "../../../services/data-set-service.service";
+import {take} from "rxjs/operators";
 
 @Component({
   selector: 'app-sql-form-component',
@@ -33,7 +34,19 @@ export class SqlFormComponentComponent implements OnInit {
     this.dbUserName=formValue.username;
     this.dbUrl=formValue.dbUrl;
     this.name=formValue.name;
+    this.selectTable=formValue.selectTable;
+    console.log(this.selectTable);
     this.sqlTables=await this.dataSetService.getAllSqlTables(this.dbName,this.dbUserName,this.password,this.dbUrl);
+
+  }
+
+  async createSqlDataSet(formValue:any){
+    if(this.dbName.length>0 && this.dbUrl.length>0 && this.name.length>0 && this.selectTable.length>0){
+      await this.dataSetService.createSqlDataset(this.dbName,this.dbUserName,this.password,this.dbUrl,this.name,this.selectTable)
+      await this.router.navigateByUrl('pipelines/dataSet');
+    }else
+      alert("مقادیر نام پایگاه داده و نشانی و نام دیتاست و جدول بایستی پر شوند");
+
 
   }
 
