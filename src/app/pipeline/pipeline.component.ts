@@ -42,7 +42,7 @@ export class PipelineComponent implements OnInit {
       container: 'graph-container',
     });
     await this._pipelineService.ngInitFunc();
-    this._pipelineService.ogma.events.onKeyPress('d', this.deleteNodes);
+    this._pipelineService.ogma.events.onKeyPress('esc', this.deleteNodes);
     this.AllOnClickEvents();
   }
 
