@@ -38,7 +38,8 @@ import { DataSetSampleTableComponent } from './dataset/data-set-sample-table/dat
 import { PipelinesListComponent } from './pipelines-list/pipelines-list.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { SendRequestService } from './services/send-request-service.service';
-import { SqlFormModalComponent } from './dataset/data-set-table/sql-form-modal/sql-form-modal.component';
+import { SqlFormModalComponent } from './dataset/banner/sql-form-modal/sql-form-modal.component';
+import { SqlFormComponentComponent } from './dataset/banner/sql-form-component/sql-form-component.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { SqlFormModalComponent } from './dataset/data-set-table/sql-form-modal/s
     DataSetSampleTableComponent,
     PipelinesListComponent,
     SqlFormModalComponent,
+    SqlFormComponentComponent,
   ],
   imports: [
     BrowserModule,

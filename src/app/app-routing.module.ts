@@ -8,6 +8,7 @@ import {PipelineComponent} from "./pipeline/pipeline.component";
 import {DatasetComponent} from "./dataset/dataset.component";
 import {DataSetSampleTableComponent} from "./dataset/data-set-sample-table/data-set-sample-table.component";
 import {PipelinesListComponent} from "./pipelines-list/pipelines-list.component";
+import {SqlFormComponentComponent} from "./dataset/banner/sql-form-component/sql-form-component.component";
 
 export const routes: Routes = [
   { path: 'signUp', component: SignUpComponent },
@@ -19,7 +20,8 @@ export const routes: Routes = [
     children: [
       {path:'pipelinesList',component:PipelinesListComponent},
       {path:'dataSet',component:DatasetComponent},
-      {path:'dataSet/:name',component:DataSetSampleTableComponent}
+      {path:'dataSet/:name',component:DataSetSampleTableComponent},
+      {path:'sqlForm',component:SqlFormComponentComponent}
 
     ],
     component: PageComponent,

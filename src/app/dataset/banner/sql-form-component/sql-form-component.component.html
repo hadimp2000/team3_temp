@@ -1,0 +1,62 @@
+<main>
+  <section class="form" id="registerForm">
+<!--    <h2>ثبت نام</h2>-->
+    <form #Form ="ngForm" (change)="formChange(Form.value)" action="">
+      <div class="inputbox">
+        <label for="dbName" class="">نام پایگاه داده:</label>
+        <input
+          [(ngModel)]="dbName"
+
+          name="dbName"
+          type="text"
+          id="dbName"
+          required
+        />
+      </div>
+      <div class="inputbox">
+        <label for="dbUserName">نام کاربری پایگاه داده:</label>
+        <input
+          [(ngModel)]="dbUserName"
+          name="dbUserName"
+          id="dbUserName"
+          type="text"
+
+        />
+      </div>
+      <div class="inputbox">
+        <label for="password">رمز پایگاه داده:</label>
+        <input
+          [(ngModel)]="password"
+          autocomplete="new-password"
+          name="password"
+          id="password"
+          type="password"
+          minlength="6"
+          maxlength="12"
+        />
+      </div>
+
+      <div class="inputbox">
+        <label for="dbUrl">نشانی پایگاه داده:</label>
+        <input [(ngModel)]="dbUrl"
+               name="dbUrl" id="dbUrl" type="url"  />
+      </div>
+
+      <div class="inputbox">
+        <label for="name">نام:</label>
+        <input [(ngModel)]="name"
+               name="name" id="name" type="text"  />
+      </div>
+
+      <div class="inputbox">
+        <label for="table">نام جدول:</label>
+        <select name=" " id="table" [(ngModel)]="selectTable" >
+          <option  value="">انتخاب جدول</option>
+          <option *ngFor="let sql of sqlTables" [value]="sql">{{sql}}</option>
+        </select>
+      </div>
+
+      <div><button type="submit" id="submitButton">ثبت نام</button></div>
+    </form>
+  </section>
+</main>

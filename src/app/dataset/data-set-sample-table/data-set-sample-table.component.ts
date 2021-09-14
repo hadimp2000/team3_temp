@@ -10,7 +10,7 @@ import {ActivatedRoute} from "@angular/router";
 export class DataSetSampleTableComponent implements OnInit {
   dataSet_Service:DataSetServiceService;
   data:any;
-  dataset:any=json.content;
+  dataset:any='';
   dataset_keys:any;
   dataset_values:any=[];
 
@@ -19,7 +19,14 @@ export class DataSetSampleTableComponent implements OnInit {
     this.dataSet_Service=dataSetService;
   }
   async ngOnInit() {
-    this.data=await this.dataSet_Service.getCsvDataSet(this.route.snapshot.params['name'])
+    let name=this.route.snapshot.params['name'];
+    if(name.charAt(0)==='*')
+      this.data=await this.dataSet_Service.getSqlDataSet(name.substring(1));
+    else
+      this.data=await this.dataSet_Service.getCsvDataSet(name);
+
+
+
     this.dataset_keys= this.data[0];
     let counter=0;
     for (const obj of this.data) {
@@ -30,42 +37,42 @@ export class DataSetSampleTableComponent implements OnInit {
 
   }
 }
-const json={
-  "content": [
-    [
-      "PersonID",
-      "LastName",
-      "FirstName",
-      "Address",
-      "City"
-    ],
-    [
-      "1",
-      "Daghyani",
-      "Matin",
-      "Tehran",
-      "Iran"
-    ],
-    [
-      "2",
-      "Nzzari",
-      "Ali",
-      "Tehran2",
-      "Iran2"
-    ],
-    [
-      "3",
-      "Aghaee",
-      "Mohammad",
-      "Tehran3",
-      "Iran3"
-    ],
-    [
-      "4",
-      "Taslime",
-      "Sourosh",
-      "Tehran4",
-      "Iran4"
-    ]
-  ]
-}
+// const json={
+//   "content": [
+//     [
+//       "PersonID",
+//       "LastName",
+//       "FirstName",
+//       "Address",
+//       "City"
+//     ],
+//     [
+//       "1",
+//       "Daghyani",
+//       "Matin",
+//       "Tehran",
+//       "Iran"
+//     ],
+//     [
+//       "2",
+//       "Nzzari",
+//       "Ali",
+//       "Tehran2",
+//       "Iran2"
+//     ],
+//     [
+//       "3",
+//       "Aghaee",
+//       "Mohammad",
+//       "Tehran3",
+//       "Iran3"
+//     ],
+//     [
+//       "4",
+//       "Taslime",
+//       "Sourosh",
+//       "Tehran4",
+//       "Iran4"
+//     ]
+//   ]
+// }
