@@ -5,8 +5,8 @@ import { query } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
 import { DataSetServiceService } from '../../services/data-set-service.service';
 import { SendRequestService } from '../../services/send-request-service.service';
-import {MatDialog} from "@angular/material/dialog";
-import {SqlFormModalComponent} from "./sql-form-modal/sql-form-modal.component";
+import { MatDialog } from '@angular/material/dialog';
+import { SqlFormModalComponent } from './sql-form-modal/sql-form-modal.component';
 
 @Component({
   selector: 'app-banner',
@@ -17,6 +17,7 @@ export class BannerComponent implements OnInit {
   query: string = '';
   currentSearchTerm = new BehaviorSubject<string>('');
   element_data: any = [];
+  isWait = false;
 
   constructor(
     private router: Router,
@@ -29,24 +30,21 @@ export class BannerComponent implements OnInit {
   ngOnInit(): void {
     this.currentSearchTerm.subscribe((current) => (this.query = current));
   }
-  animal: string='';
-  name: string='';
-
+  animal: string = '';
+  name: string = '';
 
   openDialog(): void {
     const dialogRef = this.dialog.open(SqlFormModalComponent, {
       width: '250px',
 
-      data: {name: this.name, animal: this.animal}
+      data: { name: this.name, animal: this.animal },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
       this.animal = result;
     });
   }
-
-
 
   private getExtension(filename: String) {
     var parts = filename.split('.');
@@ -54,6 +52,7 @@ export class BannerComponent implements OnInit {
   }
 
   async fileChange(event: any) {
+    this.isWait = true;
     let files: FileList | null;
     let details: any;
     if (event.target !== null) {

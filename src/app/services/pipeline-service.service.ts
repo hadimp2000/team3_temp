@@ -20,7 +20,6 @@ export class PipelineServiceService {
         window.open(res.url);
         return;
       }
-      console.log(res);
       throw res;
     });
   }
@@ -44,7 +43,6 @@ export class PipelineServiceService {
         if (res.ok) {
           return;
         }
-        console.log(res);
         throw res;
       }
     );
@@ -72,6 +70,5 @@ export class PipelineServiceService {
       name:name
     }
     const res=await SendRequestService.sendRequest(`https://localhost:5001/pipeline/run?token=${token}`,true,data)
-    console.log(res)
   }
 }

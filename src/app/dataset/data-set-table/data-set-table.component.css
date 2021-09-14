@@ -26,11 +26,11 @@ table td .talend-icon:hover {
 }
 table td .sample-button {
   color: white;
-  font-weight: normal;
+  font-weight: bold;
   font-size: 70%;
   text-align: center;
   place-content: center;
-  width: 100%;
+  width: 90%;
   background-color: #5b6fdb;
 }
 table td .container {
@@ -43,6 +43,7 @@ table td .trash-icon {
   height: 2.2rem;
   margin-right: 0.5rem;
   fill: #64529e;
+  cursor: pointer;
 }
 table .symbol-column {
   width: 13%;

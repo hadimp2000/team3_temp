@@ -1,7 +1,7 @@
 <main>
   <section class="form" id="registerForm">
 <!--    <h2>ثبت نام</h2>-->
-    <form #Form ="ngForm" (change)="formChange(Form.value)" action="">
+    <form #Form ="ngForm" (change)="formChange(Form.value)" (ngSubmit)="createSqlDataSet(Form.value)" action="">
       <div class="inputbox">
         <label for="dbName" class="">نام پایگاه داده:</label>
         <input
@@ -39,7 +39,7 @@
       <div class="inputbox">
         <label for="dbUrl">نشانی پایگاه داده:</label>
         <input [(ngModel)]="dbUrl"
-               name="dbUrl" id="dbUrl" type="url"  />
+               name="dbUrl" id="dbUrl" type="url"  required />
       </div>
 
       <div class="inputbox">
@@ -50,13 +50,13 @@
 
       <div class="inputbox">
         <label for="table">نام جدول:</label>
-        <select name=" " id="table" [(ngModel)]="selectTable" >
+        <select name="selectTable" id="table" [(ngModel)]="selectTable" required>
           <option  value="">انتخاب جدول</option>
           <option *ngFor="let sql of sqlTables" [value]="sql">{{sql}}</option>
         </select>
       </div>
 
-      <div><button type="submit" id="submitButton">ثبت نام</button></div>
+      <div><button type="submit" id="submitButton">افزودن دیتاست</button></div>
     </form>
   </section>
 </main>
