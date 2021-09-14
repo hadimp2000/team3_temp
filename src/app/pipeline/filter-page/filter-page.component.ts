@@ -127,7 +127,6 @@ export class FilterPageComponent implements OnInit, AfterViewInit {
       }
     }
     this.ogma.events.onKeyPress('del', deleteItems);
-    this.ogma.events.onKeyPress('backspace', deleteItems);
   }
 
   ngAfterViewInit() {
