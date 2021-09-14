@@ -189,7 +189,7 @@ export class BoardService {
         } else if (node.getId() === 'source') {
           return {
             radius: 30,
-            color: '#6643B5',
+            color: '#5B6FDB',
             shape: 'square',
             image: {
               scale: 0.5,
