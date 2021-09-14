@@ -34,8 +34,9 @@ export class DataSetServiceService implements OnInit {
       `https://localhost:5001/users/${localStorage.getItem('username')}/csvs`,
       true,
     )
+    let csvDataSets: object[]=[];
     for (const csv of csvFiles) {
-      this.dataSets.push({
+      csvDataSets.push({
           position: this.dataSets.length + 1,
           name: csv,
           symbol: '',
@@ -43,7 +44,7 @@ export class DataSetServiceService implements OnInit {
         }
       )
     }
-    return this.dataSets;
+    return csvDataSets;
   }
 
   async getCsvDataSet(name: string): Promise<any[]> {
@@ -167,8 +168,10 @@ export class DataSetServiceService implements OnInit {
     )
   }
 
+
   async csvOrSql(name: string): Promise<string> {
     const csvs: object[] = await this.getAllCsvDataSets();
+    console.log(csvs);
     let datasetType = 'sql';
     csvs.forEach((csv) => {
       // @ts-ignore
