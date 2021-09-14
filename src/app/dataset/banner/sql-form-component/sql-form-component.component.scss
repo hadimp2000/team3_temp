@@ -1,0 +1,84 @@
+@use "../../../../styles/defs" as *;
+@use "../../../../styles/formTemplate" as f;
+
+main {
+  @include f.centering;
+  min-height: 100vh;
+  //background-color:lighten($color-lighter,15%) ;
+  //background-image: linear-gradient(to bottom right, $color-blue, $color-purple);
+
+  .form {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    @include f.createForm;
+    h2 {
+      margin-bottom: $density-largest;
+    }
+    min-width: 50%;
+    form {
+      .inputbox {
+        height: 6rem;
+        label {
+          font-weight: bold;
+          color: black;
+          margin-top: $density-normal;
+          float: right;
+        }
+        input,select {
+          @include f.createInputBoxes;
+          width: 70%;
+          float: left;
+        }
+      }
+
+      > div:last-of-type {
+        clear: both;
+
+        @include f.centering;
+        button {
+          background-color: $color-purple;
+          color: white;
+          width: 15rem;
+          height: $density-larger;
+          border-radius: $density-small;
+          border: none;
+          transition-property: width;
+          transition-duration: 500ms;
+          transition-timing-function: linear;
+          margin-top: $density-large;
+          &:hover {
+            width: 25rem;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    div:last-of-type {
+      a {
+        color: $color-purple;
+        margin-right: $density-normal;
+
+        &:hover {
+          color: $color-blue;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1200px) {
+  main .form form .inputbox input {
+    display: block;
+    width: 100%;
+  }
+  main .form form .inputbox select{
+    display: block;
+    width: 100%;
+  }
+  main .form h2 {
+    margin-bottom: $density-larger;
+  }
+  main .form form > div:last-of-type button {
+    width: 100%;
+    margin-top: $density-larger;
+  }
+}

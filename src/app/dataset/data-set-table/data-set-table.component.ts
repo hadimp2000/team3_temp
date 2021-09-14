@@ -11,70 +11,59 @@ import {DataSetServiceService} from "../../services/data-set-service.service";
   templateUrl: './data-set-table.component.html',
   styleUrls: ['./data-set-table.component.scss']
 })
-export class DataSetTableComponent implements OnInit{
-  dataSource:any;
-  selection:any;
-  datas:any;
+export class DataSetTableComponent implements OnInit {
+  dataSource: any;
+  selection: any;
+  datas: any;
 
-  elements:any;
+  elements: any;
 
   constructor(
-    private router:Router,
-    private elementRef:ElementRef,
-    private dataSetService:DataSetServiceService
-    ) {}
+    private router: Router,
+    private elementRef: ElementRef,
+    private dataSetService: DataSetServiceService
+  ) {
+  }
 
   async ngOnInit() {
-     this.dataSetService = new DataSetServiceService();
-     this.datas=await this.dataSetService.getAllCsvDataSets();
-     this.dataSource = new MatTableDataSource( this.datas);
-     this.selection = new SelectionModel(true, []);
+    this.dataSetService = new DataSetServiceService();
+    this.datas = await this.dataSetService.getAllDataSets();
+    this.dataSource = new MatTableDataSource(this.datas);
+    this.selection = new SelectionModel(true, []);
 
-   }
+  }
 
-  async deleteDataSet(i:number){
-    let name=this.datas[i].name
+  async deleteDataSet(i: number) {
+    let name = this.datas[i].name
     await this.dataSetService.deleteCsvDataSet(name);
     location.reload();
   }
 
-  displayedColumns: string[] = ['select', 'position', 'name', 'symbol','delete'];
-  notShowSample:boolean=false;
+  displayedColumns: string[] = ['select', 'position', 'name', 'symbol', 'delete'];
+  notShowSample: boolean = false;
   @Output() sampleIcon: EventEmitter<string> = new EventEmitter<string>();
 
-   async sampleIconClick(num:number){
-     let name=this.datas[num].name;
+  async sampleIconClick(num: number) {
+    let name = this.datas[num].name;
     this.sampleIcon.emit('clicked');
-    await this.router.navigateByUrl('pipelines/dataSet/'+name);
+    if (this.datas[num].symbol!=='csv'){
+
+      await this.router.navigateByUrl('pipelines/dataSet/*' + name);
+    }
+    else
+      await this.router.navigateByUrl('pipelines/dataSet/' + name);
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected():boolean  {
+  isAllSelected(): boolean {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
-   masterToggle() {
+  masterToggle() {
     if (this.isAllSelected()) {
       this.selection.clear();
       return;
@@ -84,7 +73,7 @@ export class DataSetTableComponent implements OnInit{
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?:any): string {
+  checkboxLabel(row?: any): string {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }

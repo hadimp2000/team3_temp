@@ -61,6 +61,27 @@ export class DataSetServiceService implements OnInit {
 
   }
 
+
+
+  async getAllDataSets(): Promise<object[]> {
+    const {datasets} = await SendRequestService.sendRequest(
+      `https://localhost:5001/users/${localStorage.getItem('username')}/datasets`,
+      true,
+
+    )
+    for (const dataset of datasets) {
+      this.dataSets.push({
+          position: this.dataSets.length + 1,
+          name: dataset.name,
+          symbol: dataset.type,
+          deleteIcon: ''
+        }
+      )
+    }
+    return this.dataSets;
+  }
+
+
   async getAllPipelines():Promise<any[]>{
     const {pipelines} = await SendRequestService.sendRequest(
       `https://localhost:5001/users/${localStorage.getItem('username')}/pipelines`,
@@ -109,6 +130,22 @@ export class DataSetServiceService implements OnInit {
     location.reload();
   }
 
+  // SQL-DATA-SETS
+  async getAllSqlTables(dbName:string,dbUserName:string,dbPassword:string,dbUrl:string):Promise<string[]>{
+    const {tableNames}=await SendRequestService.sendRequest(
+      `https://localhost:5001/dataset/sqlserver/tables?dbName=${dbName}&url=${dbUrl}`,
+      true
+    )
+    return tableNames;
+  }
+
+  async getSqlDataSet(name:string):Promise<object[]>{
+    const {content}=await SendRequestService.sendRequest(
+      `https://localhost:5001/dataset/sqlserver/${name}?token=${localStorage.getItem('token')}`,
+      true
+    )
+    return content;
+  }
 
   }
 
