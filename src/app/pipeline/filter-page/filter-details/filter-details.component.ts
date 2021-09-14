@@ -41,6 +41,7 @@ export class FilterDetailsComponent implements OnChanges {
     if (this.filter_details.column !== "") {
       this.createOperations(this.filter_details.column);
     }
+    this.filter_details.operation=this.fixOperation(this.filter_details.operation);
   }
 
   public checkOperations(event: any) {
@@ -61,7 +62,7 @@ export class FilterDetailsComponent implements OnChanges {
   }
 
   public fixOperation(operation: string): string {
-    let fixedOperation = '=';
+    let fixedOperation = '';
     switch (operation) {
       case '=':
         fixedOperation = '=';
