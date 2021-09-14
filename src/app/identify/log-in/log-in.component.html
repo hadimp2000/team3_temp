@@ -3,13 +3,13 @@
     <h2>ورود</h2>
     <form #signInForm="ngForm" (ngSubmit)="login(signInForm.value)" action="">
       <div class="inputbox">
-        <label for="email">ایمیل یا نام کاربری:</label>
+        <label for="email">نام کاربری:</label>
         <input
           [(ngModel)]="email"
           name="email"
           type="text"
           id="email"
-          placeholder="ایمیل/نام کاربری خود را وارد کنید"
+          placeholder="نام کاربری خود را وارد کنید"
           required
         /><br />
         <label for="password">رمز:</label>

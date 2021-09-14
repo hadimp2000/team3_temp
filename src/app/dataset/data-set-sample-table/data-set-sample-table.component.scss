@@ -20,8 +20,10 @@ section {
 }
 
 p {
-  padding: 1rem;
+  padding: 1.5rem;
+  margin-top: 2rem;
   float: left;
+  font-weight: bold;
 }
 
 h2 {
@@ -33,28 +35,23 @@ h2 {
 
 table {
   border-collapse: collapse;
+  width: 100%;
 }
 
 table td, table th {
   border: 1px solid #ddd;
-  padding: $density-small $density-large 0 $density-large;
+  padding: $density-normal $density-large $density-normal $density-large;
   text-align: left;
   vertical-align: middle;
 }
 
-table tr {
-  background-color: $color-lightGray;
-}
+table tr{background-color: lighten($color-lightGray, 6%);}
 
-table tr:hover {
-  background-color: lighten($color-lightGray, 6%);
-}
-
+table tr:hover {background-color: white}
 table th {
   position: sticky;
   top: 0;
-  padding-top: 1.5rem;
-  padding-bottom: $density-normal;
+  padding: $density-large;
   background-color: $color-darker;
   color: white;
 }

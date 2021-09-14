@@ -38,11 +38,11 @@ table {
 
     .sample-button {
       color: white;
-      font-weight: normal;
+      font-weight: bold;
       font-size: 70%;
       text-align: center;
       place-content: center;
-      width: 100%;
+      width: 90%;
       background-color: $color-darker;
     }
 
@@ -57,6 +57,7 @@ table {
       height: 2.2rem;
       margin-right: $density-small;
       fill: $color-mixBlue;
+      cursor: pointer;
     }
   }
 
