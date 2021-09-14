@@ -15,7 +15,11 @@ export class PipelineTableComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.dataset=await this.dataSetServiceService.getCsvDataSet(""+this.boardService.sourceName)
+    const sourceType: string = await this.dataSetServiceService.csvOrSql("" + this.boardService.sourceName);
+    if (sourceType === 'csv')
+      this.dataset = await this.dataSetServiceService.getCsvDataSet("" + this.boardService.sourceName)
+    else
+      this.dataset = await this.dataSetServiceService.getSqlDataSet("" + this.boardService.sourceName)
   }
 
   public createRange(number:any){
