@@ -34,14 +34,14 @@ export class PipelineComponent implements OnInit {
     public _Activatedroute: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this._pipelineService.pipelineName =
       this._Activatedroute.snapshot.params['id'];
     const Ogma = require('../../assets/Ogma/ogma.min.js');
     this._pipelineService.ogma = new Ogma({
       container: 'graph-container',
     });
-    this._pipelineService.ngInitFunc();
+    await this._pipelineService.ngInitFunc();
     this._pipelineService.ogma.events.onKeyPress('d', this.deleteNodes);
     this.AllOnClickEvents();
   }
@@ -136,6 +136,4 @@ export class PipelineComponent implements OnInit {
   public changeMode() {
     this.detailsMode = 'pipeline';
   }
-
-  public download() {}
 }
