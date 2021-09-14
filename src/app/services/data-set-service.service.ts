@@ -8,8 +8,8 @@ import {SendRequestService} from "./send-request-service.service";
   providedIn: 'root'
 })
 export class DataSetServiceService implements OnInit {
-  dataSets:object[]=[];
-  pipeLines:object[]=[];
+  dataSets: object[] = [];
+  pipeLines: object[] = [];
 
 
   constructor() {
@@ -33,7 +33,6 @@ export class DataSetServiceService implements OnInit {
     const {csvFiles} = await SendRequestService.sendRequest(
       `https://localhost:5001/users/${localStorage.getItem('username')}/csvs`,
       true,
-
     )
     for (const csv of csvFiles) {
       this.dataSets.push({
@@ -47,27 +46,26 @@ export class DataSetServiceService implements OnInit {
     return this.dataSets;
   }
 
-  async getCsvDataSet(name:string):Promise<any[]>{
-    const {content}=await SendRequestService.sendRequest(
+  async getCsvDataSet(name: string): Promise<any[]> {
+    const {content} = await SendRequestService.sendRequest(
       `https://localhost:5001/dataset/csv/${name}?token=${localStorage.getItem('token')}`,
       true
     )
     return content;
   }
-  async deleteCsvDataSet(name:string){
-    let response=await SendRequestService.deleteRequest(
+
+  async deleteCsvDataSet(name: string) {
+    let response = await SendRequestService.deleteRequest(
       `https://localhost:5001/dataset/csv/delete/${name}?token=${localStorage.getItem('token')}`
     )
 
   }
 
 
-
   async getAllDataSets(): Promise<object[]> {
     const {datasets} = await SendRequestService.sendRequest(
       `https://localhost:5001/users/${localStorage.getItem('username')}/datasets`,
       true,
-
     )
     for (const dataset of datasets) {
       this.dataSets.push({
@@ -82,7 +80,7 @@ export class DataSetServiceService implements OnInit {
   }
 
 
-  async getAllPipelines():Promise<any[]>{
+  async getAllPipelines(): Promise<any[]> {
     const {pipelines} = await SendRequestService.sendRequest(
       `https://localhost:5001/users/${localStorage.getItem('username')}/pipelines`,
       true,
@@ -98,20 +96,20 @@ export class DataSetServiceService implements OnInit {
     return this.pipeLines;
   }
 
-  async createPipeline(){
-    let details:any;
-    if(this.pipeLines.length==0){
-      details={
-        name:`pipeline 1`,
-        content:''
+  async createPipeline() {
+    let details: any;
+    if (this.pipeLines.length == 0) {
+      details = {
+        name: `pipeline 1`,
+        content: ''
       }
-    }else{
+    } else {
       // @ts-ignore
-      let name=this.pipeLines[this.pipeLines.length-1].name;
-      let number= parseInt(name.substr(name.length-1)) ;
-      details={
-        name: `pipeline ${number+1}`,
-        content:''
+      let name = this.pipeLines[this.pipeLines.length - 1].name;
+      let number = parseInt(name.substr(name.length - 1));
+      details = {
+        name: `pipeline ${number + 1}`,
+        content: ''
       }
     }
 
@@ -123,7 +121,7 @@ export class DataSetServiceService implements OnInit {
     location.reload();
   }
 
-  async deletePipeline(name:string):Promise<any>{
+  async deletePipeline(name: string): Promise<any> {
     await SendRequestService.deleteRequest(
       `https://localhost:5001/pipeline/delete/${name}?token=${localStorage.getItem('token')}`
     )
@@ -131,23 +129,34 @@ export class DataSetServiceService implements OnInit {
   }
 
   // SQL-DATA-SETS
-  async getAllSqlTables(dbName:string,dbUserName:string,dbPassword:string,dbUrl:string):Promise<string[]>{
-    const {tableNames}=await SendRequestService.sendRequest(
+  async getAllSqlTables(dbName: string, dbUserName: string, dbPassword: string, dbUrl: string): Promise<string[]> {
+    const {tableNames} = await SendRequestService.sendRequest(
       `https://localhost:5001/dataset/sqlserver/tables?dbName=${dbName}&url=${dbUrl}`,
       true
     )
     return tableNames;
   }
 
-  async getSqlDataSet(name:string):Promise<object[]>{
-    const {content}=await SendRequestService.sendRequest(
+  async getSqlDataSet(name: string): Promise<any[]> {
+    const {content} = await SendRequestService.sendRequest(
       `https://localhost:5001/dataset/sqlserver/${name}?token=${localStorage.getItem('token')}`,
       true
     )
     return content;
   }
 
+  async csvOrSql(name: string): Promise<string> {
+    const csvs: object[] = await this.getAllCsvDataSets();
+    let datasetType = 'sql';
+    csvs.forEach((csv) => {
+      // @ts-ignore
+      if (csv.name === name)
+        datasetType = 'csv';
+    })
+    return datasetType;
   }
+
+}
 
 
 

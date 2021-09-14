@@ -19,11 +19,13 @@ export class AggregateDetailsComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    const datatable = await this.dataSetServiceService.getCsvDataSet(
-      '' + this.boardService.sourceName
-    );
-    // @ts-ignore
-    this.columns = datatable[0];
+    const sourceType: string = await this.dataSetServiceService.csvOrSql("" + this.boardService.sourceName);
+    let dataTable;
+    if (sourceType === 'csv')
+      dataTable = await this.dataSetServiceService.getCsvDataSet("" + this.boardService.sourceName)
+    else
+      dataTable = await this.dataSetServiceService.getSqlDataSet("" + this.boardService.sourceName)
+    this.columns = dataTable[0];
   }
 
   public addGroup() {
