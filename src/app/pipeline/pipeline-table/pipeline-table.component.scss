@@ -5,6 +5,7 @@ section {
   height: 25rem;
   width: 100%;
   box-shadow: 0 0 $density-normal gray;
+  background-color: #fff;
 }
 .table {
   position: absolute;
@@ -16,11 +17,9 @@ section {
   * {
     font-size: 95%;
   }
-
-
 }
 
-p{
+p {
   padding: 1.5rem 0 0 $density-large;
   float: left;
 }
@@ -28,7 +27,6 @@ h2 {
   color: $color-darkest;
   padding: $density-normal $density-large $density-small 0;
   display: inline-block;
-
 }
 table {
   border-collapse: collapse;
@@ -36,16 +34,21 @@ table {
   height: 100%;
 }
 
-table td, table th {
+table td,
+table th {
   border: 1px solid #ddd;
   padding: $density-small $density-large 0 $density-large;
   text-align: left;
   vertical-align: middle;
 }
 
-table tr{background-color: lighten($color-lightGray, 6%);}
+table tr {
+  background-color: lighten($color-lightGray, 6%);
+}
 
-table tr:hover {background-color: white}
+table tr:hover {
+  background-color: white;
+}
 
 table th {
   position: sticky;
@@ -55,5 +58,3 @@ table th {
   background-color: $color-darker;
   color: white;
 }
-
-
