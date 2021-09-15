@@ -28,7 +28,9 @@ export class AddDataModalComponent implements OnInit {
 
   async ngOnInit() {
     this.dataSetService = new DataSetServiceService();
-    this.dataSource = new MatTableDataSource(await this.dataSetService.getAllDataSets());
+    this.dataSource = new MatTableDataSource(
+      await this.dataSetService.getAllDataSets()
+    );
   }
 
   public openDialog(service: any, type: String) {
@@ -45,6 +47,15 @@ export class AddDataModalComponent implements OnInit {
     this.isDisabled = false;
   }
   setName() {
+    if (this.data.type === 'changeDist') {
+      this.data.service.changeDist(this.selectedName);
+      this.data.service._toaster.openSnackBar(
+        ' مقصد با موفقیت تغییر کرد ',
+        'talend'
+      );
+      this._dialog.closeAll();
+      return;
+    }
     this.data.type === 'source'
       ? this.data.service.tempFuncAddSrc(this.selectedName)
       : this.data.service.tempFuncAddDis(this.selectedName);

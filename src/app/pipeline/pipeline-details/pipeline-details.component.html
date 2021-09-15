@@ -9,5 +9,5 @@
 </div>
 <div *ngIf="boardService.DistName">
   <h3>دیتاست مقصد</h3>
-  <p>{{boardService.DistName}}</p>
+  <p>{{boardService.DistName}} <button mat-button color="primary" (click)="changeDist()">تغییر</button></p>
 </div>

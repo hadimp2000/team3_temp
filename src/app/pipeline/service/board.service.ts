@@ -23,6 +23,25 @@ export class BoardService {
     private _toaster: ToastService
   ) {}
 
+  public changeDist(name: String): void {
+    let preDist = this.ogma.getNode('destination');
+    let adj = preDist.getAdjacentNodes();
+    this.ogma.removeNode(preDist);
+    this.ogma.addNodes([
+      this.ObjCmnNode(
+        'destination',
+        '../../../assets/icons/folder_black_24dp.svg',
+        name
+      ),
+    ]);
+    this.ogma.addEdges([
+      { id: this.edgeId, source: adj.getId(), target: 'destination' },
+    ]);
+    this.edgeId += 1;
+    this.DistName = name;
+    this.updateDb();
+  }
+
   public changeNodeData(nodeId: string, data: object): void {
     const changedNode = this.ogma.getNode(nodeId);
     let preData = changedNode.getData();
