@@ -51,7 +51,6 @@ export class PipelinesListComponent implements OnInit {
 
   deletepipeline(i: number) {
     let name = this.pipelines[i].name;
-    console.log(name);
     this.dataSetService.deletePipeline(name);
   }
 

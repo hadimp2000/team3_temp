@@ -171,7 +171,6 @@ export class DataSetServiceService implements OnInit {
 
   async csvOrSql(name: string): Promise<string> {
     const csvs: object[] = await this.getAllCsvDataSets();
-    console.log(csvs);
     let datasetType = 'sql';
     csvs.forEach((csv) => {
       // @ts-ignore

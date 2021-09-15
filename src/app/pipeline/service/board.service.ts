@@ -294,7 +294,6 @@ export class BoardService {
     let nameFilter = 'filterNode-' + random;
     let nameAgg = 'aggregateNode-' + random;
     let nameJoin = 'joinNode-' + random;
-    console.log(src, dist);
     this.ogma.addNode(this.ObjAddNode(`add-${this.addId}`));
     this.ogma.addEdge({
       source: src,

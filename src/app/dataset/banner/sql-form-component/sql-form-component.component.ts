@@ -34,7 +34,6 @@ export class SqlFormComponentComponent implements OnInit {
     this.dbUrl = formValue.dbUrl;
     this.name = formValue.name;
     this.selectTable = formValue.selectTable;
-    console.log(this.selectTable);
     this.sqlTables = await this.dataSetService.getAllSqlTables(
       this.dbName,
       this.dbUserName,
