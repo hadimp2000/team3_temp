@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { AggregateDetailsModel } from './aggregate-details.model';
-import { BoardService } from '../service/board.service';
-import { DataSetServiceService } from '../../services/data-set-service.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {AggregateDetailsModel} from './aggregate-details.model';
+import {BoardService} from '../service/board.service';
+import {DataSetServiceService} from '../../services/data-set-service.service';
 
 @Component({
   selector: 'app-aggregate-details',
@@ -16,7 +16,8 @@ export class AggregateDetailsComponent implements OnInit {
   constructor(
     private boardService: BoardService,
     private dataSetServiceService: DataSetServiceService
-  ) {}
+  ) {
+  }
 
   async ngOnInit() {
     const sourceType: string = await this.dataSetServiceService.csvOrSql("" + this.boardService.sourceName);
@@ -33,7 +34,7 @@ export class AggregateDetailsComponent implements OnInit {
   }
 
   public save(formValues: any) {
-    const { columns, operations, outputName, ...groupsObj } = formValues;
+    const {columns, operations, outputName, ...groupsObj} = formValues;
     const groupArray: string[] = Object.values(groupsObj);
     const data = {
       name: 'process-aggregate',

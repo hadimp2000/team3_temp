@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { PipelineServiceService } from '../../services/pipeline-service.service';
-import { BoardService } from '../service/board.service';
+import {Component, OnInit} from '@angular/core';
+import {PipelineServiceService} from '../../services/pipeline-service.service';
+import {BoardService} from '../service/board.service';
 
 @Component({
   selector: 'app-pipeline-details',
@@ -11,7 +11,8 @@ export class PipelineDetailsComponent implements OnInit {
   constructor(
     public boardService: BoardService,
     private pipelineServiceService: PipelineServiceService
-  ) {}
+  ) {
+  }
 
   async ngOnInit() {
     this.boardService.status = await this.pipelineServiceService.getStatus(

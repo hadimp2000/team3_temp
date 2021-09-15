@@ -1,9 +1,11 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { JoinDetailsModel } from './join-details/join-details.model';
-import { BoardService } from './service/board.service';
-import { AggregateDetailsModel } from './aggregate-details/aggregate-details.model';
-import { ActivatedRoute } from '@angular/router';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {JoinDetailsModel} from './join-details/join-details.model';
+import {BoardService} from './service/board.service';
+import {AggregateDetailsModel} from './aggregate-details/aggregate-details.model';
+import {ActivatedRoute} from '@angular/router';
+
 declare var require: any;
+
 @Component({
   selector: 'app-pipeline',
   templateUrl: './pipeline.component.html',
@@ -14,6 +16,7 @@ export class PipelineComponent implements OnInit {
   public showDetails: boolean = true;
   public showTable: boolean = true;
   public detailsMode: string = 'pipeline';
+  public sourceOrDest: string = 'source';
   public joinDetails: JoinDetailsModel = {
     dataset: '',
     joinType: '',
@@ -32,7 +35,8 @@ export class PipelineComponent implements OnInit {
   constructor(
     public _pipelineService: BoardService,
     public _Activatedroute: ActivatedRoute
-  ) {}
+  ) {
+  }
 
   async ngOnInit() {
     this._pipelineService.pipelineName =
@@ -64,6 +68,7 @@ export class PipelineComponent implements OnInit {
       }
     }
   };
+
   AllOnClickEvents(): void {
     this._pipelineService.ogma.events.onClick((evt: any) => {
       if (evt.target === null) {
@@ -74,11 +79,15 @@ export class PipelineComponent implements OnInit {
             this._pipelineService,
             'source'
           );
+        } else if (evt.target.getId() === 'source') {
+          this.sourceOrDest = 'source';
         } else if (evt.target.getId() === 'selectDis') {
           this._pipelineService._addDataModal.openDialog(
             this._pipelineService,
             'dist'
           );
+        } else if (evt.target.getId() === 'destination') {
+          this.sourceOrDest = 'destination';
         } else if (evt.target.getData('name') === 'add') {
           let i = evt.target.getAdjacentNodes();
           this._pipelineService._addProcessModal.openDialog(

@@ -31,14 +31,14 @@ export class FilterDetailsComponent implements OnChanges {
   }
 
   async ngOnChanges(changes: SimpleChanges) {
+    this.operations = ['='];
     const sourceType: string = await this.dataSetServiceService.csvOrSql("" + this.boardService.sourceName);
     if (sourceType === 'csv')
       this.dataset = await this.dataSetServiceService.getCsvDataSet("" + this.boardService.sourceName)
     else
       this.dataset = await this.dataSetServiceService.getSqlDataSet("" + this.boardService.sourceName)
     this.columns = this.dataset[0];
-    this.operations = ['='];
-    if (this.filter_details.column !== "") {
+    if (this.filter_details.column !== '') {
       this.createOperations(this.filter_details.column);
     }
     this.filter_details.operation=this.fixOperation(this.filter_details.operation);
@@ -62,7 +62,7 @@ export class FilterDetailsComponent implements OnChanges {
   }
 
   public fixOperation(operation: string): string {
-    let fixedOperation = '';
+    let fixedOperation;
     switch (operation) {
       case '=':
         fixedOperation = '=';
@@ -73,6 +73,8 @@ export class FilterDetailsComponent implements OnChanges {
       case '<':
         fixedOperation = '>';
         break
+      default:
+        fixedOperation='';
     }
     return fixedOperation;
   }
@@ -81,9 +83,9 @@ export class FilterDetailsComponent implements OnChanges {
     const index = this.dataset[0].indexOf(input);
     const value = this.dataset[1][index];
     if (!isNaN(+Number(value))) {
-      this.operations = ["=", ">", "<"];
+      this.operations = ['=', '>', '<'];
     } else
-      this.operations = ["="]
+      this.operations = ['=']
   }
 
 }

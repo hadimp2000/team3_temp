@@ -1,5 +1,6 @@
 <section>
-  <h2>{{dataName}}</h2>
+  <h2 *ngIf="sourceOrDest==='source'">{{boardService.sourceName}}</h2>
+  <h2 *ngIf="sourceOrDest==='destination'">{{boardService.DistName}}</h2>
   <p>50 رکورد</p>
   <div *ngIf="dataset" class="table">
     <table>

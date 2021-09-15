@@ -58,10 +58,10 @@ export class JoinDetailsComponent implements OnInit {
   }
 
   public async chooseDataset(event: any) {
-    const name:string=event.target.value;
-    const type:string=await this.dataSetServiceService.csvOrSql(name);
+    const name: string = event.target.value;
+    const type: string = await this.dataSetServiceService.csvOrSql(name);
     let datatable;
-    if(type==='csv')
+    if (type === 'csv')
       datatable = await this.dataSetServiceService.getCsvDataSet(name)
     else
       datatable = await this.dataSetServiceService.getSqlDataSet(event.target.value)

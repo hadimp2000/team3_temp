@@ -10,9 +10,9 @@ import {BoardService} from "../service/board.service";
 export class FilterPageComponent implements OnInit, AfterViewInit {
   @ViewChild('toolbar') toolbar!: ElementRef;
   @ViewChild('form') form!: ElementRef;
-  @Input() filterId!: string ;
-  @Input() tree!:any;
-  @Output() changeMode:EventEmitter<string>=new EventEmitter<string>();
+  @Input() filterId!: string;
+  @Input() tree!: any;
+  @Output() changeMode: EventEmitter<string> = new EventEmitter<string>();
   public filter_details: FilterDetailsModel;
   public counter = 0;
   public edgeCounter = 0;
@@ -23,7 +23,7 @@ export class FilterPageComponent implements OnInit, AfterViewInit {
   public width!: number;
   public height!: number;
 
-  constructor(private boardService:BoardService) {
+  constructor(private boardService: BoardService) {
     this.filter_details = {
       showForm: false,
       id: "",
@@ -36,14 +36,12 @@ export class FilterPageComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     // @ts-ignore
     const Ogma = require('../../../assets/ogma.min.js');
-    if (Object.keys(this.tree).length !== 0)
-    {
+    if (Object.keys(this.tree).length !== 0) {
       this.ogma = new Ogma({
         graph: this.tree,
         container: 'graph-container',
       });
-    }
-    else {
+    } else {
       this.ogma = new Ogma({
         container: 'graph-container',
       });
@@ -225,21 +223,21 @@ export class FilterPageComponent implements OnInit, AfterViewInit {
   }
 
   public async saveFilters() {
-    let data={};
+    let data = {};
     const promise = new Promise<void>((resolve, reject) => {
-        this.ogma.export.json({
-          download: false,
-          pretty: true
-        }).then(function (json: any) {
-          data = {
-            name: 'process-filter',
-            filterTree: JSON.parse(json)
-          }
-        });
-        resolve();
+      this.ogma.export.json({
+        download: false,
+        pretty: true
+      }).then(function (json: any) {
+        data = {
+          name: 'process-filter',
+          filterTree: JSON.parse(json)
+        }
+      });
+      resolve();
     });
     await promise;
-    this.boardService.changeNodeData(this.filterId,data);
+    this.boardService.changeNodeData(this.filterId, data);
     this.changeMode.emit("pipeline")
   }
 
@@ -254,7 +252,8 @@ export class FilterPageComponent implements OnInit, AfterViewInit {
     });
     changedNode.setAttribute('text', `${event.column} ${event.operation} ${event.value}`);
   }
-  public cancel(){
+
+  public cancel() {
     this.changeMode.emit("pipeline")
   }
 }

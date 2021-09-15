@@ -27,7 +27,7 @@
     <h4 class="groups">گروه بندی</h4>
     <div *ngFor="let Gcolumn of aggregate_details.groupColumns;let index=index">
       <label for="Gcolumns">ستون</label>
-      <select id="Gcolumns"  name=group{{index}} [(ngModel)]="aggregate_details.groupColumns[index]">
+      <select id="Gcolumns" name=group{{index}} [(ngModel)]="aggregate_details.groupColumns[index]">
         <option *ngFor="let column of columns" [value]="column">{{column}}</option>
       </select>
     </div>

@@ -1,15 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
-import { ToastService } from 'src/app/common/toast.service';
-import { PipelineServiceService } from '../../services/pipeline-service.service';
-import { BoardService } from '../service/board.service';
+import {Component, EventEmitter, Output} from '@angular/core';
+import {Router} from '@angular/router';
+import {ToastService} from 'src/app/common/toast.service';
+import {PipelineServiceService} from '../../services/pipeline-service.service';
+import {BoardService} from '../service/board.service';
 
 @Component({
   selector: 'app-pipeline-header',
   templateUrl: './pipeline-header.component.html',
   styleUrls: ['./pipeline-header.component.scss'],
 })
-export class PipelineHeaderComponent implements OnInit {
+export class PipelineHeaderComponent {
   @Output() detailsIcon: EventEmitter<string> = new EventEmitter<string>();
   @Output() tableIcon: EventEmitter<string> = new EventEmitter<string>();
   public canCancel: boolean = false;
@@ -19,9 +19,8 @@ export class PipelineHeaderComponent implements OnInit {
     private router: Router,
     private pipelineServiceService: PipelineServiceService,
     private _toaster: ToastService
-  ) {}
-
-  ngOnInit(): void {}
+  ) {
+  }
 
   public clickDetailsIcon() {
     this.detailsIcon.emit('clicked');
@@ -72,5 +71,6 @@ export class PipelineHeaderComponent implements OnInit {
     }
   }
 
-  public cancel() {}
+  public cancel() {
+  }
 }
