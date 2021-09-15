@@ -1,6 +1,6 @@
 <section>
-
   <p>{{dataset_values.length}} رکورد</p>
+  <p *ngIf="isLoading">درحال بارگزاری دیتاها...</p>
   <div class="table">
     <table>
       <tr>
