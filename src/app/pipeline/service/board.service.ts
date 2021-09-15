@@ -10,7 +10,6 @@ import { ToastService } from 'src/app/common/toast.service';
 export class BoardService {
   public ogma: any;
   private addId = 0;
-  private edgeId = 0;
   public pipelineName!: string;
   public sourceName!: String;
   public DistName!: String;
@@ -34,10 +33,7 @@ export class BoardService {
         name
       ),
     ]);
-    this.ogma.addEdges([
-      { id: this.edgeId, source: adj.getId(), target: 'destination' },
-    ]);
-    this.edgeId += 1;
+    this.ogma.addEdges([{ source: adj.getId(), target: 'destination' }]);
     this.DistName = name;
     this.updateDb();
   }
@@ -165,11 +161,9 @@ export class BoardService {
     }
     if (adj2 && neighber) {
       this.ogma.addEdge({
-        id: this.edgeId,
         source: adj2.getId(),
         target: neighber.getId(),
       });
-      this.edgeId++;
     }
     this.ogma.removeNode(adj);
     this._toaster.openSnackBar(node.getId() + ' حذف شد ', 'talend');
@@ -283,10 +277,9 @@ export class BoardService {
       ),
     ]);
     this.ogma.addEdges([
-      { id: this.edgeId, source: 'source', target: 'add-1' },
-      { id: this.edgeId + 1, source: 'add-1', target: 'destination' },
+      { source: 'source', target: 'add-1' },
+      { source: 'add-1', target: 'destination' },
     ]);
-    this.edgeId += 3;
     this.updateDb();
   }
 
@@ -301,14 +294,12 @@ export class BoardService {
     let nameFilter = 'filterNode-' + random;
     let nameAgg = 'aggregateNode-' + random;
     let nameJoin = 'joinNode-' + random;
-
+    console.log(src, dist);
     this.ogma.addNode(this.ObjAddNode(`add-${this.addId}`));
     this.ogma.addEdge({
-      id: this.edgeId,
       source: src,
       target: `add-${this.addId}`,
     });
-    this.edgeId += 2;
     let node, name;
 
     if (type === 'filter') {
@@ -323,27 +314,22 @@ export class BoardService {
     }
     this.ogma.addNode(node);
     this.ogma.addEdge({
-      id: this.edgeId,
       source: `add-${this.addId}`,
       target: name,
     });
+
     this.addId += 3;
-    this.edgeId += 2;
     this.ogma.addNode(this.ObjAddNode(`add-${this.addId}`));
     this.ogma.addEdges([
       {
-        id: this.edgeId,
         source: `add-${this.addId}`,
         target: dist,
       },
       {
-        id: this.edgeId + 1,
         source: name,
         target: `add-${this.addId}`,
       },
     ]);
-    this.edgeId += 2;
-    this.edgeId += 7;
     this.addId += 11;
     this.ogma.layouts.sequential({
       direction: 'LR',
