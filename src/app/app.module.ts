@@ -40,6 +40,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { SendRequestService } from './services/send-request-service.service';
 import { SqlFormModalComponent } from './dataset/banner/sql-form-modal/sql-form-modal.component';
 import { SqlFormComponentComponent } from './dataset/banner/sql-form-component/sql-form-component.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -80,6 +82,7 @@ import { SqlFormComponentComponent } from './dataset/banner/sql-form-component/s
     NoopAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    MatMenuModule,
     MatButtonModule,
     RouterModule.forRoot(routes),
     MaterialModule,
@@ -89,6 +92,7 @@ import { SqlFormComponentComponent } from './dataset/banner/sql-form-component/s
     HttpClientModule,
     MatRadioModule,
     MatGridListModule,
+    MatSnackBarModule,
   ],
 
   providers: [

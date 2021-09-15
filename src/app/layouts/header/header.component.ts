@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -6,15 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  public username!:string | null;
-  public firstName:string="parmida";
-  public lastName:string="khani"
-  constructor() {}
+  public username!: string | null;
+  public firstName: string = 'parmida';
+  public lastName: string = 'khani';
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.username=localStorage.getItem('username');
+    this.username = localStorage.getItem('username');
   }
-  public myFunction() {
-    // document.getElementById("myDropdown").classList.toggle("show");
+  public async logOut() {
+    localStorage.clear();
+    await this.router.navigateByUrl('/');
   }
 }

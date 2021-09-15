@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastService } from '../common/toast.service';
 
 @Component({
   selector: 'app-landing',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing.component.scss'],
 })
 export class LandingComponent implements OnInit {
-  constructor() {}
+  constructor(private _toaster: ToastService) {}
   public arryOfInfos: Array<any> = [
     {
       name: 'پرنا اسدی',
@@ -58,5 +59,7 @@ export class LandingComponent implements OnInit {
       git: 'https://github.com/navidnt',
     },
   ];
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._toaster.openSnackBar('به سایت تلند تیم سه خوش آمدید', 'talent');
+  }
 }

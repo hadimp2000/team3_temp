@@ -1,10 +1,17 @@
 @use '../../../styles/defs' as *;
-
+.ddbtn {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  justify-content: space-around;
+  font-weight: bold;
+  font-family: "IRANSans";
+}
 .top-bar {
-  background-color: #282A35;
+  background-color: #282a35;
 
   &.dark {
-    background-color: #282A35;
+    background-color: #282a35;
   }
 
   > nav {
@@ -18,7 +25,7 @@
       color: white;
       font-weight: bold;
     }
-    .talend-icon{
+    .talend-icon {
       width: $density-larger;
       height: $density-larger;
       margin-right: 2rem;
@@ -40,7 +47,6 @@
         width: 1.2em;
         height: 1.2em;
       }
-
     }
 
     .profile-popup-container {
@@ -140,11 +146,11 @@
   }
 }
 
-@media screen and (max-width: 800px){
-  .top-bar >nav .talend-icon {
+@media screen and (max-width: 800px) {
+  .top-bar > nav .talend-icon {
     margin-top: 0.6rem;
   }
-  .top-bar >nav .talend {
-    top:1.3rem;
+  .top-bar > nav .talend {
+    top: 1.3rem;
   }
 }

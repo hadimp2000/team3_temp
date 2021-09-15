@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Router } from '@angular/router';
-import { query } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
-import { DataSetServiceService } from '../../services/data-set-service.service';
-import { SendRequestService } from '../../services/send-request-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SqlFormModalComponent } from './sql-form-modal/sql-form-modal.component';
+import { ToastService } from 'src/app/common/toast.service';
 
 @Component({
   selector: 'app-banner',
@@ -20,10 +17,8 @@ export class BannerComponent implements OnInit {
   isWait = false;
 
   constructor(
-    private router: Router,
+    private _toaster: ToastService,
     private httpClient: HttpClient,
-    private dataSetService: DataSetServiceService,
-    private sendRequestService: SendRequestService,
     public dialog: MatDialog
   ) {}
 
@@ -62,7 +57,11 @@ export class BannerComponent implements OnInit {
         let file = files[0];
         let formData = new FormData();
         if (this.getExtension(file.name)) {
-          alert('فرمت فایل آپلود شده باید csv باشد');
+          this._toaster.openSnackBar(
+            'فرمت فایل آپلود شده باید csv باشد',
+            'talent'
+          );
+          this.isWait = false;
           return;
         }
         details = {
@@ -81,10 +80,15 @@ export class BannerComponent implements OnInit {
             )}`,
             formData
           )
-          .subscribe((res) => {
-            console.log('File Uploaded ...');
-            location.reload();
-          });
+          .subscribe(
+            () => {
+              location.reload();
+            },
+            (error) => {
+              this._toaster.openSnackBar(error.error.message, 'server');
+              this.isWait = false;
+            }
+          );
       }
     }
   }

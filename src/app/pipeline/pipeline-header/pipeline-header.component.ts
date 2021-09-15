@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastService } from 'src/app/common/toast.service';
 import { PipelineServiceService } from '../../services/pipeline-service.service';
 import { BoardService } from '../service/board.service';
 
@@ -16,7 +17,8 @@ export class PipelineHeaderComponent implements OnInit {
   constructor(
     public boardService: BoardService,
     private router: Router,
-    private pipelineServiceService: PipelineServiceService
+    private pipelineServiceService: PipelineServiceService,
+    private _toaster: ToastService
   ) {}
 
   ngOnInit(): void {}
@@ -31,7 +33,6 @@ export class PipelineHeaderComponent implements OnInit {
 
   public async prevPage() {
     await this.router.navigateByUrl('/pipelines/pipelinesList');
-    // location.reload();
   }
 
   public async download() {
@@ -48,10 +49,14 @@ export class PipelineHeaderComponent implements OnInit {
         this.boardService.pipelineName
       );
       const interval = setInterval(async () => {
-        console.log(this.boardService.status);
         this.boardService.status = await this.pipelineServiceService
           .getStatus(this.boardService.pipelineName)
+          .then((res) => {
+            this._toaster.openSnackBar(res, 'server');
+            return res;
+          })
           .catch((err) => {
+            this._toaster.openSnackBar(err, 'server');
             clearInterval(interval);
             this.canCancel = false;
             return err;

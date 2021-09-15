@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AddDataModalComponent } from '../pipeline-board/modals/add-data-modal/add-data-modal.component';
 import { AddProcessModalComponent } from '../pipeline-board/modals/add-process-modal/add-process-modal.component';
 import { PipelineServiceService } from 'src/app/services/pipeline-service.service';
+import { ToastService } from 'src/app/common/toast.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,8 @@ export class BoardService {
   constructor(
     public _addDataModal: AddDataModalComponent,
     public _addProcessModal: AddProcessModalComponent,
-    public _pipelineService: PipelineServiceService
+    public _pipelineService: PipelineServiceService,
+    private _toaster: ToastService
   ) {}
 
   public changeNodeData(nodeId: string, data: object): void {
@@ -30,6 +32,7 @@ export class BoardService {
       name: preData.name,
       source: this.sourceName,
     });
+    this._toaster.openSnackBar(changedNode.getId() + ' ذخیره شد ', 'talend');
     this.updateDb();
   }
 
@@ -150,6 +153,7 @@ export class BoardService {
       this.edgeId++;
     }
     this.ogma.removeNode(adj);
+    this._toaster.openSnackBar(node.getId() + ' حذف شد ', 'talend');
     this.ogma.removeNode(node);
     this.updateDb();
   };

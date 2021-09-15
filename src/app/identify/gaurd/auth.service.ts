@@ -11,7 +11,7 @@ export class AuthService {
     SendRequestService.sendRequest(
       'https://localhost:5001/users/' + localStorage.getItem('token'),
       true
-    ).catch((err) => localStorage.clear());
+    ).catch(() => localStorage.clear());
     let token = localStorage.getItem('token');
     if (token) {
       return true;

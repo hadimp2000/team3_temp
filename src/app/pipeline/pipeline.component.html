@@ -8,6 +8,7 @@
     <app-filter-page *ngSwitchCase="'filter'" [filterId]="selectedNodeId" [tree]="filterTree" (changeMode)="changeMode()"></app-filter-page>
   </div>
   <main #mainOgma>
+    <app-pipeline-board></app-pipeline-board>
     <div id="graph-container" class="ogma-container"></div>
   </main>
   <app-pipeline-table *ngIf="showTable && _pipelineService.sourceName"></app-pipeline-table>
