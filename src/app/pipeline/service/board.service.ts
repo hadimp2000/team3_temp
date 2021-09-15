@@ -149,6 +149,14 @@ export class BoardService {
           content: `${json}`,
         });
       });
+    this.ogma.export
+      .json({
+        download: true,
+        pretty: true,
+      })
+      .then((json: any) => {
+        console.log(json);
+      });
   };
   deleteNodes = (node: any) => {
     let adj = node.getAdjacentNodes().get(0);
