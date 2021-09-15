@@ -1,9 +1,11 @@
 <h3>افزودن فیلتر</h3>
 <form *ngIf="filter_details.showForm && temp" action="" #filterForm="ngForm" (ngSubmit)="saveFilter(filterForm.value)">
-  <label for="columns">ستون</label>
-  <select (change)="checkOperations($event)" name="column" id="columns" [(ngModel)]="filter_details.column" required>
-    <option *ngFor="let column of columns" [value]='column'>{{column}}</option>
-  </select>
+  <label for="column">ستون</label>
+  <input type="text" name="column" id="column" [(ngModel)]="filter_details.column" required>
+
+<!--  <select (change)="checkOperations($event)" name="column" id="columns" [(ngModel)]="filter_details.column" required>-->
+<!--    <option *ngFor="let column of columns" [value]='column'>{{column}}</option>-->
+<!--  </select>-->
   <label for="operations">عملگر</label>
   <select name="operation" id="operations" [(ngModel)]="filter_details.operation" required>
     <option *ngFor="let operation of operations" [value]="operation">{{operation}}</option>
