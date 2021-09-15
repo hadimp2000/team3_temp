@@ -109,6 +109,18 @@ section {
   color: #1c2c81;
 }
 
+span {
+  position: absolute;
+  right: calc(50% + 30px);
+  top: 2rem;
+  color: #282A35;
+  font-weight: bold;
+  cursor: pointer;
+}
+span:hover {
+  color: #54586f;
+}
+
 .run {
   cursor: pointer;
   position: absolute;
@@ -122,6 +134,9 @@ section {
 }
 .run path {
   fill: #513590;
+}
+.run:hover {
+  transform: scale(1.1, 1.1);
 }
 
 .back {

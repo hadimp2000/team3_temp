@@ -42,6 +42,7 @@ import { SqlFormModalComponent } from './dataset/banner/sql-form-modal/sql-form-
 import { SqlFormComponentComponent } from './dataset/banner/sql-form-component/sql-form-component.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatMenuModule} from '@angular/material/menu';
+import { CsvFormComponent } from './dataset/banner/csv-form/csv-form.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import {MatMenuModule} from '@angular/material/menu';
     PipelinesListComponent,
     SqlFormModalComponent,
     SqlFormComponentComponent,
+    CsvFormComponent,
   ],
   imports: [
     BrowserModule,

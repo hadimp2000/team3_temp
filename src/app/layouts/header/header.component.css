@@ -1,8 +1,17 @@
+.ddbtn {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  justify-content: space-around;
+  font-weight: bold;
+  font-family: "IRANSans";
+}
+
 .top-bar {
-  background-color: #282A35;
+  background-color: #282a35;
 }
 .top-bar.dark {
-  background-color: #282A35;
+  background-color: #282a35;
 }
 .top-bar > nav {
   display: grid;

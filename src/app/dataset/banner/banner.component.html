@@ -1,8 +1,8 @@
 <div class="container">
-  <button mat-raised-button color="primary">
+  <button routerLink="/pipelines/csvForm" mat-raised-button color="primary">
     <div *ngIf="!isWait">
       <label for="file">بارگزاری دیتاست</label>
-      <input id="file" type="file" (change)="fileChange($event)" style="visibility: hidden" accept=".csv">
+      <input  id="file" type="file"  style="visibility: hidden" accept=".csv">
     </div>
     <div *ngIf="isWait">
       <label class="loading">درحال بارگزاری...</label>

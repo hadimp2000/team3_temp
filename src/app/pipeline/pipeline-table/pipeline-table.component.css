@@ -3,6 +3,7 @@ section {
   height: 25rem;
   width: 100%;
   box-shadow: 0 0 1rem gray;
+  background-color: #fff;
 }
 
 .table {
@@ -30,9 +31,12 @@ h2 {
 
 table {
   border-collapse: collapse;
+  width: 100%;
+  height: 100%;
 }
 
-table td, table th {
+table td,
+table th {
   border: 1px solid #ddd;
   padding: 0.5rem 2rem 0 2rem;
   text-align: left;
@@ -50,8 +54,8 @@ table tr:hover {
 table th {
   position: sticky;
   top: 0;
-  padding-top: 1.5rem;
-  padding-bottom: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
   background-color: #5b6fdb;
   color: white;
 }

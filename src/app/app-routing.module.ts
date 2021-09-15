@@ -10,6 +10,7 @@ import { DataSetSampleTableComponent } from './dataset/data-set-sample-table/dat
 import { PipelinesListComponent } from './pipelines-list/pipelines-list.component';
 import { AuthService } from './identify/gaurd/auth.service';
 import {SqlFormComponentComponent} from "./dataset/banner/sql-form-component/sql-form-component.component";
+import {CsvFormComponent} from "./dataset/banner/csv-form/csv-form.component";
 
 export const routes: Routes = [
   { path: 'signUp', component: SignUpComponent },
@@ -26,7 +27,8 @@ export const routes: Routes = [
       {path:'pipelinesList',component:PipelinesListComponent},
       {path:'dataSet',component:DatasetComponent},
       {path:'dataSet/:name',component:DataSetSampleTableComponent},
-      {path:'sqlForm',component:SqlFormComponentComponent}
+      {path:'sqlForm',component:SqlFormComponentComponent},
+      {path:'csvForm',component:CsvFormComponent}
 
     ],
     component: PageComponent,
