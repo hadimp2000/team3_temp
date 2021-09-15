@@ -25,22 +25,22 @@ export class FilterDetailsComponent implements OnChanges {
   public value!: string;
   public column!: string;
   public columns: string[] = [];
-  public operations: string[] = ['='];
+  public operations: string[] = ['=','>','<'];
 
   constructor(private dataSetServiceService: DataSetServiceService, private boardService: BoardService) {
   }
 
   async ngOnChanges(changes: SimpleChanges) {
-    this.operations = ['='];
+    // this.operations = ['='];
     const sourceType: string = await this.dataSetServiceService.csvOrSql("" + this.boardService.sourceName);
     if (sourceType === 'csv')
       this.dataset = await this.dataSetServiceService.getCsvDataSet("" + this.boardService.sourceName)
     else
       this.dataset = await this.dataSetServiceService.getSqlDataSet("" + this.boardService.sourceName)
     this.columns = this.dataset[0];
-    if (this.filter_details.column !== '') {
-      this.createOperations(this.filter_details.column);
-    }
+    // if (this.filter_details.column !== '') {
+    //   this.createOperations(this.filter_details.column);
+    // }
     this.filter_details.operation=this.fixOperation(this.filter_details.operation);
   }
 
