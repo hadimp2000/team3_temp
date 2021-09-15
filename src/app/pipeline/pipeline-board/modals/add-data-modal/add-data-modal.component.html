@@ -1,5 +1,6 @@
 <h1 mat-dialog-title>یک دیتاست را انتخاب کنید</h1>
 <div mat-dialog-content>
+    <p *ngIf="isLoading">درحال گرفتن دیتاست ها...</p>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="name">
             <th class="name" mat-header-cell *matHeaderCellDef> <span> نام</span> </th>

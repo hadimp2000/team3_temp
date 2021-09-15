@@ -171,6 +171,8 @@ export class BoardService {
     this.updateDb();
   };
   async ngInitFunc(): Promise<void> {
+    this._toaster.openSnackBar('درحال بارگیری پایپ لاین', 'talend');
+
     const { content } = await this._pipelineService.getPipeline(
       this.pipelineName
     );
@@ -244,7 +246,7 @@ export class BoardService {
     this.updateDb();
   }
 
-  tempFuncAddSrc(sourceName: String): void {
+  addSourceToPipeline(sourceName: String): void {
     this.sourceName = sourceName;
     this.ogma.setGraph({
       nodes: [
@@ -264,7 +266,7 @@ export class BoardService {
     this.updateDb();
   }
 
-  tempFuncAddDis(disName: String): void {
+  addDistToPipeline(disName: String): void {
     this.DistName = disName;
     this.ogma.removeNode('selectDis');
     this.addId++;

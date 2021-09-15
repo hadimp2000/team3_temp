@@ -25,11 +25,14 @@ export class AddDataModalComponent implements OnInit {
   selectedName: any;
   isDisabled: BooleanInput = true;
   displayedColumns: string[] = ['name'];
-
+  isLoading = true;
   async ngOnInit() {
     this.dataSetService = new DataSetServiceService();
     this.dataSource = new MatTableDataSource(
-      await this.dataSetService.getAllDataSets()
+      await this.dataSetService.getAllDataSets().then((res: any) => {
+        this.isLoading = false;
+        return res;
+      })
     );
   }
 
@@ -57,8 +60,8 @@ export class AddDataModalComponent implements OnInit {
       return;
     }
     this.data.type === 'source'
-      ? this.data.service.tempFuncAddSrc(this.selectedName)
-      : this.data.service.tempFuncAddDis(this.selectedName);
+      ? this.data.service.addSourceToPipeline(this.selectedName)
+      : this.data.service.addDistToPipeline(this.selectedName);
     this._dialog.closeAll();
   }
   Cancle(): void {
