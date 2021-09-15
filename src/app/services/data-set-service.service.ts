@@ -34,7 +34,7 @@ export class DataSetServiceService implements OnInit {
       `https://localhost:5001/users/${localStorage.getItem('username')}/csvs`,
       true,
     )
-    let csvDataSets: object[]=[];
+    let csvDataSets: object[] = [];
     for (const csv of csvFiles) {
       csvDataSets.push({
           position: this.dataSets.length + 1,
@@ -62,8 +62,8 @@ export class DataSetServiceService implements OnInit {
 
   }
 
-  async deleteSqlDataSet(name:string){
-    let response=await SendRequestService.deleteRequest(
+  async deleteSqlDataSet(name: string) {
+    let response = await SendRequestService.deleteRequest(
       `https://localhost:5001/dataset/sqlserver/delete/${name}?token=${localStorage.getItem('token')}`
     )
 
@@ -151,14 +151,15 @@ export class DataSetServiceService implements OnInit {
     )
     return content;
   }
-  async createSqlDataset(dbName:string,dbUserName:string,dbPassword:string,dbUrl:string,name:string,table:string){
-    const details={
-      dbName:dbName,
-      dbUsername:dbUserName,
-      dbPassword:dbPassword,
-      url:dbUrl,
-      name:name,
-      table:table
+
+  async createSqlDataset(dbName: string, dbUserName: string, dbPassword: string, dbUrl: string, name: string, table: string) {
+    const details = {
+      dbName: dbName,
+      dbUsername: dbUserName,
+      dbPassword: dbPassword,
+      url: dbUrl,
+      name: name,
+      table: table
 
     }
     await SendRequestService.sendRequest(

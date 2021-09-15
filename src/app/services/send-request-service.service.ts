@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -29,14 +29,14 @@ export class SendRequestService {
   }
 
   public static async deleteRequest(
-    url:string,
+    url: string,
   ): Promise<any> {
-      const init: RequestInit = {
+    const init: RequestInit = {
       headers: {
         'Content-Type': 'application/json',
       },
     };
-    init.method='DELETE';
+    init.method = 'DELETE';
     return fetch(url, init).then((res) => {
       if (res.ok) {
         return;

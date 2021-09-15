@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {SendRequestService} from "./send-request-service.service";
 
 @Injectable({
@@ -6,16 +6,17 @@ import {SendRequestService} from "./send-request-service.service";
 })
 export class PipelineServiceService {
 
-  constructor() { }
+  constructor() {
+  }
 
-  public async downloadYML(name:string){
-    const token=localStorage.getItem('token');
+  public async downloadYML(name: string) {
+    const token = localStorage.getItem('token');
     const init: RequestInit = {
       headers: {
         'Content-Type': 'application/json',
       },
     };
-     fetch(`https://localhost:5001/pipeline/yml/download/${name}?token=${token}`, init).then((res) => {
+    fetch(`https://localhost:5001/pipeline/yml/download/${name}?token=${token}`, init).then((res) => {
       if (res.ok) {
         window.open(res.url);
         return;
@@ -23,9 +24,10 @@ export class PipelineServiceService {
       throw res;
     });
   }
-  public async getStatus(name:string): Promise<string>{
-    const token=localStorage.getItem('token');
-    const response=await SendRequestService.sendRequest(`https://localhost:5001/pipeline/${name}/status?token=${token}`,true);
+
+  public async getStatus(name: string): Promise<string> {
+    const token = localStorage.getItem('token');
+    const response = await SendRequestService.sendRequest(`https://localhost:5001/pipeline/${name}/status?token=${token}`, true);
     return response.status;
   }
 
@@ -63,12 +65,19 @@ export class PipelineServiceService {
     });
     return data;
   }
-  public async run(dest:string,name:string){
+
+  public async run(dest: string, name: string) {
     const token = localStorage.getItem('token');
     const data = {
-      nodeId:dest,
-      name:name
+      nodeId: dest,
+      name: name
     }
-    const res=await SendRequestService.sendRequest(`https://localhost:5001/pipeline/run?token=${token}`,true,data)
+    const res = await SendRequestService.sendRequest(`https://localhost:5001/pipeline/run?token=${token}`, true, data)
+  }
+
+  public async cancel() {
+    const token = localStorage.getItem('token');
+    const res = await SendRequestService.sendRequest(`https://localhost:5001/pipeline/cancel?token=${token}`, true)
+    console.log(res);
   }
 }

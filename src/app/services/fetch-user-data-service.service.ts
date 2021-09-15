@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {SendRequestService} from "./send-request-service.service";
 import {SignUpModel} from "../identify/models";

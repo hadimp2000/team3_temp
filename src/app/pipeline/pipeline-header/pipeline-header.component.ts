@@ -71,6 +71,7 @@ export class PipelineHeaderComponent {
     }
   }
 
-  public cancel() {
+  public async cancel() {
+    await this.pipelineServiceService.cancel();
   }
 }
