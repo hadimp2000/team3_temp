@@ -12,7 +12,7 @@
                 بدون داده سالم، هر تصمیمی باعث ایجاد مشکل میشود
             </h5>
             <a routerLink="/logIn"> <button>شروع کن</button></a>
-            <a routerLink="/logIn"> <button class="colorful">تست رایگان</button></a>
+            <a routerLink="/signUp"> <button class="colorful">تست رایگان</button></a>
         </div>
     </mat-grid-tile>
     <mat-grid-tile class="intro-banner">
@@ -23,7 +23,7 @@
             <h1>
                 در اختیار شماست
             </h1>
-            <a href="https://github.com/Star-Academy/Summer1400-Project-Team3" target="_blank">صفحه گیت هاب</a>
+            <a href="https://github.com/Star-Academy/Summer1400-Project-Team3" target="_blank" >صفحه گیت هاب</a>
         </div>
     </mat-grid-tile>
 </mat-grid-list>
@@ -34,7 +34,7 @@
     <div class="cards-container">
         <div class="profile-card" *ngFor="let profile of arryOfInfos">
             <div>
-                <img src="../../assets/images/default-profile.jpg" alt="text" />
+                <img [src]="profile.img" alt="profile picture" />
             </div>
             <h6>{{profile.job}}</h6>
             <h3>{{profile.name}}</h3>
