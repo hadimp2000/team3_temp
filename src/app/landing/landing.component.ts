@@ -39,7 +39,12 @@ export class LandingComponent implements OnInit {
       img: '',
       git: 'https://github.com/Kalam132',
     },
-    { name: 'محمد مشتاقی فر', job: 'توسعه بک اند', img: '' },
+    {
+      name: 'نوید نادرطهرانی',
+      job: 'توسعه بک اند',
+      img: '',
+      git: 'https://github.com/navidnt',
+    },
     {
       name: 'علی نظری',
       job: 'توسعه بک اند',
@@ -53,10 +58,10 @@ export class LandingComponent implements OnInit {
       git: 'https://github.com/Adib-Rezaei',
     },
     {
-      name: 'نوید نادرطهرانی',
+      name: 'محمد مشتاقی',
       job: 'توسعه بک اند',
       img: '',
-      git: 'https://github.com/navidnt',
+      git: 'https://github.com',
     },
   ];
   ngOnInit(): void {
