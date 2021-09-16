@@ -151,7 +151,7 @@ export class BoardService {
       });
     this.ogma.export
       .json({
-        download: true,
+        download: false,
         pretty: true,
       })
       .then((json: any) => {
