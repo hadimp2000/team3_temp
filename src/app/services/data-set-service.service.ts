@@ -92,6 +92,7 @@ export class DataSetServiceService implements OnInit {
       `https://localhost:5001/users/${localStorage.getItem('username')}/pipelines`,
       true,
     )
+
     for (const pipeline of pipelines) {
       this.pipeLines.push({
           position: this.pipeLines.length + 1,
