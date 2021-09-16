@@ -1,8 +1,8 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {JoinDetailsModel} from './join-details/join-details.model';
-import {BoardService} from './service/board.service';
-import {AggregateDetailsModel} from './aggregate-details/aggregate-details.model';
-import {ActivatedRoute} from '@angular/router';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { JoinDetailsModel } from './join-details/join-details.model';
+import { BoardService } from './service/board.service';
+import { AggregateDetailsModel } from './aggregate-details/aggregate-details.model';
+import { ActivatedRoute } from '@angular/router';
 
 declare var require: any;
 
@@ -35,8 +35,7 @@ export class PipelineComponent implements OnInit {
   constructor(
     public _pipelineService: BoardService,
     public _Activatedroute: ActivatedRoute
-  ) {
-  }
+  ) {}
 
   async ngOnInit() {
     this._pipelineService.pipelineName =
@@ -90,11 +89,12 @@ export class PipelineComponent implements OnInit {
           this.sourceOrDest = 'destination';
         } else if (evt.target.getData('name') === 'add') {
           let i = evt.target.getAdjacentNodes();
+          let arry = this._pipelineService.handleGetSrcIndex(i, evt.target);
           this._pipelineService._addProcessModal.openDialog(
             this._pipelineService,
             {
-              src: i.get(0).getId(),
-              dist: i.get(1).getId(),
+              src: arry[0],
+              dist: arry[1],
               id: evt.target.getId(),
             }
           );

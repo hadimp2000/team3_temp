@@ -155,7 +155,7 @@ export class BoardService {
         pretty: true,
       })
       .then((json: any) => {
-        console.log(json);
+        //  console.log(json);
       });
   };
   deleteNodes = (node: any) => {
@@ -344,5 +344,34 @@ export class BoardService {
       direction: 'LR',
       locate: { maxNodeSizeOnScreen: 60 },
     });
+  }
+
+  handleGetSrcIndex(adjs: any, node: any): Array<any> {
+    let src = adjs.get(0).getId();
+    let dist = adjs.get(1).getId();
+
+    if (src === 'source') return [src, dist];
+    else if (dist === 'source') return [dist, src];
+    if (src === 'destination') return [dist, src];
+    else if (dist === 'destination') return [src, dist];
+
+    let tempD, tempS;
+
+    let adjEdges = node.getAdjacentEdges();
+    let edge1 = adjEdges.get(0);
+    let edge2 = adjEdges.get(1);
+    if (edge1.getSource().getId() === node.getId()) {
+      tempD = edge1.getTarget().getId();
+    }
+    if (edge1.getTarget().getId() === node.getId()) {
+      tempS = edge1.getSource().getId();
+    }
+    if (edge2.getSource().getId() === node.getId()) {
+      tempD = edge2.getTarget().getId();
+    }
+    if (edge2.getTarget().getId() === node.getId()) {
+      tempS = edge2.getSource().getId();
+    }
+    return [tempS, tempD];
   }
 }
